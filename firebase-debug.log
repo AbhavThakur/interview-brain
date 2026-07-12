@@ -1,0 +1,451 @@
+[debug] [2026-07-12T14:19:28.068Z] ----------------------------------------------------------------------
+[debug] [2026-07-12T14:19:28.070Z] Command:       /Users/A3100515/.nvm/versions/node/v22.15.0/bin/node /Users/A3100515/.npm/_npx/ba4f1959e38407b5/node_modules/.bin/firebase deploy --only firestore,auth --project interview-brain-64810
+[debug] [2026-07-12T14:19:28.070Z] CLI Version:   15.23.0
+[debug] [2026-07-12T14:19:28.070Z] Platform:      darwin
+[debug] [2026-07-12T14:19:28.070Z] Node Version:  v22.15.0
+[debug] [2026-07-12T14:19:28.070Z] Detected Agent: antigravity
+[debug] [2026-07-12T14:19:28.070Z] Time:          Sun Jul 12 2026 19:49:28 GMT+0530 (India Standard Time)
+[debug] [2026-07-12T14:19:28.071Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-07-12T14:19:30.228Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-07-12T14:19:30.228Z] > authorizing via signed-in user (abhav.thakur25@gmail.com)
+[debug] [2026-07-12T14:19:30.228Z] [iam] checking project interview-brain-64810 for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebase.projects.update","firebaseauth.configs.update"]
+[debug] [2026-07-12T14:19:30.232Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:30.232Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:30.232Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions [none]
+[debug] [2026-07-12T14:19:30.233Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions  x-goog-user-project=interview-brain-64810
+[debug] [2026-07-12T14:19:30.233Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebase.projects.update","firebaseauth.configs.update"]}
+[debug] [2026-07-12T14:19:31.611Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions 200
+[debug] [2026-07-12T14:19:31.611Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebase.projects.update","firebaseauth.configs.update"]}
+[info] 
+[info] === Deploying to 'interview-brain-64810'...
+[info] 
+[info] i  deploying firestore, auth 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-07-12T14:19:31.613Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:31.613Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:31.613Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/interview-brain-64810/services/firestore.googleapis.com [none]
+[debug] [2026-07-12T14:19:31.613Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/interview-brain-64810/services/firestore.googleapis.com  x-goog-user-project=interview-brain-64810
+[debug] [2026-07-12T14:19:33.513Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/interview-brain-64810/services/firestore.googleapis.com 200
+[debug] [2026-07-12T14:19:33.513Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/interview-brain-64810/services/firestore.googleapis.com [omitted]
+[info] ✔  firestore: required API firestore.googleapis.com is enabled 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-07-12T14:19:33.525Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:33.526Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:33.526Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) [none]
+[debug] [2026-07-12T14:19:34.040Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) 200
+[debug] [2026-07-12T14:19:34.041Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) {"name":"projects/interview-brain-64810/databases/(default)","uid":"193a57ad-40e1-4272-a765-d5a1414ab292","createTime":"2026-07-12T14:04:23.316030Z","updateTime":"2026-07-12T14:04:23.316030Z","locationId":"asia-south1","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-07-12T14:04:23.316030Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"j","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"ILOxz82qzZUDMJSSuqKnzZUD"}
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2026-07-12T14:19:34.042Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:34.042Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:34.042Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810:test [none]
+[debug] [2026-07-12T14:19:34.042Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810:test [omitted]
+[debug] [2026-07-12T14:19:35.472Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810:test 200
+[debug] [2026-07-12T14:19:35.472Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2026-07-12T14:19:35.473Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:35.473Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:35.474Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/interview-brain-64810/webApps pageSize=100
+[debug] [2026-07-12T14:19:36.296Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/interview-brain-64810/webApps 200
+[debug] [2026-07-12T14:19:36.296Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/interview-brain-64810/webApps {"apps":[{"name":"projects/interview-brain-64810/webApps/1:187552665444:web:25acbc2d488d927762b471","appId":"1:187552665444:web:25acbc2d488d927762b471","displayName":"Interview Brain Web","projectId":"interview-brain-64810","webId":"YmI5N2ViOWItNTBkZi00ZmE2LThmNTAtZjZlOGM3YWEwZDY1","apiKeyId":"bb392f10-5807-40ae-b40a-8e8806a3a857","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z","etag":"1_c246da06-a374-497a-a743-d345189317d2"}]}
+[debug] [2026-07-12T14:19:36.297Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:36.297Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:36.297Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/releases pageSize=10&pageToken=
+[debug] [2026-07-12T14:19:37.745Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/releases 200
+[debug] [2026-07-12T14:19:37.745Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/releases {"releases":[{"name":"projects/interview-brain-64810/releases/cloud.firestore","rulesetName":"projects/interview-brain-64810/rulesets/6c60a6fa-d389-471b-802d-4ec754506235","createTime":"2026-07-12T14:04:29.034220Z","updateTime":"2026-07-12T14:04:29.034220Z"}]}
+[debug] [2026-07-12T14:19:37.745Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:37.745Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:37.745Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets/6c60a6fa-d389-471b-802d-4ec754506235 [none]
+[debug] [2026-07-12T14:19:39.310Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets/6c60a6fa-d389-471b-802d-4ec754506235 200
+[debug] [2026-07-12T14:19:39.310Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets/6c60a6fa-d389-471b-802d-4ec754506235 [omitted]
+[info] i  firestore: uploading rules firestore.rules... 
+[debug] [2026-07-12T14:19:39.311Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:39.311Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:39.312Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets [none]
+[debug] [2026-07-12T14:19:39.312Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets [omitted]
+[debug] [2026-07-12T14:19:40.754Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets 200
+[debug] [2026-07-12T14:19:40.754Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets {"name":"projects/interview-brain-64810/rulesets/fa88d1ed-179d-492c-9b3a-c78b725798fb","source":{"files":[{"content":"rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /users/{userId} {\n      allow read, write: if request.auth != null && request.auth.uid == userId;\n      \n      match /progress/{questionId} {\n        allow read, write: if request.auth != null && request.auth.uid == userId;\n      }\n    }\n  }\n}\n","name":"firestore.rules"}]},"createTime":"2026-07-12T14:19:40.633519Z","metadata":{"services":["cloud.firestore"]}}
+[debug] [2026-07-12T14:19:40.754Z] [rules] created ruleset projects/interview-brain-64810/rulesets/fa88d1ed-179d-492c-9b3a-c78b725798fb
+[info] i  firestore: deploying indexes... 
+[debug] [2026-07-12T14:19:40.755Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:40.755Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:40.755Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2026-07-12T14:19:41.124Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2026-07-12T14:19:41.124Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2026-07-12T14:19:41.124Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:41.124Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:41.124Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2026-07-12T14:19:41.410Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2026-07-12T14:19:41.410Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/interview-brain-64810/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[debug] [2026-07-12T14:19:41.410Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:41.410Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:41.410Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) [none]
+[debug] [2026-07-12T14:19:41.521Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) 200
+[debug] [2026-07-12T14:19:41.522Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) {"name":"projects/interview-brain-64810/databases/(default)","uid":"193a57ad-40e1-4272-a765-d5a1414ab292","createTime":"2026-07-12T14:04:23.316030Z","updateTime":"2026-07-12T14:04:23.316030Z","locationId":"asia-south1","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-07-12T14:04:23.316030Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"j","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"ILPPn9GqzZUDMKyJmNGqzZUD"}
+[info] ✔  firestore: deployed indexes in firestore.indexes.json successfully for (default) database 
+[info] Enabling auth providers: anonymous, email/password, Google sign-in...
+[debug] [2026-07-12T14:19:41.522Z] [provision] Starting Firebase app provisioning...
+[debug] [2026-07-12T14:19:41.522Z] [provision] Request: {
+  "appNamespace": "1:187552665444:web:25acbc2d488d927762b471",
+  "parent": "projects/interview-brain-64810",
+  "firebaseAuthInput": {
+    "anonymousAuthProviderMode": "PROVIDER_ENABLED",
+    "emailAuthProviderMode": "PROVIDER_ENABLED",
+    "googleSigninProviderMode": "PROVIDER_ENABLED",
+    "googleSigninProviderConfig": {
+      "publicDisplayName": "Interview Brain",
+      "customerSupportEmail": "support@example.com",
+      "oauthRedirectUris": [
+        "https://interview-brain-64810.firebaseapp.com",
+        "http://localhost"
+      ]
+    }
+  },
+  "webInput": {}
+}
+[debug] [2026-07-12T14:19:41.523Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:41.523Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:41.523Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp [none]
+[debug] [2026-07-12T14:19:41.523Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp {"appNamespace":"1:187552665444:web:25acbc2d488d927762b471","parent":"projects/interview-brain-64810","firebaseAuthInput":{"anonymousAuthProviderMode":"PROVIDER_ENABLED","emailAuthProviderMode":"PROVIDER_ENABLED","googleSigninProviderMode":"PROVIDER_ENABLED","googleSigninProviderConfig":{"publicDisplayName":"Interview Brain","customerSupportEmail":"support@example.com","oauthRedirectUris":["https://interview-brain-64810.firebaseapp.com","http://localhost"]}},"webInput":{}}
+[debug] [2026-07-12T14:19:43.335Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp 200
+[debug] [2026-07-12T14:19:43.335Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp {"name":"operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl"}
+[debug] [2026-07-12T14:19:43.335Z] [provision] Operation started: operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl
+[debug] [2026-07-12T14:19:43.335Z] [provision] Polling for operation completion...
+[debug] [2026-07-12T14:19:43.337Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:43.337Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:43.337Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl [none]
+[debug] [2026-07-12T14:19:43.971Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl 200
+[debug] [2026-07-12T14:19:43.972Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl {"name":"operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl"}
+[debug] [2026-07-12T14:19:44.173Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:19:44.173Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:44.173Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:44.173Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl [none]
+[debug] [2026-07-12T14:19:44.761Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl 200
+[debug] [2026-07-12T14:19:44.761Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl {"name":"operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl"}
+[debug] [2026-07-12T14:19:45.162Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:19:45.162Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:45.162Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:45.162Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl [none]
+[debug] [2026-07-12T14:19:45.784Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl 200
+[debug] [2026-07-12T14:19:45.784Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl {"name":"operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl"}
+[debug] [2026-07-12T14:19:46.586Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:19:46.586Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:46.586Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:46.586Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl [none]
+[debug] [2026-07-12T14:19:47.350Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl 200
+[debug] [2026-07-12T14:19:47.351Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl {"name":"operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl"}
+[debug] [2026-07-12T14:19:48.952Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:19:48.952Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:48.953Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:48.953Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl [none]
+[debug] [2026-07-12T14:19:49.545Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl 200
+[debug] [2026-07-12T14:19:49.545Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl {"name":"operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl"}
+[debug] [2026-07-12T14:19:52.747Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:19:52.748Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:52.748Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:19:52.748Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl [none]
+[debug] [2026-07-12T14:19:53.345Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl 200
+[debug] [2026-07-12T14:19:53.345Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl {"name":"operations/workflows/MWE1ODE1ZDUtZjEyYy00NWVjLTg4NzAtMmQ5MzQwOTJjN2Zl","done":true,"error":{"code":3,"message":"PROVISION_WEB_OAUTH_CLIENT_TASK: com.google.apps.framework.request.StatusException: <eye3 title='INVALID_ARGUMENT'/> client_auth_config::FIELD_INVALID: OAuth 2 redirect URLs have duplicate  [https://interview-brain-64810.firebaseapp.com/__/auth/handler].","details":[{"@type":"type.googleapis.com/util.StatusProto","code":3,"space":"generic","message":"PROVISION_WEB_OAUTH_CLIENT_TASK: com.google.apps.framework.request.StatusException: <eye3 title='INVALID_ARGUMENT'/> client_auth_config::FIELD_INVALID: OAuth 2 redirect URLs have duplicate  [https://interview-brain-64810.firebaseapp.com/__/auth/handler]."}]}}
+[debug] [2026-07-12T14:19:53.345Z] FirebaseError: PROVISION_WEB_OAUTH_CLIENT_TASK: com.google.apps.framework.request.StatusException: <eye3 title='INVALID_ARGUMENT'/> client_auth_config::FIELD_INVALID: OAuth 2 redirect URLs have duplicate  [https://interview-brain-64810.firebaseapp.com/__/auth/handler].
+    at OperationPoller.poll (/Users/A3100515/.npm/_npx/ba4f1959e38407b5/node_modules/firebase-tools/lib/operation-poller.js:25:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async provisionFirebaseApp (/Users/A3100515/.npm/_npx/ba4f1959e38407b5/node_modules/firebase-tools/lib/management/provisioning/provision.js:101:24)
+    at async deploy (/Users/A3100515/.npm/_npx/ba4f1959e38407b5/node_modules/firebase-tools/lib/deploy/auth/deploy.js:47:5)
+    at async chain (/Users/A3100515/.npm/_npx/ba4f1959e38407b5/node_modules/firebase-tools/lib/deploy/index.js:45:9)
+    at async deploy (/Users/A3100515/.npm/_npx/ba4f1959e38407b5/node_modules/firebase-tools/lib/deploy/index.js:126:9)
+[error] 
+[error] Error: Failed to provision Firebase app: PROVISION_WEB_OAUTH_CLIENT_TASK: com.google.apps.framework.request.StatusException: <eye3 title='INVALID_ARGUMENT'/> client_auth_config::FIELD_INVALID: OAuth 2 redirect URLs have duplicate  [https://interview-brain-64810.firebaseapp.com/__/auth/handler].
+[debug] [2026-07-12T14:20:05.171Z] ----------------------------------------------------------------------
+[debug] [2026-07-12T14:20:05.173Z] Command:       /Users/A3100515/.nvm/versions/node/v22.15.0/bin/node /Users/A3100515/.npm/_npx/ba4f1959e38407b5/node_modules/.bin/firebase deploy --only firestore,auth --project interview-brain-64810
+[debug] [2026-07-12T14:20:05.173Z] CLI Version:   15.23.0
+[debug] [2026-07-12T14:20:05.173Z] Platform:      darwin
+[debug] [2026-07-12T14:20:05.173Z] Node Version:  v22.15.0
+[debug] [2026-07-12T14:20:05.174Z] Detected Agent: antigravity
+[debug] [2026-07-12T14:20:05.174Z] Time:          Sun Jul 12 2026 19:50:05 GMT+0530 (India Standard Time)
+[debug] [2026-07-12T14:20:05.174Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-07-12T14:20:05.954Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-07-12T14:20:05.955Z] > authorizing via signed-in user (abhav.thakur25@gmail.com)
+[debug] [2026-07-12T14:20:05.955Z] [iam] checking project interview-brain-64810 for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebase.projects.update","firebaseauth.configs.update"]
+[debug] [2026-07-12T14:20:05.959Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:05.959Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:05.960Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions [none]
+[debug] [2026-07-12T14:20:05.960Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions  x-goog-user-project=interview-brain-64810
+[debug] [2026-07-12T14:20:05.960Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebase.projects.update","firebaseauth.configs.update"]}
+[debug] [2026-07-12T14:20:07.398Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions 200
+[debug] [2026-07-12T14:20:07.398Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebase.projects.update","firebaseauth.configs.update"]}
+[info] 
+[info] === Deploying to 'interview-brain-64810'...
+[info] 
+[info] i  deploying firestore, auth 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-07-12T14:20:07.401Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:07.401Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:07.401Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) [none]
+[debug] [2026-07-12T14:20:08.041Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) 200
+[debug] [2026-07-12T14:20:08.041Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) {"name":"projects/interview-brain-64810/databases/(default)","uid":"193a57ad-40e1-4272-a765-d5a1414ab292","createTime":"2026-07-12T14:04:23.316030Z","updateTime":"2026-07-12T14:04:23.316030Z","locationId":"asia-south1","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-07-12T14:04:23.316030Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"j","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IKj7492qzZUDMKyJmNGqzZUD"}
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2026-07-12T14:20:08.042Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:08.042Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:08.043Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810:test [none]
+[debug] [2026-07-12T14:20:08.043Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810:test [omitted]
+[debug] [2026-07-12T14:20:09.549Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810:test 200
+[debug] [2026-07-12T14:20:09.549Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2026-07-12T14:20:09.549Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:09.549Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:09.550Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/interview-brain-64810/webApps pageSize=100
+[debug] [2026-07-12T14:20:10.572Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/interview-brain-64810/webApps 200
+[debug] [2026-07-12T14:20:10.572Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/interview-brain-64810/webApps {"apps":[{"name":"projects/interview-brain-64810/webApps/1:187552665444:web:25acbc2d488d927762b471","appId":"1:187552665444:web:25acbc2d488d927762b471","displayName":"Interview Brain Web","projectId":"interview-brain-64810","webId":"YmI5N2ViOWItNTBkZi00ZmE2LThmNTAtZjZlOGM3YWEwZDY1","apiKeyId":"bb392f10-5807-40ae-b40a-8e8806a3a857","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z","etag":"1_c246da06-a374-497a-a743-d345189317d2"}]}
+[debug] [2026-07-12T14:20:10.573Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:10.573Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:10.573Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/releases pageSize=10&pageToken=
+[debug] [2026-07-12T14:20:11.997Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/releases 200
+[debug] [2026-07-12T14:20:11.997Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/releases {"releases":[{"name":"projects/interview-brain-64810/releases/cloud.firestore","rulesetName":"projects/interview-brain-64810/rulesets/6c60a6fa-d389-471b-802d-4ec754506235","createTime":"2026-07-12T14:04:29.034220Z","updateTime":"2026-07-12T14:04:29.034220Z"}]}
+[debug] [2026-07-12T14:20:11.997Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:11.997Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:11.997Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets/6c60a6fa-d389-471b-802d-4ec754506235 [none]
+[debug] [2026-07-12T14:20:13.463Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets/6c60a6fa-d389-471b-802d-4ec754506235 200
+[debug] [2026-07-12T14:20:13.463Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets/6c60a6fa-d389-471b-802d-4ec754506235 [omitted]
+[info] i  firestore: uploading rules firestore.rules... 
+[debug] [2026-07-12T14:20:13.464Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:13.464Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:13.464Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets [none]
+[debug] [2026-07-12T14:20:13.464Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets [omitted]
+[debug] [2026-07-12T14:20:14.923Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets 200
+[debug] [2026-07-12T14:20:14.923Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets {"name":"projects/interview-brain-64810/rulesets/3e5b7aaf-dfbe-4520-b534-28d7a728444d","source":{"files":[{"content":"rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /users/{userId} {\n      allow read, write: if request.auth != null && request.auth.uid == userId;\n      \n      match /progress/{questionId} {\n        allow read, write: if request.auth != null && request.auth.uid == userId;\n      }\n    }\n  }\n}\n","name":"firestore.rules"}]},"createTime":"2026-07-12T14:20:14.806063Z","metadata":{"services":["cloud.firestore"]}}
+[debug] [2026-07-12T14:20:14.924Z] [rules] created ruleset projects/interview-brain-64810/rulesets/3e5b7aaf-dfbe-4520-b534-28d7a728444d
+[info] i  firestore: deploying indexes... 
+[debug] [2026-07-12T14:20:14.925Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:14.925Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:14.925Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2026-07-12T14:20:15.215Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2026-07-12T14:20:15.215Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2026-07-12T14:20:15.216Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:15.216Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:15.216Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2026-07-12T14:20:15.379Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2026-07-12T14:20:15.380Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/interview-brain-64810/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[debug] [2026-07-12T14:20:15.380Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:15.380Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:15.380Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) [none]
+[debug] [2026-07-12T14:20:15.464Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) 200
+[debug] [2026-07-12T14:20:15.464Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) {"name":"projects/interview-brain-64810/databases/(default)","uid":"193a57ad-40e1-4272-a765-d5a1414ab292","createTime":"2026-07-12T14:04:23.316030Z","updateTime":"2026-07-12T14:04:23.316030Z","locationId":"asia-south1","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-07-12T14:04:23.316030Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"j","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"INnYt+GqzZUDMKyJmNGqzZUD"}
+[info] ✔  firestore: deployed indexes in firestore.indexes.json successfully for (default) database 
+[info] Enabling auth providers: anonymous, email/password, Google sign-in...
+[debug] [2026-07-12T14:20:15.465Z] [provision] Starting Firebase app provisioning...
+[debug] [2026-07-12T14:20:15.465Z] [provision] Request: {
+  "appNamespace": "1:187552665444:web:25acbc2d488d927762b471",
+  "parent": "projects/interview-brain-64810",
+  "firebaseAuthInput": {
+    "anonymousAuthProviderMode": "PROVIDER_ENABLED",
+    "emailAuthProviderMode": "PROVIDER_ENABLED",
+    "googleSigninProviderMode": "PROVIDER_ENABLED",
+    "googleSigninProviderConfig": {
+      "publicDisplayName": "Interview Brain",
+      "customerSupportEmail": "support@example.com",
+      "oauthRedirectUris": [
+        "http://localhost"
+      ]
+    }
+  },
+  "webInput": {}
+}
+[debug] [2026-07-12T14:20:15.465Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:15.465Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:15.465Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp [none]
+[debug] [2026-07-12T14:20:15.466Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp {"appNamespace":"1:187552665444:web:25acbc2d488d927762b471","parent":"projects/interview-brain-64810","firebaseAuthInput":{"anonymousAuthProviderMode":"PROVIDER_ENABLED","emailAuthProviderMode":"PROVIDER_ENABLED","googleSigninProviderMode":"PROVIDER_ENABLED","googleSigninProviderConfig":{"publicDisplayName":"Interview Brain","customerSupportEmail":"support@example.com","oauthRedirectUris":["http://localhost"]}},"webInput":{}}
+[debug] [2026-07-12T14:20:17.107Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp 200
+[debug] [2026-07-12T14:20:17.107Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp {"name":"operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj"}
+[debug] [2026-07-12T14:20:17.107Z] [provision] Operation started: operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj
+[debug] [2026-07-12T14:20:17.107Z] [provision] Polling for operation completion...
+[debug] [2026-07-12T14:20:17.108Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:17.108Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:17.108Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj [none]
+[debug] [2026-07-12T14:20:17.969Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj 200
+[debug] [2026-07-12T14:20:17.969Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj {"name":"operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj"}
+[debug] [2026-07-12T14:20:18.171Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:20:18.172Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:18.172Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:18.172Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj [none]
+[debug] [2026-07-12T14:20:18.784Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj 200
+[debug] [2026-07-12T14:20:18.784Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj {"name":"operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj"}
+[debug] [2026-07-12T14:20:19.185Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:20:19.185Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:19.185Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:19.186Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj [none]
+[debug] [2026-07-12T14:20:20.119Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj 200
+[debug] [2026-07-12T14:20:20.120Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj {"name":"operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj"}
+[debug] [2026-07-12T14:20:20.922Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:20:20.922Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:20.922Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:20.922Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj [none]
+[debug] [2026-07-12T14:20:21.515Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj 200
+[debug] [2026-07-12T14:20:21.515Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj {"name":"operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj"}
+[debug] [2026-07-12T14:20:23.118Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:20:23.118Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:23.118Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:23.118Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj [none]
+[debug] [2026-07-12T14:20:23.806Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj 200
+[debug] [2026-07-12T14:20:23.806Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj {"name":"operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj"}
+[debug] [2026-07-12T14:20:27.009Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:20:27.010Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:27.010Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:27.010Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj [none]
+[debug] [2026-07-12T14:20:27.663Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj 200
+[debug] [2026-07-12T14:20:27.663Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj {"name":"operations/workflows/MjRjNjUyZTQtMmQzZS00ZWE2LThhMDEtNjlkMTVjOTEyZWVj","done":true,"error":{"code":3,"message":"PROVISION_WEB_OAUTH_CLIENT_TASK: com.google.apps.framework.request.StatusException: <eye3 title='INVALID_ARGUMENT'/> client_auth_config::FIELD_INVALID: PostMessage Origins have duplicate  [http://localhost].","details":[{"@type":"type.googleapis.com/util.StatusProto","code":3,"space":"generic","message":"PROVISION_WEB_OAUTH_CLIENT_TASK: com.google.apps.framework.request.StatusException: <eye3 title='INVALID_ARGUMENT'/> client_auth_config::FIELD_INVALID: PostMessage Origins have duplicate  [http://localhost]."}]}}
+[debug] [2026-07-12T14:20:27.664Z] FirebaseError: PROVISION_WEB_OAUTH_CLIENT_TASK: com.google.apps.framework.request.StatusException: <eye3 title='INVALID_ARGUMENT'/> client_auth_config::FIELD_INVALID: PostMessage Origins have duplicate  [http://localhost].
+    at OperationPoller.poll (/Users/A3100515/.npm/_npx/ba4f1959e38407b5/node_modules/firebase-tools/lib/operation-poller.js:25:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async provisionFirebaseApp (/Users/A3100515/.npm/_npx/ba4f1959e38407b5/node_modules/firebase-tools/lib/management/provisioning/provision.js:101:24)
+    at async deploy (/Users/A3100515/.npm/_npx/ba4f1959e38407b5/node_modules/firebase-tools/lib/deploy/auth/deploy.js:47:5)
+    at async chain (/Users/A3100515/.npm/_npx/ba4f1959e38407b5/node_modules/firebase-tools/lib/deploy/index.js:45:9)
+    at async deploy (/Users/A3100515/.npm/_npx/ba4f1959e38407b5/node_modules/firebase-tools/lib/deploy/index.js:126:9)
+[error] 
+[error] Error: Failed to provision Firebase app: PROVISION_WEB_OAUTH_CLIENT_TASK: com.google.apps.framework.request.StatusException: <eye3 title='INVALID_ARGUMENT'/> client_auth_config::FIELD_INVALID: PostMessage Origins have duplicate  [http://localhost].
+[debug] [2026-07-12T14:20:58.895Z] ----------------------------------------------------------------------
+[debug] [2026-07-12T14:20:58.896Z] Command:       /Users/A3100515/.nvm/versions/node/v22.15.0/bin/node /Users/A3100515/.npm/_npx/ba4f1959e38407b5/node_modules/.bin/firebase deploy --only firestore,auth --project interview-brain-64810
+[debug] [2026-07-12T14:20:58.897Z] CLI Version:   15.23.0
+[debug] [2026-07-12T14:20:58.897Z] Platform:      darwin
+[debug] [2026-07-12T14:20:58.897Z] Node Version:  v22.15.0
+[debug] [2026-07-12T14:20:58.897Z] Detected Agent: antigravity
+[debug] [2026-07-12T14:20:58.897Z] Time:          Sun Jul 12 2026 19:50:58 GMT+0530 (India Standard Time)
+[debug] [2026-07-12T14:20:58.897Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-07-12T14:20:59.461Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-07-12T14:20:59.461Z] > authorizing via signed-in user (abhav.thakur25@gmail.com)
+[debug] [2026-07-12T14:20:59.461Z] [iam] checking project interview-brain-64810 for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebase.projects.update","firebaseauth.configs.update"]
+[debug] [2026-07-12T14:20:59.465Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:59.465Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:20:59.466Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions [none]
+[debug] [2026-07-12T14:20:59.466Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions  x-goog-user-project=interview-brain-64810
+[debug] [2026-07-12T14:20:59.466Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebase.projects.update","firebaseauth.configs.update"]}
+[debug] [2026-07-12T14:21:00.829Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions 200
+[debug] [2026-07-12T14:21:00.829Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/interview-brain-64810:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebase.projects.update","firebaseauth.configs.update"]}
+[info] 
+[info] === Deploying to 'interview-brain-64810'...
+[info] 
+[info] i  deploying firestore, auth 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-07-12T14:21:00.831Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:00.831Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:00.831Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) [none]
+[debug] [2026-07-12T14:21:01.258Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) 200
+[debug] [2026-07-12T14:21:01.258Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) {"name":"projects/interview-brain-64810/databases/(default)","uid":"193a57ad-40e1-4272-a765-d5a1414ab292","createTime":"2026-07-12T14:04:23.316030Z","updateTime":"2026-07-12T14:04:23.316030Z","locationId":"asia-south1","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-07-12T14:04:23.316030Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"j","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IO+6oveqzZUDMKyJmNGqzZUD"}
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2026-07-12T14:21:01.260Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:01.260Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:01.260Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810:test [none]
+[debug] [2026-07-12T14:21:01.260Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810:test [omitted]
+[debug] [2026-07-12T14:21:02.923Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810:test 200
+[debug] [2026-07-12T14:21:02.923Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2026-07-12T14:21:02.923Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:02.923Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:02.923Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/interview-brain-64810/webApps pageSize=100
+[debug] [2026-07-12T14:21:03.846Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/interview-brain-64810/webApps 200
+[debug] [2026-07-12T14:21:03.846Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/interview-brain-64810/webApps {"apps":[{"name":"projects/interview-brain-64810/webApps/1:187552665444:web:25acbc2d488d927762b471","appId":"1:187552665444:web:25acbc2d488d927762b471","displayName":"Interview Brain Web","projectId":"interview-brain-64810","webId":"YmI5N2ViOWItNTBkZi00ZmE2LThmNTAtZjZlOGM3YWEwZDY1","apiKeyId":"bb392f10-5807-40ae-b40a-8e8806a3a857","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z","etag":"1_c246da06-a374-497a-a743-d345189317d2"}]}
+[debug] [2026-07-12T14:21:03.847Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:03.847Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:03.847Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/releases pageSize=10&pageToken=
+[debug] [2026-07-12T14:21:05.290Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/releases 200
+[debug] [2026-07-12T14:21:05.290Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/releases {"releases":[{"name":"projects/interview-brain-64810/releases/cloud.firestore","rulesetName":"projects/interview-brain-64810/rulesets/6c60a6fa-d389-471b-802d-4ec754506235","createTime":"2026-07-12T14:04:29.034220Z","updateTime":"2026-07-12T14:04:29.034220Z"}]}
+[debug] [2026-07-12T14:21:05.290Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:05.290Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:05.291Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets/6c60a6fa-d389-471b-802d-4ec754506235 [none]
+[debug] [2026-07-12T14:21:06.696Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets/6c60a6fa-d389-471b-802d-4ec754506235 200
+[debug] [2026-07-12T14:21:06.697Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets/6c60a6fa-d389-471b-802d-4ec754506235 [omitted]
+[info] i  firestore: uploading rules firestore.rules... 
+[debug] [2026-07-12T14:21:06.698Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:06.698Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:06.698Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets [none]
+[debug] [2026-07-12T14:21:06.698Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets [omitted]
+[debug] [2026-07-12T14:21:07.327Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets 200
+[debug] [2026-07-12T14:21:07.327Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/interview-brain-64810/rulesets {"name":"projects/interview-brain-64810/rulesets/8095d723-ebbd-4a1e-8235-163932db88fb","source":{"files":[{"content":"rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /users/{userId} {\n      allow read, write: if request.auth != null && request.auth.uid == userId;\n      \n      match /progress/{questionId} {\n        allow read, write: if request.auth != null && request.auth.uid == userId;\n      }\n    }\n  }\n}\n","name":"firestore.rules"}]},"createTime":"2026-07-12T14:21:07.191151Z","metadata":{"services":["cloud.firestore"]}}
+[debug] [2026-07-12T14:21:07.328Z] [rules] created ruleset projects/interview-brain-64810/rulesets/8095d723-ebbd-4a1e-8235-163932db88fb
+[info] i  firestore: deploying indexes... 
+[debug] [2026-07-12T14:21:07.329Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:07.329Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:07.329Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2026-07-12T14:21:07.662Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2026-07-12T14:21:07.662Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2026-07-12T14:21:07.663Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:07.663Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:07.663Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2026-07-12T14:21:07.741Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2026-07-12T14:21:07.741Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/interview-brain-64810/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[debug] [2026-07-12T14:21:07.742Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:07.742Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:07.742Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) [none]
+[debug] [2026-07-12T14:21:07.808Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) 200
+[debug] [2026-07-12T14:21:07.808Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/interview-brain-64810/databases/(default) {"name":"projects/interview-brain-64810/databases/(default)","uid":"193a57ad-40e1-4272-a765-d5a1414ab292","createTime":"2026-07-12T14:04:23.316030Z","updateTime":"2026-07-12T14:04:23.316030Z","locationId":"asia-south1","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-07-12T14:04:23.316030Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"j","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"INvSsvqqzZUDMKyJmNGqzZUD"}
+[info] ✔  firestore: deployed indexes in firestore.indexes.json successfully for (default) database 
+[info] Enabling auth providers: anonymous, email/password, Google sign-in...
+[debug] [2026-07-12T14:21:07.810Z] [provision] Starting Firebase app provisioning...
+[debug] [2026-07-12T14:21:07.810Z] [provision] Request: {
+  "appNamespace": "1:187552665444:web:25acbc2d488d927762b471",
+  "parent": "projects/interview-brain-64810",
+  "firebaseAuthInput": {
+    "anonymousAuthProviderMode": "PROVIDER_ENABLED",
+    "emailAuthProviderMode": "PROVIDER_ENABLED",
+    "googleSigninProviderMode": "PROVIDER_ENABLED",
+    "googleSigninProviderConfig": {
+      "publicDisplayName": "Interview Brain",
+      "customerSupportEmail": "support@example.com"
+    }
+  },
+  "webInput": {}
+}
+[debug] [2026-07-12T14:21:07.810Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:07.810Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:07.810Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp [none]
+[debug] [2026-07-12T14:21:07.810Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp {"appNamespace":"1:187552665444:web:25acbc2d488d927762b471","parent":"projects/interview-brain-64810","firebaseAuthInput":{"anonymousAuthProviderMode":"PROVIDER_ENABLED","emailAuthProviderMode":"PROVIDER_ENABLED","googleSigninProviderMode":"PROVIDER_ENABLED","googleSigninProviderConfig":{"publicDisplayName":"Interview Brain","customerSupportEmail":"support@example.com"}},"webInput":{}}
+[debug] [2026-07-12T14:21:09.479Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp 200
+[debug] [2026-07-12T14:21:09.479Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp {"name":"operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm"}
+[debug] [2026-07-12T14:21:09.479Z] [provision] Operation started: operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm
+[debug] [2026-07-12T14:21:09.479Z] [provision] Polling for operation completion...
+[debug] [2026-07-12T14:21:09.480Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:09.480Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:09.480Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm [none]
+[debug] [2026-07-12T14:21:10.311Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm 200
+[debug] [2026-07-12T14:21:10.311Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm {"name":"operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm"}
+[debug] [2026-07-12T14:21:10.514Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:21:10.514Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:10.514Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:10.514Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm [none]
+[debug] [2026-07-12T14:21:11.219Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm 200
+[debug] [2026-07-12T14:21:11.219Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm {"name":"operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm"}
+[debug] [2026-07-12T14:21:11.621Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:21:11.621Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:11.621Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:11.622Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm [none]
+[debug] [2026-07-12T14:21:12.160Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm 200
+[debug] [2026-07-12T14:21:12.160Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm {"name":"operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm"}
+[debug] [2026-07-12T14:21:12.962Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:21:12.963Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:12.963Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:12.963Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm [none]
+[debug] [2026-07-12T14:21:13.700Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm 200
+[debug] [2026-07-12T14:21:13.700Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm {"name":"operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm"}
+[debug] [2026-07-12T14:21:15.302Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:21:15.303Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:15.303Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:21:15.303Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm [none]
+[debug] [2026-07-12T14:21:15.818Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm 200
+[debug] [2026-07-12T14:21:15.819Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm {"name":"operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm"}
+[debug] [2026-07-12T14:37:08.711Z] [Provision Firebase App Poller] Retrying task index 0
+[debug] [2026-07-12T14:37:08.711Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:37:08.711Z] Checked if tokens are valid: true, expires at: 1783868210193
+[debug] [2026-07-12T14:37:08.711Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NjNjZmI3NWMtNjJhNC00ZDFhLWI0ZmQtYTY0MzA4YWI1ZWVm [none]
+[debug] Task index 0 failed: timed out after 180000ms.
+[debug] [2026-07-12T14:37:08.713Z] FirebaseError: Task index 0 failed: timed out after 180000ms.
+    at Timeout.<anonymous> (/Users/A3100515/.npm/_npx/ba4f1959e38407b5/node_modules/firebase-tools/lib/throttler/throttler.js:171:24)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+[error] 
+[error] Error: Failed to provision Firebase app: Task index 0 failed: timed out after 180000ms.

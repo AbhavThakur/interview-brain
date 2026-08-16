@@ -1,5 +1,11 @@
 ---
 title: Valid Palindrome
+pattern: Two Pointers
+difficulty: Easy
+leetcodeUrl: https://leetcode.com/problems/valid-palindrome/
+ahHaInsight: Two pointers moving inward from both ends; skip non-alphanumeric characters and compare lowercase.
+timeComplexity: O(N)
+spaceComplexity: O(1)
 ---
 
 # Valid Palindrome
@@ -9,26 +15,18 @@ A phrase is a palindrome if, after converting all uppercase letters into lowerca
 
 Given a string `s`, return `true` if it is a palindrome, or `false` otherwise.
 
-## Solution: Two Pointers
-We can use two pointers starting at the beginning and the end of the string, moving towards the middle. At each step, we skip non-alphanumeric characters.
+## Solution: Two Pointers Inward
 
 ```typescript
 function isPalindrome(s: string): boolean {
     let left = 0;
     let right = s.length - 1;
     
-    const isAlphanumeric = (char: string) => {
-        const code = char.charCodeAt(0);
-        return (code >= 48 && code <= 57) || // 0-9
-               (code >= 97 && code <= 122) || // a-z
-               (code >= 65 && code <= 90);   // A-Z
-    };
-    
     while (left < right) {
-        while (left < right && !isAlphanumeric(s[left])) {
+        while (left < right && !isAlphaNumeric(s[left])) {
             left++;
         }
-        while (left < right && !isAlphanumeric(s[right])) {
+        while (left < right && !isAlphaNumeric(s[right])) {
             right--;
         }
         
@@ -42,8 +40,15 @@ function isPalindrome(s: string): boolean {
     
     return true;
 }
+
+function isAlphaNumeric(char: string): boolean {
+    const code = char.charCodeAt(0);
+    return (code >= 48 && code <= 57) || // 0-9
+           (code >= 65 && code <= 90) || // A-Z
+           (code >= 97 && code <= 122);  // a-z
+}
 ```
 
 ### Complexity
-- **Time Complexity:** $O(N)$ — We traverse the string of length $N$ at most once.
-- **Space Complexity:** $O(1)$ — Only constant extra space is used for pointers.
+* **Time Complexity:** $O(N)$ — Single pass inward with two pointers.
+* **Space Complexity:** $O(1)$ — In-place pointer manipulation without allocating extra strings.

@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 
 // Define the root of the interview-brain repository
-// In production/Vercel, we use the copied 'content' folder; locally we use the parent directory.
 const REPO_ROOT = fs.existsSync(path.join(process.cwd(), 'content'))
   ? path.join(process.cwd(), 'content')
   : path.join(process.cwd(), '..');
@@ -15,7 +14,8 @@ const SEARCH_DIRS = [
   '02-qa-bank',
   '03-stories',
   '04-companies',
-  '05-coding'
+  '05-coding',
+  '06-system-design'
 ];
 
 /**
@@ -32,8 +32,7 @@ function findFile(fileName: string): string | null {
       return directPath;
     }
 
-    // If it's a topic, it might be in a subdirectory (e.g. 01-topics/javascript/...)
-    // Let's do a simple 1-level deep search for nested folders
+    // Search 1-level deep for nested folders
     const entries = fs.readdirSync(dirPath, { withFileTypes: true });
     for (const entry of entries) {
       if (entry.isDirectory()) {
@@ -55,7 +54,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Missing file parameter' }, { status: 400 });
   }
 
-  // Extract just the basename, ignoring any relative paths passed in the query
   const fileName = path.basename(fileParam);
   
   if (!fileName.endsWith('.md')) {
@@ -92,7 +90,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing absolutePath or content' }, { status: 400 });
     }
 
-    // Security check: ensure the path is within REPO_ROOT
     const resolvedPath = path.resolve(absolutePath);
     if (!resolvedPath.startsWith(path.resolve(REPO_ROOT))) {
       return NextResponse.json({ error: 'Unauthorized path' }, { status: 403 });

@@ -1,7 +1,7 @@
-import { getAllCodes } from '@/lib/markdown';
+import { getAllEnhancedCodes } from '@/lib/markdown';
 import CodingClient from './CodingClient';
 
 export default function CodingPage() {
-  const codes = getAllCodes();
+  const codes = getAllEnhancedCodes();
   return <CodingClient initialCodes={codes} />;
 }

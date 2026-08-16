@@ -71,11 +71,12 @@ export default function CreateContentModal() {
                 <select 
                   value={type} 
                   onChange={(e) => setType(e.target.value)}
-                  className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors appearance-none"
+                  className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors appearance-none cursor-pointer"
                 >
                   <option value="qa" className="bg-[#1e222a]">Q&A Bank Question</option>
                   <option value="topic" className="bg-[#1e222a]">Evergreen Topic</option>
                   <option value="code" className="bg-[#1e222a]">Code Snippet</option>
+                  <option value="system-design" className="bg-[#1e222a]">System Design Blueprint</option>
                   <option value="story" className="bg-[#1e222a]">STAR Story</option>
                 </select>
               </div>
@@ -88,21 +89,21 @@ export default function CreateContentModal() {
                   type="text" 
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder={type === 'qa' ? "javascript" : "e.g. React Hooks"}
+                  placeholder={type === 'qa' ? "javascript" : "e.g. Offline Sync Engine"}
                   className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors"
                   autoFocus
                   required
                 />
               </div>
 
-              {(type === 'topic' || type === 'code') && (
+              {(type === 'topic' || type === 'code' || type === 'system-design') && (
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-medium text-foreground/80">Category / Subfolder (Optional)</label>
                   <input 
                     type="text" 
                     value={group}
                     onChange={(e) => setGroup(e.target.value)}
-                    placeholder={type === 'code' ? "e.g. arrays, sorting" : "e.g. react, system-design"}
+                    placeholder={type === 'code' ? "e.g. arrays, sorting" : "e.g. mobile, distributed"}
                     className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors"
                   />
                 </div>

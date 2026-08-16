@@ -1,5 +1,11 @@
 ---
 title: Two Sum
+pattern: Arrays & Hashing
+difficulty: Easy
+leetcodeUrl: https://leetcode.com/problems/two-sum/
+ahHaInsight: Use a Hash Map to store seen numbers and their indices; check if target - current exists in O(1).
+timeComplexity: O(N)
+spaceComplexity: O(N)
 ---
 
 # Two Sum
@@ -30,5 +36,5 @@ function twoSum(nums: number[], target: number): number[] {
 ```
 
 ### Complexity
-- **Time Complexity:** $O(N)$ — We traverse the list containing $N$ elements exactly once. Each lookup in the hash map takes $O(1)$ time.
-- **Space Complexity:** $O(N)$ — In the worst case, we store all elements in the hash map.
+* **Time Complexity:** $O(N)$ — Single pass through the array with $O(1)$ map lookups.
+* **Space Complexity:** $O(N)$ — Storing up to $N$ elements in the hash map.

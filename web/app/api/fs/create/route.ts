@@ -43,6 +43,7 @@ export async function POST(request: NextRequest) {
       if (type === 'topic') targetDir = path.join(REPO_ROOT, '01-topics');
       else if (type === 'story') targetDir = path.join(REPO_ROOT, '03-stories');
       else if (type === 'code') targetDir = path.join(REPO_ROOT, '05-coding');
+      else if (type === 'system-design') targetDir = path.join(REPO_ROOT, '06-system-design');
       else return NextResponse.json({ error: 'Invalid type' }, { status: 400 });
 
       if (safeGroup) {
@@ -58,7 +59,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: 'File already exists' }, { status: 400 });
       }
 
-      initialContent = `---\ntitle: ${name}\n---\n\n# ${name}\n\nStart writing here...\n`;
+      initialContent = `---\ntitle: ${name}\ncategory: ${safeGroup || 'architecture'}\ndifficulty: Senior\n---\n\n# ${name}\n\nStart writing here...\n`;
       fs.writeFileSync(absolutePath, initialContent, 'utf-8');
     }
 

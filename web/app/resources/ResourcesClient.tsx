@@ -6,22 +6,27 @@ import { useProgress } from '@/lib/useProgress';
 
 const categoryLabels: Record<string, string> = {
   all: 'All Categories',
-  dsa: 'DSA & Algorithms',
-  frontend: 'Frontend & Web',
-  mobile: 'Mobile & React Native',
-  'system-design': 'System Design',
-  behavioral: 'Behavioral & Leadership'
+  'ai-ml': '🤖 AI & LLM Engineering',
+  backend: '⚙️ Backend & Distributed',
+  frontend: '⚛️ Frontend & Web',
+  'company-guides': '🏢 Company Prep (FAANG+)',
+  'system-design': '📐 System Design & HLD',
+  dsa: '🧠 DSA & Algorithms',
+  blogs: '🌐 Engineering Blogs (30+)',
+  mobile: '📱 Mobile & React Native',
+  behavioral: '⭐ Behavioral & Careers'
 };
 
 export default function ResourcesClient({ initialResources }: { initialResources: ResourceItem[] }) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [onlyBookmarked, setOnlyBookmarked] = useState<boolean>(false);
+  const [randomBlog, setRandomBlog] = useState<ResourceItem | null>(null);
 
   const { progress, toggleBookmark } = useProgress();
 
   const categories = useMemo(() => {
-    return ['all', 'dsa', 'frontend', 'mobile', 'system-design', 'behavioral'];
+    return ['all', 'ai-ml', 'backend', 'frontend', 'company-guides', 'system-design', 'dsa', 'blogs', 'mobile', 'behavioral'];
   }, []);
 
   const filteredResources = useMemo(() => {
@@ -39,6 +44,16 @@ export default function ResourcesClient({ initialResources }: { initialResources
     });
   }, [initialResources, selectedCategory, searchQuery, onlyBookmarked, progress.bookmarkedResources]);
 
+  const blogList = useMemo(() => {
+    return initialResources.filter(r => r.category === 'blogs');
+  }, [initialResources]);
+
+  const handlePickRandomBlog = () => {
+    if (blogList.length === 0) return;
+    const randomIndex = Math.floor(Math.random() * blogList.length);
+    setRandomBlog(blogList[randomIndex]);
+  };
+
   return (
     <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       
@@ -53,14 +68,22 @@ export default function ResourcesClient({ initialResources }: { initialResources
               {filteredResources.length} of {initialResources.length} resources
             </span>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight">Resource Hub & Golden Links</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Resource Hub & Engineering Blogs</h1>
           <p className="text-foreground/60 mt-1 max-w-2xl text-sm">
-            Hand-picked industry resources, practice sheets, and authoritative architecture specs so you never waste time searching for high-yield prep material.
+            Hand-picked industry resources, practice sheets, authoritative architecture specs, and 30+ top tech company engineering blogs.
           </p>
         </div>
 
-        {/* Search and Bookmark toggle */}
+        {/* Search, Bookmark toggle & Random Blog Picker */}
         <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+          <button
+            onClick={handlePickRandomBlog}
+            className="flex items-center gap-1.5 bg-gradient-to-r from-primary/20 to-purple-500/20 hover:from-primary/30 hover:to-purple-500/30 text-white border border-primary/30 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all hover:scale-105 active:scale-95"
+            title="Pick a random engineering blog to read this week"
+          >
+            <span>🎲 Random Weekly Blog</span>
+          </button>
+
           <label className="flex items-center gap-2 text-xs text-foreground/75 cursor-pointer select-none bg-white/5 border border-white/10 px-3 py-2 rounded-xl">
             <input 
               type="checkbox" 
@@ -71,20 +94,76 @@ export default function ResourcesClient({ initialResources }: { initialResources
             <span>Bookmarked ({progress.bookmarkedResources.length})</span>
           </label>
 
-          <div className="w-full sm:w-64">
+          <div className="w-full sm:w-60">
             <input 
               type="text" 
-              placeholder="Search resources, topics, platforms..." 
+              placeholder="Search by company, topic..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-primary transition-colors placeholder:text-foreground/40"
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-primary transition-colors placeholder:text-foreground/40"
             />
           </div>
         </div>
       </div>
 
+      {/* Random Blog Highlight Banner */}
+      {randomBlog && (
+        <div className="glass-card p-6 border-purple-500/30 bg-purple-500/5 animate-in zoom-in-95 duration-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div className="space-y-1 max-w-2xl">
+            <div className="flex items-center gap-2">
+              <span className="text-xs bg-purple-500/20 text-purple-300 font-bold px-2 py-0.5 rounded uppercase">
+                🎯 This Week&apos;s Recommended Architecture Read
+              </span>
+              <span className="text-xs font-mono text-foreground/40">{randomBlog.platform}</span>
+            </div>
+            <h3 className="text-lg font-bold text-foreground">{randomBlog.title}</h3>
+            <p className="text-xs text-foreground/70">{randomBlog.description}</p>
+          </div>
+
+          <div className="flex items-center gap-3 shrink-0">
+            <a
+              href={randomBlog.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary hover:bg-primary-dark text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all shadow-lg shadow-primary/20"
+            >
+              Open Blog ↗
+            </a>
+            <button
+              onClick={() => setRandomBlog(null)}
+              className="text-xs text-foreground/40 hover:text-foreground p-1"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Weekly Blog Study Framework Callout */}
+      {selectedCategory === 'blogs' && (
+        <div className="bg-white/[0.02] border border-white/10 p-5 rounded-2xl flex flex-col gap-3">
+          <h3 className="text-xs font-bold text-primary uppercase tracking-wider">
+            💡 How Senior Engineers Read Architecture Blogs
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-foreground/75">
+            <div className="p-3 bg-white/5 rounded-xl border border-white/5">
+              <strong className="text-foreground block mb-1">1. Identify the Core Bottleneck</strong>
+              <p>What problem was this company facing? (e.g. Scaling Kafka to 10M msg/s, p99 latency spikes, split-brain in DB).</p>
+            </div>
+            <div className="p-3 bg-white/5 rounded-xl border border-white/5">
+              <strong className="text-foreground block mb-1">2. Note the Architecture Choice</strong>
+              <p>Why did they choose this pattern over alternatives? (e.g. ScyllaDB vs Cassandra, JSI vs Bridge, Redis Lua scripts).</p>
+            </div>
+            <div className="p-3 bg-white/5 rounded-xl border border-white/5">
+              <strong className="text-foreground block mb-1">3. Study Tradeoffs & Failures</strong>
+              <p>What were the failure modes? How did they maintain backward compatibility and zero-downtime migrations?</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Category Pills */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+      <div className="flex flex-wrap items-center gap-2">
         {categories.map(cat => (
           <button
             key={cat}
@@ -182,14 +261,16 @@ export default function ResourcesClient({ initialResources }: { initialResources
 
                 {/* Direct Action Link */}
                 <div className="border-t border-white/5 pt-4 flex items-center justify-between">
-                  <span className="text-[11px] text-foreground/40">External Guide</span>
+                  <span className="text-[11px] text-foreground/40">
+                    {res.category === 'blogs' ? 'Tech Blog' : 'External Guide'}
+                  </span>
                   <a
                     href={res.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 bg-primary/15 hover:bg-primary text-primary hover:text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all group-hover:scale-105"
                   >
-                    <span>Launch Resource</span>
+                    <span>{res.category === 'blogs' ? 'Visit Blog' : 'Launch Resource'}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                       <polyline points="15 3 21 3 21 9"></polyline>

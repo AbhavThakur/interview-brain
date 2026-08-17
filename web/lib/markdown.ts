@@ -1,5 +1,7 @@
 import fs from 'fs';
 import path from 'path';
+import { GRIND_75_PROBLEMS } from './grind75Data';
+import { TOP_30_BEHAVIORAL_QUESTIONS } from './behavioralData';
 
 export interface Question {
   id: string;
@@ -406,6 +408,30 @@ export function getAllSearchIndex(): SearchItem[] {
       href: r.url,
       tags: [r.category, r.platform, ...r.tags],
       isExternal: true
+    });
+  });
+
+  // 7. Grind 75 Study Plan
+  GRIND_75_PROBLEMS.forEach(gp => {
+    items.push({
+      id: `grind-${gp.id}`,
+      title: `Grind 75: ${gp.title} (${gp.difficulty})`,
+      type: 'coding',
+      subtitle: `Grind 75 · ${gp.pattern} · ~${gp.timeMinutes}m`,
+      href: `/grind75`,
+      tags: ['grind75', gp.pattern, gp.difficulty]
+    });
+  });
+
+  // 8. Top 30 FAANG Behavioral Questions
+  TOP_30_BEHAVIORAL_QUESTIONS.forEach(bq => {
+    items.push({
+      id: `bq-${bq.id}`,
+      title: `Behavioral: ${bq.question}`,
+      type: 'story',
+      subtitle: `FAANG Behavioral · ${bq.category} · ${bq.principle}`,
+      href: `/stories`,
+      tags: ['behavioral', 'star', bq.category, bq.principle]
     });
   });
 

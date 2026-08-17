@@ -6,13 +6,14 @@ import CreateContentModal from './CreateContentModal';
 import CommandPalette from './CommandPalette';
 
 const navLinks = [
-  { href: '/resources', label: 'Resources' },
-  { href: '/coding', label: 'Coding' },
+  { href: '/grind75', label: '🔥 Grind 75', highlight: true },
+  { href: '/coding', label: 'Coding Matrix' },
   { href: '/system-design', label: 'System Design' },
+  { href: '/resources', label: 'Resources' },
   { href: '/cheatsheets', label: 'Cheat Sheets' },
+  { href: '/stories', label: 'STAR Stories' },
   { href: '/qa', label: 'QA Bank' },
   { href: '/topics', label: 'Topics' },
-  { href: '/stories', label: 'Stories' },
 ];
 
 export default function Navigation() {
@@ -25,8 +26,8 @@ export default function Navigation() {
           
           {/* Logo */}
           <div className="flex items-center shrink-0">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center font-bold text-white shadow-lg shadow-primary/20">
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary via-purple-500 to-primary-dark flex items-center justify-center font-bold text-white shadow-lg shadow-primary/25 group-hover:scale-105 transition-transform">
                 IB
               </div>
               <span className="font-bold text-base md:text-lg tracking-tight hidden sm:inline-block">Interview Brain</span>
@@ -41,9 +42,11 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-xs md:text-sm font-medium px-2.5 md:px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap ${
+                  className={`text-xs md:text-sm font-medium px-2.5 md:px-3 py-1.5 rounded-xl transition-all whitespace-nowrap ${
                     isActive
-                      ? 'bg-primary/20 text-primary font-semibold'
+                      ? 'bg-primary/20 text-primary font-semibold border border-primary/30 shadow-sm'
+                      : link.highlight
+                      ? 'bg-orange-500/10 text-orange-400 hover:bg-orange-500/20 font-semibold border border-orange-500/20'
                       : 'text-foreground/70 hover:text-foreground hover:bg-white/5'
                   }`}
                 >
@@ -61,13 +64,13 @@ export default function Navigation() {
 
             <Link
               href="/quiz"
-              className={`text-xs md:text-sm font-semibold px-3 py-1.5 rounded-lg transition-all ${
+              className={`text-xs md:text-sm font-semibold px-3 py-1.5 rounded-xl transition-all ${
                 pathname === '/quiz'
-                  ? 'bg-primary text-white'
-                  : 'bg-primary/10 text-primary hover:bg-primary hover:text-white'
+                  ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                  : 'bg-primary/10 text-primary hover:bg-primary hover:text-white border border-primary/20'
               }`}
             >
-              ⚡ Quiz
+              ⚡ Flashcards
             </Link>
 
             <div className="w-[1px] h-4 bg-white/10 hidden sm:block"></div>

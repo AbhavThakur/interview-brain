@@ -167,6 +167,31 @@ export default function SystemDesignClient({ initialDocs }: { initialDocs: Markd
               </nav>
             </div>
 
+            {/* NotebookLM AI Grounding Box */}
+            <div className="p-4 rounded-2xl bg-gradient-to-br from-purple-900/30 via-primary/10 to-black border border-purple-500/30 flex flex-col gap-2.5">
+              <div className="flex items-center gap-1.5 text-purple-300 text-xs font-bold">
+                <span>🤖</span>
+                <span>NotebookLM Grounding</span>
+              </div>
+              <p className="text-[11px] text-foreground/70 leading-relaxed">
+                Export all {initialDocs.length} blueprints into a single Markdown file to generate 15-min audio podcasts.
+              </p>
+              <div className="flex flex-col gap-1.5 pt-1">
+                <a
+                  href="/api/notebooklm/export?pack=system-design"
+                  className="bg-primary hover:bg-primary-dark text-white text-[11px] font-bold py-2 px-3 rounded-xl transition-all text-center shadow-md"
+                >
+                  ⬇️ Download Grounding Pack
+                </a>
+                <a
+                  href="/notebooklm"
+                  className="text-[10px] text-purple-300 hover:underline text-center mt-0.5"
+                >
+                  View Master Prompts & Guide &rarr;
+                </a>
+              </div>
+            </div>
+
             {/* Golden Standard External Guides */}
             <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 flex flex-col gap-3">
               <span className="text-[10px] font-bold uppercase tracking-wider text-primary">

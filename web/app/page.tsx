@@ -23,6 +23,14 @@ export default function Home() {
 
   const cards = [
     {
+      emoji: '🤖',
+      title: 'Google NotebookLM AI Engine',
+      description: `Export System Design notes, Grind 75 insights, and STAR stories to generate 15-min 2-host audio podcasts and run grounded mock interviews.`,
+      href: '/notebooklm',
+      cta: 'Launch AI Hub',
+      badge: 'Audio Podcasts'
+    },
+    {
       emoji: '🔥',
       title: 'Grind 75 Study Planner',
       description: `Customizable week-by-week study plan based on Tech Interview Handbook. Set weeks and hours/week to master core patterns.`,
@@ -31,20 +39,20 @@ export default function Home() {
       badge: 'High Yield'
     },
     {
-      emoji: '🌐',
-      title: 'Resource Hub & 33+ Blogs',
-      description: `${resourceCount} curated links across DSA, Frontend, Mobile, System Design, and 33+ iconic company engineering blogs.`,
-      href: '/resources',
-      cta: 'Explore Resources',
-      badge: 'Curated'
-    },
-    {
       emoji: '📐',
       title: 'System Design & LLD',
       description: `${systemDesignDocs.length} senior blueprints: GoF patterns, machine coding framework, list virtualization, and offline sync.`,
       href: '/system-design',
       cta: 'View Architecture',
       badge: 'HLD + LLD'
+    },
+    {
+      emoji: '🌐',
+      title: 'Resource Hub & 33+ Blogs',
+      description: `${resourceCount} curated links across DSA, Frontend, Mobile, System Design, and 33+ iconic company engineering blogs.`,
+      href: '/resources',
+      cta: 'Explore Resources',
+      badge: 'Curated'
     },
     {
       emoji: '📑',
@@ -83,19 +91,49 @@ export default function Home() {
           Master Your Tech Interviews
         </h1>
         <p className="text-sm md:text-base text-foreground/70 leading-relaxed max-w-2xl mx-auto">
-          Combining the best of <strong className="text-white">Tech Interview Handbook</strong>, <strong className="text-white">Grind 75</strong>, system design blueprints, and active recall flashcards so you prepare with zero decision fatigue alongside your day job.
+          Combining the best of <strong className="text-white">Tech Interview Handbook</strong>, <strong className="text-white">Grind 75</strong>, system design blueprints, and <strong className="text-white">Google NotebookLM AI Podcasts</strong> to prepare alongside your day job with zero decision fatigue.
         </p>
         <div className="flex flex-wrap justify-center gap-3 pt-2">
           <Link href="/grind75" className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary-dark hover:to-purple-500 text-white px-6 py-2.5 rounded-xl font-semibold shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95 text-sm flex items-center gap-1.5">
             <span>🔥 Grind 75 Study Plan</span>
           </Link>
+          <Link href="/notebooklm" className="bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-300 px-5 py-2.5 rounded-xl font-semibold backdrop-blur-md transition-all text-sm flex items-center gap-1.5">
+            <span>🤖 NotebookLM AI Hub</span>
+          </Link>
           <Link href="/quiz" className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-6 py-2.5 rounded-xl font-semibold backdrop-blur-md transition-all text-sm">
             ⚡ Flashcards
           </Link>
           <Link href="/resources" className="bg-white/5 hover:bg-white/10 border border-white/10 text-foreground/80 hover:text-white px-5 py-2.5 rounded-xl font-semibold transition-all text-sm hidden sm:inline-block">
-            🌐 Resource Hub (30+ Blogs)
+            🌐 Resource Hub
           </Link>
         </div>
+      </section>
+
+      {/* NotebookLM Audio Podcast Callout Banner */}
+      <section className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-purple-900/30 via-primary/15 to-black border border-purple-500/20 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-300 flex items-center justify-center text-2xl shrink-0 border border-purple-500/30">
+            🎙️
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 uppercase tracking-wider">
+                New Feature
+              </span>
+              <h3 className="font-bold text-sm sm:text-base text-foreground">Turn Your Notes into 15-Minute Audio Podcasts with NotebookLM</h3>
+            </div>
+            <p className="text-xs text-foreground/60 mt-0.5">
+              Export 1-click grounding source packs and generate 2-host conversational podcasts for commute listening.
+            </p>
+          </div>
+        </div>
+
+        <Link
+          href="/notebooklm"
+          className="bg-primary hover:bg-primary-dark text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-md shadow-primary/20 shrink-0 whitespace-nowrap"
+        >
+          Explore AI Engine &rarr;
+        </Link>
       </section>
 
       {/* Daily After-Work 20-Min Widget */}

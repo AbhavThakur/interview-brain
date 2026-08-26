@@ -7,11 +7,12 @@ import CommandPalette from './CommandPalette';
 
 const navLinks = [
   { href: '/grind75', label: '🔥 Grind 75', highlight: true },
-  { href: '/coding', label: 'Coding Matrix' },
+  { href: '/notebooklm', label: '🤖 NotebookLM AI', highlight: true },
   { href: '/system-design', label: 'System Design' },
-  { href: '/resources', label: 'Resources' },
+  { href: '/coding', label: 'Coding Matrix' },
   { href: '/cheatsheets', label: 'Cheat Sheets' },
   { href: '/stories', label: 'STAR Stories' },
+  { href: '/resources', label: 'Resources' },
   { href: '/qa', label: 'QA Bank' },
   { href: '/topics', label: 'Topics' },
 ];

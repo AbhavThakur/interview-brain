@@ -8,6 +8,8 @@ import {
   getAllSystemDesign 
 } from '@/lib/markdown';
 import DailyPrepWidget from '@/components/DailyPrepWidget';
+import ActiveRoadmapWidget from '@/components/ActiveRoadmapWidget';
+import TimeBudgetLauncher from '@/components/TimeBudgetLauncher';
 
 export default function Home() {
   const questionCount = getAllQuestions().length;
@@ -22,6 +24,14 @@ export default function Home() {
   const todayTopic = systemDesignDocs[0] || topics[0];
 
   const cards = [
+    {
+      emoji: '🗺️',
+      title: 'Role Roadmaps & Pathways',
+      description: `Structured tracks for SDE-2 Fullstack, 14-Day Crash Sprint, Frontend/Mobile, and Distributed Systems/AI.`,
+      href: '/roadmap',
+      cta: 'Explore Pathways',
+      badge: 'Interactive'
+    },
     {
       emoji: '🤖',
       title: 'Google NotebookLM AI Engine',
@@ -91,22 +101,32 @@ export default function Home() {
           Master Your Tech Interviews
         </h1>
         <p className="text-sm md:text-base text-foreground/70 leading-relaxed max-w-2xl mx-auto">
-          Combining the best of <strong className="text-white">Tech Interview Handbook</strong>, <strong className="text-white">Grind 75</strong>, system design blueprints, and <strong className="text-white">Google NotebookLM AI Podcasts</strong> to prepare alongside your day job with zero decision fatigue.
+          Combining <strong className="text-white">Role-Based Roadmaps</strong>, <strong className="text-white">Grind 75</strong>, system design blueprints, and <strong className="text-white">Google NotebookLM AI Podcasts</strong> to prepare alongside your day job with zero decision fatigue.
         </p>
         <div className="flex flex-wrap justify-center gap-3 pt-2">
-          <Link href="/grind75" className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary-dark hover:to-purple-500 text-white px-6 py-2.5 rounded-xl font-semibold shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95 text-sm flex items-center gap-1.5">
-            <span>🔥 Grind 75 Study Plan</span>
+          <Link href="/roadmap" className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary-dark hover:to-purple-500 text-white px-6 py-2.5 rounded-xl font-semibold shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95 text-sm flex items-center gap-1.5">
+            <span>🗺️ Role Roadmaps</span>
+          </Link>
+          <Link href="/grind75" className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-5 py-2.5 rounded-xl font-semibold backdrop-blur-md transition-all text-sm flex items-center gap-1.5">
+            <span>🔥 Grind 75</span>
           </Link>
           <Link href="/notebooklm" className="bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-300 px-5 py-2.5 rounded-xl font-semibold backdrop-blur-md transition-all text-sm flex items-center gap-1.5">
             <span>🤖 NotebookLM AI Hub</span>
           </Link>
-          <Link href="/quiz" className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-6 py-2.5 rounded-xl font-semibold backdrop-blur-md transition-all text-sm">
+          <Link href="/quiz" className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-5 py-2.5 rounded-xl font-semibold backdrop-blur-md transition-all text-sm hidden sm:inline-block">
             ⚡ Flashcards
           </Link>
-          <Link href="/resources" className="bg-white/5 hover:bg-white/10 border border-white/10 text-foreground/80 hover:text-white px-5 py-2.5 rounded-xl font-semibold transition-all text-sm hidden sm:inline-block">
-            🌐 Resource Hub
-          </Link>
         </div>
+      </section>
+
+      {/* Active Roadmap & Next Step Widget */}
+      <section>
+        <ActiveRoadmapWidget />
+      </section>
+
+      {/* Time-Budget Quick Launcher (5m / 15m / 30m / 60m) */}
+      <section>
+        <TimeBudgetLauncher />
       </section>
 
       {/* NotebookLM Audio Podcast Callout Banner */}
@@ -146,12 +166,12 @@ export default function Home() {
       </section>
 
       {/* Feature Grid Section */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
         {cards.map(card => (
-          <div key={card.href} className="glass-card p-6 flex flex-col justify-between gap-4 group hover:border-primary/50 transition-all hover:-translate-y-0.5">
+          <div key={card.href} className="glass-card p-5 flex flex-col justify-between gap-4 group hover:border-primary/50 transition-all hover:-translate-y-0.5">
             <div className="flex flex-col gap-3">
               <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center text-primary text-xl">
+                <div className="w-9 h-9 rounded-xl bg-primary/20 flex items-center justify-center text-primary text-lg">
                   {card.emoji}
                 </div>
                 {card.badge && (
@@ -160,7 +180,7 @@ export default function Home() {
                   </span>
                 )}
               </div>
-              <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">{card.title}</h3>
+              <h3 className="text-base font-bold text-foreground group-hover:text-primary transition-colors">{card.title}</h3>
               <p className="text-foreground/60 text-xs leading-relaxed">
                 {card.description}
               </p>

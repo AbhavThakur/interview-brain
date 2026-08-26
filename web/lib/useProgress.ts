@@ -1,7 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { onAuthStateChanged, User } from 'firebase/auth';
+import { 
+  onAuthStateChanged, 
+  User, 
+  signInWithPopup, 
+  GoogleAuthProvider, 
+  signOut 
+} from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { auth, db } from './firebase';
 
@@ -13,6 +19,11 @@ export interface UserProgressData {
   streakCount: number;
   lastActiveDate: string;
   completedTasksToday: string[];
+  roadmapTasks: Record<string, boolean>;
+  activeTrack: string;
+  targetInterviewDate?: string;
+  customName?: string;
+  targetCompany?: string;
 }
 
 const DEFAULT_PROGRESS: UserProgressData = {
@@ -20,7 +31,12 @@ const DEFAULT_PROGRESS: UserProgressData = {
   bookmarkedResources: [],
   streakCount: 1,
   lastActiveDate: new Date().toISOString().split('T')[0],
-  completedTasksToday: []
+  completedTasksToday: [],
+  roadmapTasks: {},
+  activeTrack: 'sde2-fullstack',
+  targetInterviewDate: '',
+  customName: '',
+  targetCompany: 'Amazon'
 };
 
 export function useProgress() {
@@ -78,7 +94,16 @@ export function useProgress() {
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             const data = docSnap.data() as UserProgressData;
-            setProgress(prev => ({ ...prev, ...data }));
+            setProgress(prev => {
+              const merged = { ...prev, ...data };
+              if (typeof window !== 'undefined') {
+                localStorage.setItem('ib_user_progress', JSON.stringify(merged));
+              }
+              return merged;
+            });
+          } else {
+            // Save local progress to Firestore on first login
+            await setDoc(docRef, progress, { merge: true });
           }
         } catch (err) {
           console.error('Error fetching progress from Firestore:', err);
@@ -141,12 +166,62 @@ export function useProgress() {
     });
   };
 
+  const toggleRoadmapTask = (taskId: string) => {
+    const nextRoadmapTasks = {
+      ...progress.roadmapTasks,
+      [taskId]: !progress.roadmapTasks[taskId]
+    };
+
+    saveProgress({
+      ...progress,
+      roadmapTasks: nextRoadmapTasks
+    });
+  };
+
+  const setActiveTrack = (trackId: string) => {
+    saveProgress({
+      ...progress,
+      activeTrack: trackId
+    });
+  };
+
+  const setTargetInterviewDate = (date: string) => {
+    saveProgress({
+      ...progress,
+      targetInterviewDate: date
+    });
+  };
+
+  const loginWithGoogle = async () => {
+    if (!auth) return;
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+    } catch (err) {
+      console.error('Login error:', err);
+    }
+  };
+
+  const logout = async () => {
+    if (!auth) return;
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.error('Logout error:', err);
+    }
+  };
+
   return {
     user,
     loading,
     progress,
     setProblemStatus,
     toggleBookmark,
-    toggleDailyTask
+    toggleDailyTask,
+    toggleRoadmapTask,
+    setActiveTrack,
+    setTargetInterviewDate,
+    loginWithGoogle,
+    logout
   };
 }

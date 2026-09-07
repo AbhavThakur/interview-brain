@@ -30,6 +30,176 @@ export interface CareerTrack {
 
 export const CAREER_TRACKS: CareerTrack[] = [
   {
+    id: 'system-design-mastery',
+    title: 'System Design Mastery: LLD & HLD from Scratch',
+    badge: 'Zero to Architect (6–8 Wks)',
+    emoji: '📐',
+    targetAudience: 'Engineers of all levels wanting to master Low-Level Design (OOP/GoF/Machine Coding) and High-Level Design (Distributed Systems & Scale) step-by-step.',
+    durationWeeks: '6–8 Weeks',
+    weeklyDedication: '8–12 hrs/week',
+    description: 'The definitive architectural journey: Start from OOP pillars and SOLID principles, progress to GoF patterns and relational schema design on drawDB, master the 4-step HLD interview framework, calculate capacity with our back-of-the-envelope planner, and dissect classic case studies (TinyURL, Rate Limiter, Twitter Timeline, Web Crawler).',
+    phases: [
+      {
+        id: 'sd-phase-1',
+        title: 'Phase 1: Low-Level Design (LLD) — OOP & GoF Design Patterns',
+        weekLabel: 'Week 1 – 2',
+        description: 'Clean modular code, SOLID principles, and the most frequently tested Gang of Four (GoF) creational, structural, and behavioral patterns.',
+        tasks: [
+          {
+            id: 'sd-p1-t1',
+            title: 'Master SOLID Principles & Dependency Inversion in Practice',
+            description: 'Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, and Dependency Injection with practical code examples.',
+            estimatedMinutes: 35,
+            type: 'system-design',
+            deepLink: '/system-design',
+            linkLabel: 'Open SOLID & LLD Guide'
+          },
+          {
+            id: 'sd-p1-t2',
+            title: 'Creational & Behavioral Patterns: Factory, Strategy, Observer & Decorator',
+            description: 'Implement dynamic strategy swapping, pub-sub event handling, and pluggable decorator middleware with clean interfaces.',
+            estimatedMinutes: 45,
+            type: 'system-design',
+            deepLink: '/system-design',
+            linkLabel: 'Open GoF Patterns Blueprint'
+          },
+          {
+            id: 'sd-p1-t3',
+            title: 'Visual UML Class Modeling with Mermaid Live',
+            description: 'Learn to diagram classes, inheritance, aggregation, and associations in under 5 minutes before writing machine code.',
+            estimatedMinutes: 20,
+            type: 'cheatsheet',
+            deepLink: '/tools',
+            linkLabel: 'Open Mermaid Live Sandbox'
+          }
+        ]
+      },
+      {
+        id: 'sd-phase-2',
+        title: 'Phase 2: LLD Machine Coding & Relational Schema Modeling',
+        weekLabel: 'Week 3 – 4',
+        description: 'Tackle classic 45-60 minute machine coding rounds: model entities, state machines, and relational schemas using in-browser visualizers.',
+        tasks: [
+          {
+            id: 'sd-p2-t1',
+            title: 'LLD Machine Coding 4-Step Framework & Time Management',
+            description: 'Clarify requirements (10m) -> Define Interfaces & Core Models (15m) -> Implement Business Logic (20m) -> Write Extensible Tests (10m).',
+            estimatedMinutes: 30,
+            type: 'system-design',
+            deepLink: '/system-design',
+            linkLabel: 'Open Machine Coding Framework'
+          },
+          {
+            id: 'sd-p2-t2',
+            title: 'Machine Coding Classic: Design a Multi-Floor Parking Lot',
+            description: 'Model Vehicle hierarchy (Car, Bike, Truck), Spot allocation algorithms (Nearest, Level-wise), and fee calculation strategies.',
+            estimatedMinutes: 50,
+            type: 'system-design',
+            deepLink: '/system-design',
+            linkLabel: 'Practice Parking Lot LLD'
+          },
+          {
+            id: 'sd-p2-t3',
+            title: 'Interactive Schema & ERD Modeling in drawDB Sandbox',
+            description: 'Design foreign keys, composite indexes, 1-to-N relationships, and export SQL DDL schemas without any signup.',
+            estimatedMinutes: 25,
+            type: 'cheatsheet',
+            deepLink: '/tools',
+            linkLabel: 'Launch drawDB Sandbox'
+          }
+        ]
+      },
+      {
+        id: 'sd-phase-3',
+        title: 'Phase 3: High-Level Design (HLD) — Framework & Capacity Sizing',
+        weekLabel: 'Week 5 – 6',
+        description: 'Structure any 45-minute HLD interview, estimate storage and bandwidth using power-of-two approximations, and memorize latency orders of magnitude.',
+        tasks: [
+          {
+            id: 'sd-p3-t1',
+            title: 'The 4-Step 45-Minute HLD Interview Master Protocol',
+            description: 'Requirements & Scope (5m) -> Back-of-the-Envelope Math (5m) -> High-Level Architecture (15m) -> Deep Dive & Bottlenecks (20m).',
+            estimatedMinutes: 35,
+            type: 'system-design',
+            deepLink: '/system-design',
+            linkLabel: 'Open 4-Step HLD Blueprint'
+          },
+          {
+            id: 'sd-p3-t2',
+            title: 'Interactive Back-of-the-Envelope Capacity Estimator',
+            description: 'Practice calculating Daily Active Users (DAU), read/write QPS, 5-year storage retention, ingress/egress bandwidth, and 80/20 RAM cache sizing.',
+            estimatedMinutes: 30,
+            type: 'system-design',
+            deepLink: '/tools',
+            linkLabel: 'Launch Capacity Planner Tool'
+          },
+          {
+            id: 'sd-p3-t3',
+            title: 'Latency Numbers Every Systems Engineer Must Know',
+            description: 'Explore human-scaled time comparisons: L1 cache (1s) vs RAM (1.6m) vs SSD (2.3h) vs Datacenter Roundtrip (6yr) in our latency visualizer.',
+            estimatedMinutes: 20,
+            type: 'cheatsheet',
+            deepLink: '/tools',
+            linkLabel: 'Explore Latency Hierarchy'
+          },
+          {
+            id: 'sd-p3-t4',
+            title: 'Distributed Systems Core Concepts: CAP, PACELC, Sharding & Caching',
+            description: 'Master master-slave replication, consistent hashing with virtual nodes, cache-aside vs write-through, and optimistic concurrency.',
+            estimatedMinutes: 45,
+            type: 'system-design',
+            deepLink: '/system-design',
+            linkLabel: 'Open Distributed Handbook'
+          }
+        ]
+      },
+      {
+        id: 'sd-phase-4',
+        title: 'Phase 4: HLD Real-World Case Studies & Audio Podcasts',
+        weekLabel: 'Week 7 – 8',
+        description: 'End-to-end architectural deep dives into high-frequency interview systems and commute listening with NotebookLM AI podcasts.',
+        tasks: [
+          {
+            id: 'sd-p4-t1',
+            title: 'Case Study 1: URL Shortener (TinyURL / Bitly) & Key Generation Service (KGS)',
+            description: 'Base62 encoding, pre-generated unique keys via Redis/Zookeeper, 301 vs 302 redirects, and horizontal read scaling.',
+            estimatedMinutes: 40,
+            type: 'system-design',
+            deepLink: '/system-design',
+            linkLabel: 'Open TinyURL Blueprint'
+          },
+          {
+            id: 'sd-p4-t2',
+            title: 'Case Study 2: Distributed Rate Limiter (Token Bucket & Redis Lua)',
+            description: 'Sliding window logs vs sliding window counters, race conditions in Redis, and atomic multi-key Lua scripts.',
+            estimatedMinutes: 35,
+            type: 'system-design',
+            deepLink: '/system-design',
+            linkLabel: 'Open Rate Limiter Blueprint'
+          },
+          {
+            id: 'sd-p4-t3',
+            title: 'Case Study 3: Twitter / News Feed Timeline Architecture',
+            description: 'Fan-out-on-write (push model) for regular users vs fan-out-on-read (pull model) for celebrities with millions of followers.',
+            estimatedMinutes: 45,
+            type: 'system-design',
+            deepLink: '/system-design',
+            linkLabel: 'Open Twitter Timeline Blueprint'
+          },
+          {
+            id: 'sd-p4-t4',
+            title: 'Generate 15-Min Audio Overview Podcasts with Google NotebookLM',
+            description: 'Export all system design blueprints to NotebookLM to listen to 2-host conversational podcasts during commutes.',
+            estimatedMinutes: 15,
+            type: 'notebooklm',
+            deepLink: '/notebooklm',
+            linkLabel: 'Launch NotebookLM Studio'
+          }
+        ]
+      }
+    ]
+  },
+  {
     id: 'sde3-staff-architect',
     title: 'SDE-3 / Staff Principal Architect Pathway',
     badge: 'Staff / L6+ (8–12 Wks)',

@@ -1,11 +1,14 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Link from 'next/link';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 import { MarkdownDocument } from '@/lib/markdown';
+import ActivePlanWidget from '@/components/ActivePlanWidget';
+import PlanWizardModal from '@/components/PlanWizardModal';
 
 const categoryDisplayNames: Record<string, string> = {
-  All: 'All Architecture',
+  All: 'All Categories',
   'lld-design-patterns': 'LLD & Design Patterns',
   'lld-framework': 'LLD Machine Coding Framework',
   'mobile-frontend': 'Mobile & Frontend Virtualization',
@@ -24,7 +27,10 @@ const categoryEmojis: Record<string, string> = {
 
 export default function SystemDesignClient({ initialDocs }: { initialDocs: MarkdownDocument[] }) {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [scopeFilter, setScopeFilter] = useState<'all' | 'lld' | 'hld' | 'mobile'>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [showBeginnerGuide, setShowBeginnerGuide] = useState<boolean>(true);
+  const [wizardOpen, setWizardOpen] = useState<boolean>(false);
 
   // Extract category counts
   const categoryCounts = useMemo(() => {
@@ -40,29 +46,39 @@ export default function SystemDesignClient({ initialDocs }: { initialDocs: Markd
     return ['All', ...Object.keys(categoryCounts).sort()];
   }, [categoryCounts]);
 
-  // Filter docs
+  // Filter docs based on scope, category, and search query
   const filteredDocs = useMemo(() => {
     return initialDocs.filter(d => {
       const cat = d.category || 'Architecture';
+
+      let matchesScope = true;
+      if (scopeFilter === 'lld') {
+        matchesScope = cat.startsWith('lld-');
+      } else if (scopeFilter === 'hld') {
+        matchesScope = cat === 'distributed-backend' || cat === 'fullstack-distributed';
+      } else if (scopeFilter === 'mobile') {
+        matchesScope = cat === 'mobile-frontend';
+      }
+
       const matchesCat = selectedCategory === 'All' || cat === selectedCategory;
       const matchesSearch = 
         d.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         d.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (d.tags && d.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase())));
 
-      return matchesCat && matchesSearch;
+      return matchesScope && matchesCat && matchesSearch;
     });
-  }, [initialDocs, selectedCategory, searchQuery]);
+  }, [initialDocs, scopeFilter, selectedCategory, searchQuery]);
 
   return (
     <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       
-      {/* Header */}
+      {/* Header Banner */}
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="text-xs font-semibold px-2.5 py-0.5 rounded bg-primary/20 text-primary uppercase tracking-wider">
-              HLD & LLD Architecture
+              HLD & LLD Architecture Hub
             </span>
             <span className="text-xs text-foreground/40 font-mono">
               {filteredDocs.length} of {initialDocs.length} blueprints shown
@@ -74,18 +90,294 @@ export default function SystemDesignClient({ initialDocs }: { initialDocs: Markd
           </p>
         </div>
 
-        <div className="w-full sm:w-64">
-          <input 
-            type="text" 
-            placeholder="Search HLD, LLD, patterns..." 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-primary transition-colors placeholder:text-foreground/40"
-          />
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+          <button
+            onClick={() => setWizardOpen(true)}
+            className="bg-gradient-to-r from-primary via-purple-600 to-primary-dark hover:from-primary-dark hover:to-purple-500 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-md shadow-primary/20 transition-all flex items-center justify-center gap-1.5 whitespace-nowrap"
+          >
+            <span>🎯</span>
+            <span>Personalize My Plan</span>
+          </button>
+
+          <div className="w-full sm:w-60">
+            <input 
+              type="text" 
+              placeholder="Search HLD, LLD, patterns..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-primary transition-colors placeholder:text-foreground/40"
+            />
+          </div>
         </div>
       </div>
 
-      {/* Mobile / Tablet Category Filter Pills (Wraps cleanly without cropping) */}
+      {/* Beginner Navigation & LLD vs HLD Roadmap Guide */}
+      <div className="rounded-3xl bg-gradient-to-br from-white/[0.04] via-primary/5 to-purple-950/20 border border-white/10 p-6 sm:p-8 flex flex-col gap-6 shadow-xl relative overflow-hidden">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-primary/20 text-primary flex items-center justify-center text-xl shrink-0">
+              🔰
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-primary/20 text-primary uppercase tracking-wider">
+                  Beginner Start Here Guide
+                </span>
+                <span className="text-[11px] text-foreground/40 font-mono">
+                  LLD vs HLD Learning Sequence
+                </span>
+              </div>
+              <h2 className="text-base sm:text-lg font-bold text-foreground mt-0.5">
+                How to Learn System Design from Scratch
+              </h2>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setShowBeginnerGuide(prev => !prev)}
+              className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/70 hover:text-white transition-all flex items-center gap-1.5"
+            >
+              <span>{showBeginnerGuide ? 'Hide Guide ▴' : 'Show Guide ▾'}</span>
+            </button>
+          </div>
+        </div>
+
+        {showBeginnerGuide && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2 animate-in fade-in duration-300">
+            
+            {/* LLD Pillar Card */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-white/[0.02] border border-blue-500/20 flex flex-col justify-between gap-4">
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">🏛️</span>
+                    <div>
+                      <h3 className="text-sm sm:text-base font-bold text-blue-400">
+                        Track A: Low-Level Design (LLD)
+                      </h3>
+                      <span className="text-[10px] text-foreground/50 font-mono">
+                        Object-Oriented Design & Machine Coding (45–60 min rounds)
+                      </span>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase">
+                    Code Quality
+                  </span>
+                </div>
+
+                <p className="text-xs text-foreground/70 leading-relaxed">
+                  Focuses on writing clean, extensible, modular object-oriented code. Evaluates your grasp of SOLID principles, design patterns, entity modeling, and relational database schema design.
+                </p>
+
+                <div className="flex flex-col gap-2 pt-1">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-foreground/40">
+                    Proven Learning Sequence:
+                  </span>
+                  <div className="flex flex-col gap-1.5 text-xs text-foreground/80">
+                    <div className="flex items-start gap-2">
+                      <span className="text-blue-400 font-bold">1.</span>
+                      <span><strong>SOLID Principles</strong> (Single Responsibility, Open-Closed, Dependency Inversion)</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-blue-400 font-bold">2.</span>
+                      <span><strong>GoF Design Patterns</strong> (Strategy, Factory, Observer, Decorator)</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-blue-400 font-bold">3.</span>
+                      <span><strong>Relational Schema Design</strong> (Foreign keys, indexes, ERDs in drawDB)</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-blue-400 font-bold">4.</span>
+                      <span><strong>Machine Coding Classics</strong> (Parking Lot, Elevator, Rate Limiter)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-white/5">
+                  <span className="text-[10px] text-foreground/40 font-bold">Sandboxes:</span>
+                  <a 
+                    href="https://www.drawdb.app/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 hover:bg-emerald-500/20"
+                  >
+                    ⚡ drawDB Schema (Zero-Signup)
+                  </a>
+                  <a 
+                    href="https://mermaid.live/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[10px] font-bold text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20 hover:bg-purple-500/20"
+                  >
+                    ⚡ Mermaid Class Diagrams
+                  </a>
+                </div>
+              </div>
+
+              <button
+                onClick={() => {
+                  setScopeFilter('lld');
+                  setSelectedCategory('All');
+                }}
+                className="w-full text-xs font-bold py-2 px-3 rounded-xl bg-blue-500/10 hover:bg-blue-500 text-blue-400 hover:text-white border border-blue-500/25 transition-all text-center"
+              >
+                View LLD Blueprints Only &rarr;
+              </button>
+            </div>
+
+            {/* HLD Pillar Card */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-white/[0.02] border border-purple-500/20 flex flex-col justify-between gap-4">
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">🌐</span>
+                    <div>
+                      <h3 className="text-sm sm:text-base font-bold text-purple-400">
+                        Track B: High-Level Design (HLD)
+                      </h3>
+                      <span className="text-[10px] text-foreground/50 font-mono">
+                        Distributed Systems, Scalability & Architecture (45-min rounds)
+                      </span>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20 uppercase">
+                    Scale & Infra
+                  </span>
+                </div>
+
+                <p className="text-xs text-foreground/70 leading-relaxed">
+                  Focuses on scaling systems to millions of users. Evaluates functional vs non-functional scoping, capacity math, load balancing, caching, database sharding, CAP/PACELC tradeoffs, and failure modes.
+                </p>
+
+                <div className="flex flex-col gap-2 pt-1">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-foreground/40">
+                    Proven Learning Sequence:
+                  </span>
+                  <div className="flex flex-col gap-1.5 text-xs text-foreground/80">
+                    <div className="flex items-start gap-2">
+                      <span className="text-purple-400 font-bold">1.</span>
+                      <span><strong>4-Step HLD Framework</strong> (Requirements &rarr; Capacity &rarr; Diagram &rarr; Deep Dive)</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-purple-400 font-bold">2.</span>
+                      <span><strong>Distributed Building Blocks</strong> (CAP, Consistent Hashing, Redis, Sharding)</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-purple-400 font-bold">3.</span>
+                      <span><strong>Back-of-the-Envelope Math</strong> (QPS, 5-yr storage, bandwidth, cache sizing)</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-purple-400 font-bold">4.</span>
+                      <span><strong>Classic Case Studies</strong> (TinyURL, Rate Limiter, Twitter, Web Crawler)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-white/5">
+                  <span className="text-[10px] text-foreground/40 font-bold">Tools:</span>
+                  <Link 
+                    href="/tools" 
+                    className="text-[10px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 hover:bg-amber-500/20"
+                  >
+                    ⚡ Capacity Estimator Tool
+                  </Link>
+                  <Link 
+                    href="/tools" 
+                    className="text-[10px] font-bold text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20 hover:bg-blue-500/20"
+                  >
+                    ⚡ Latency Hierarchy Visualizer
+                  </Link>
+                </div>
+              </div>
+
+              <button
+                onClick={() => {
+                  setScopeFilter('hld');
+                  setSelectedCategory('All');
+                }}
+                className="w-full text-xs font-bold py-2 px-3 rounded-xl bg-purple-500/10 hover:bg-purple-500 text-purple-400 hover:text-white border border-purple-500/25 transition-all text-center"
+              >
+                View HLD Blueprints Only &rarr;
+              </button>
+            </div>
+
+          </div>
+        )}
+      </div>
+
+      {/* Active Personalized Plan Widget */}
+      <ActivePlanWidget defaultFocus="system-design" />
+
+      {/* Plan Wizard Modal */}
+      <PlanWizardModal
+        isOpen={wizardOpen}
+        onClose={() => setWizardOpen(false)}
+        defaultFocus="system-design"
+      />
+
+      {/* High-Level Scope Switcher Pills */}
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-xs font-bold text-foreground/40 uppercase tracking-wider mr-1">
+            Focus Scope:
+          </span>
+          <button
+            onClick={() => setScopeFilter('all')}
+            className={`text-xs font-bold px-3.5 py-1.5 rounded-xl transition-all ${
+              scopeFilter === 'all'
+                ? 'bg-primary text-white shadow-md shadow-primary/25'
+                : 'bg-white/5 text-foreground/70 hover:bg-white/10'
+            }`}
+          >
+            All Architecture ({initialDocs.length})
+          </button>
+          <button
+            onClick={() => setScopeFilter('lld')}
+            className={`text-xs font-bold px-3.5 py-1.5 rounded-xl transition-all flex items-center gap-1.5 ${
+              scopeFilter === 'lld'
+                ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25'
+                : 'bg-white/5 text-foreground/70 hover:bg-white/10'
+            }`}
+          >
+            <span>🏛️</span>
+            <span>LLD (Design Patterns & Machine Coding)</span>
+          </button>
+          <button
+            onClick={() => setScopeFilter('hld')}
+            className={`text-xs font-bold px-3.5 py-1.5 rounded-xl transition-all flex items-center gap-1.5 ${
+              scopeFilter === 'hld'
+                ? 'bg-purple-600 text-white shadow-md shadow-purple-500/25'
+                : 'bg-white/5 text-foreground/70 hover:bg-white/10'
+            }`}
+          >
+            <span>🌐</span>
+            <span>HLD (Distributed Systems & Scale)</span>
+          </button>
+          <button
+            onClick={() => setScopeFilter('mobile')}
+            className={`text-xs font-bold px-3.5 py-1.5 rounded-xl transition-all flex items-center gap-1.5 ${
+              scopeFilter === 'mobile'
+                ? 'bg-emerald-600 text-white shadow-md shadow-emerald-500/25'
+                : 'bg-white/5 text-foreground/70 hover:bg-white/10'
+            }`}
+          >
+            <span>📱</span>
+            <span>Mobile & Real-Time</span>
+          </button>
+        </div>
+
+        {scopeFilter !== 'all' && (
+          <button
+            onClick={() => setScopeFilter('all')}
+            className="text-xs text-primary hover:underline"
+          >
+            Clear scope filter ✕
+          </button>
+        )}
+      </div>
+
+      {/* Mobile Category Filter Pills */}
       <div className="lg:hidden flex flex-wrap items-center gap-2">
         {categories.map(c => {
           const count = c === 'All' ? initialDocs.length : (categoryCounts[c] || 0);
@@ -93,7 +385,7 @@ export default function SystemDesignClient({ initialDocs }: { initialDocs: Markd
             <button
               key={c}
               onClick={() => setSelectedCategory(c)}
-              className={`text-xs font-medium px-3.5 py-1.5 rounded-xl whitespace-nowrap transition-all flex items-center gap-1.5 ${
+              className={`text-xs font-medium px-3 py-1.5 rounded-xl whitespace-nowrap transition-all flex items-center gap-1.5 ${
                 selectedCategory === c
                   ? 'bg-primary text-white shadow-lg shadow-primary/25 font-semibold'
                   : 'bg-white/5 text-foreground/70 hover:bg-white/10 hover:text-foreground'
@@ -116,7 +408,7 @@ export default function SystemDesignClient({ initialDocs }: { initialDocs: Markd
             {/* Category Filter Group */}
             <div>
               <h3 className="text-xs font-bold text-foreground/40 uppercase tracking-wider mb-3">
-                Architecture Categories
+                Specific Categories
               </h3>
               
               <nav className="flex flex-col gap-1">
@@ -151,7 +443,7 @@ export default function SystemDesignClient({ initialDocs }: { initialDocs: Markd
             {/* Quick Index Group */}
             <div>
               <h3 className="text-xs font-bold text-foreground/40 uppercase tracking-wider mb-3">
-                Blueprints Index ({filteredDocs.length})
+                Filtered Blueprints ({filteredDocs.length})
               </h3>
               
               <nav className="flex flex-col gap-1">
@@ -165,6 +457,23 @@ export default function SystemDesignClient({ initialDocs }: { initialDocs: Markd
                   </a>
                 ))}
               </nav>
+            </div>
+
+            {/* In-Browser Dev Tools Banner */}
+            <div className="p-4 rounded-2xl bg-gradient-to-br from-amber-500/10 via-primary/5 to-black border border-amber-500/20 flex flex-col gap-2">
+              <div className="flex items-center gap-1.5 text-amber-400 text-xs font-bold">
+                <span>⚡</span>
+                <span>In-Browser Design Tools</span>
+              </div>
+              <p className="text-[11px] text-foreground/70 leading-relaxed">
+                Test capacity estimations, latency hierarchy orders of magnitude, and JWT/Base64 encoding offline with zero signup.
+              </p>
+              <Link
+                href="/tools"
+                className="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-[11px] font-bold py-2 px-3 rounded-xl transition-all text-center mt-1"
+              >
+                Launch Toolbox & Sandboxes &rarr;
+              </Link>
             </div>
 
             {/* NotebookLM AI Grounding Box */}
@@ -245,7 +554,7 @@ export default function SystemDesignClient({ initialDocs }: { initialDocs: Markd
         <main className="lg:col-span-3 flex flex-col gap-8">
           {filteredDocs.length === 0 ? (
             <div className="text-center py-16 text-foreground/40 glass-card p-8">
-              No system design guides found matching your query.
+              No system design guides found matching your query or scope filter.
             </div>
           ) : (
             filteredDocs.map(doc => (

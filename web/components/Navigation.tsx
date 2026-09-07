@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import CreateContentModal from './CreateContentModal';
 import CommandPalette from './CommandPalette';
 import AuthModal from './AuthModal';
+import PlanWizardModal from './PlanWizardModal';
 import { useProgress } from '@/lib/useProgress';
 
 interface NavItem {
@@ -24,10 +25,11 @@ const PRIMARY_LINKS: NavItem[] = [
 ];
 
 const MORE_LINKS: NavItem[] = [
+  { href: '/tools', label: 'Dev Tools & Sandboxes', emoji: '⚡', badge: 'Zero-Signup' },
   { href: '/cheatsheets', label: 'Cheat Sheets & Fast Recall', emoji: '📑' },
   { href: '/stories', label: 'STAR Stories & Top 30 FAANG', emoji: '✨' },
   { href: '/coding', label: 'Coding Practice Matrix', emoji: '💻' },
-  { href: '/resources', label: 'Resource Hub (33+ Blogs)', emoji: '🌐' },
+  { href: '/resources', label: 'Resource Hub & Sandboxes (55+)', emoji: '🌐' },
   { href: '/qa', label: 'QA Bank (140+ Q&As)', emoji: '❓' },
   { href: '/topics', label: 'Evergreen Topics', emoji: '📚' },
   { href: '/prep', label: 'Company Prep Guides', emoji: '🏢' },
@@ -48,6 +50,7 @@ export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [planWizardOpen, setPlanWizardOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close mobile drawer and dropdown on route change
@@ -165,13 +168,23 @@ export default function Navigation() {
               </div>
             </div>
 
-            {/* Right: Search, Create (+), Auth / Profile */}
+            {/* Right: Search, Create (+), Plan, Auth / Profile */}
             <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
               <CommandPalette />
 
               <div className="flex items-center justify-center">
                 <CreateContentModal />
               </div>
+
+              {/* Personalized Study Plan Button */}
+              <button
+                onClick={() => setPlanWizardOpen(true)}
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-semibold transition-all shadow-sm group"
+                title="Personalize your study plan with a 30-sec diagnostic"
+              >
+                <span className="group-hover:scale-110 transition-transform">🎯</span>
+                <span className="hidden sm:inline">Plan</span>
+              </button>
 
               {/* Profile / Sign In Button */}
               <button
@@ -211,11 +224,32 @@ export default function Navigation() {
       {/* Auth & Profile Modal */}
       <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
 
+      {/* Personalized Plan Wizard Modal */}
+      <PlanWizardModal isOpen={planWizardOpen} onClose={() => setPlanWizardOpen(false)} />
+
       {/* Mobile Drawer Sheet */}
       {mobileMenuOpen && (
         <div className="md:hidden fixed inset-0 z-40 bg-black/80 backdrop-blur-md pt-16 animate-in fade-in duration-200">
           <div className="max-h-[calc(100vh-4rem)] overflow-y-auto p-5 flex flex-col gap-6">
             
+            {/* Take Diagnostic CTA in Mobile Drawer */}
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setPlanWizardOpen(true);
+              }}
+              className="w-full flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-r from-primary/20 via-purple-600/20 to-primary/10 border border-primary/30 text-xs font-bold text-white shadow-md text-left"
+            >
+              <div className="flex items-center gap-2.5">
+                <span className="text-xl">🎯</span>
+                <div className="flex flex-col">
+                  <span>Personalize My Study Plan</span>
+                  <span className="text-[10px] text-foreground/60 font-normal">30-sec skill diagnostic & custom roadmaps</span>
+                </div>
+              </div>
+              <span className="text-xs text-primary font-bold">&rarr;</span>
+            </button>
+
             {/* User Profile Card */}
             <div 
               onClick={() => {

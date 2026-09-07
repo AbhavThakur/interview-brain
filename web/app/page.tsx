@@ -9,6 +9,7 @@ import {
 } from '@/lib/markdown';
 import DailyPrepWidget from '@/components/DailyPrepWidget';
 import ActiveRoadmapWidget from '@/components/ActiveRoadmapWidget';
+import ActivePlanWidget from '@/components/ActivePlanWidget';
 import TimeBudgetLauncher from '@/components/TimeBudgetLauncher';
 
 export default function Home() {
@@ -117,6 +118,11 @@ export default function Home() {
             ⚡ Flashcards
           </Link>
         </div>
+      </section>
+
+      {/* Personalized Learning Plan & Next Action Engine */}
+      <section>
+        <ActivePlanWidget />
       </section>
 
       {/* Active Roadmap & Next Step Widget */}

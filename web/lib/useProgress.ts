@@ -13,6 +13,35 @@ import { auth, db } from './firebase';
 
 export type ProblemStatus = 'todo' | 'attempted' | 'solved' | 'review';
 
+export interface PlanMilestone {
+  id: string;
+  title: string;
+  subtitle: string;
+  estimatedMinutes: number;
+  category: 'lld' | 'hld' | 'coding' | 'system-design' | 'cheatsheet' | 'behavioral' | 'tools' | 'notebooklm';
+  deepLink: string;
+  linkLabel: string;
+  completed: boolean;
+  toolRecommendation?: {
+    name: string;
+    url: string;
+    isExternal?: boolean;
+  };
+}
+
+export interface CustomPlanData {
+  id: string;
+  createdAt: string;
+  primaryFocus: string;
+  focusTitle: string;
+  experienceLevel: 'beginner' | 'intermediate' | 'senior';
+  dailyTime: '15m' | '60m' | '120m';
+  primaryWeakness: string;
+  title: string;
+  summary: string;
+  milestones: PlanMilestone[];
+}
+
 export interface UserProgressData {
   codingStatus: Record<string, ProblemStatus>;
   bookmarkedResources: string[];
@@ -24,6 +53,7 @@ export interface UserProgressData {
   targetInterviewDate?: string;
   customName?: string;
   targetCompany?: string;
+  customPlan?: CustomPlanData;
 }
 
 const DEFAULT_PROGRESS: UserProgressData = {
@@ -36,47 +66,52 @@ const DEFAULT_PROGRESS: UserProgressData = {
   activeTrack: 'sde2-fullstack',
   targetInterviewDate: '',
   customName: '',
-  targetCompany: 'Amazon'
+  targetCompany: 'Amazon',
+  customPlan: undefined
 };
 
 export function useProgress() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [progress, setProgress] = useState<UserProgressData>(() => {
-    if (typeof window === 'undefined') return DEFAULT_PROGRESS;
+  const [mounted, setMounted] = useState<boolean>(false);
+  const [progress, setProgress] = useState<UserProgressData>(DEFAULT_PROGRESS);
+
+  // Hydrate local progress and calculate streak on client mount
+  useEffect(() => {
+    setMounted(true);
+    const today = new Date().toISOString().split('T')[0];
     try {
       const local = localStorage.getItem('ib_user_progress');
+      let base = DEFAULT_PROGRESS;
       if (local) {
-        return { ...DEFAULT_PROGRESS, ...JSON.parse(local) };
+        base = { ...DEFAULT_PROGRESS, ...JSON.parse(local) };
       }
-    } catch (e) {
-      console.error(e);
-    }
-    return DEFAULT_PROGRESS;
-  });
+      if (!base.customPlan) {
+        const planLocal = localStorage.getItem('ib_user_custom_plan');
+        if (planLocal) {
+          base.customPlan = JSON.parse(planLocal);
+        }
+      }
 
-  // Calculate and update streak on load
-  useEffect(() => {
-    const today = new Date().toISOString().split('T')[0];
-    setProgress(prev => {
-      if (prev.lastActiveDate === today) return prev;
-      
-      const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
-      const isConsecutive = prev.lastActiveDate === yesterday;
-      const newStreak = isConsecutive ? prev.streakCount + 1 : 1;
+      let streak = base.streakCount;
+      if (base.lastActiveDate !== today) {
+        const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+        const isConsecutive = base.lastActiveDate === yesterday;
+        streak = isConsecutive ? base.streakCount + 1 : 1;
+      }
 
-      const updated = {
-        ...prev,
-        streakCount: newStreak,
+      const updated: UserProgressData = {
+        ...base,
+        streakCount: streak,
         lastActiveDate: today,
-        completedTasksToday: []
+        completedTasksToday: base.lastActiveDate === today ? base.completedTasksToday : []
       };
-      
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('ib_user_progress', JSON.stringify(updated));
-      }
-      return updated;
-    });
+
+      setProgress(updated);
+      localStorage.setItem('ib_user_progress', JSON.stringify(updated));
+    } catch (e) {
+      console.error('Error hydrating progress:', e);
+    }
   }, []);
 
   // Firebase auth sync
@@ -115,81 +150,149 @@ export function useProgress() {
     return () => unsubscribe();
   }, []);
 
-  const saveProgress = async (newProgress: UserProgressData) => {
-    setProgress(newProgress);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('ib_user_progress', JSON.stringify(newProgress));
-    }
-
-    if (user && db) {
-      try {
-        const docRef = doc(db, 'users', user.uid, 'profile', 'progress');
-        await setDoc(docRef, newProgress, { merge: true });
-      } catch (err) {
-        console.error('Error saving progress to Firestore:', err);
+  const saveProgress = async (
+    updater: UserProgressData | ((prev: UserProgressData) => UserProgressData)
+  ) => {
+    setProgress(prev => {
+      const nextProgress = typeof updater === 'function' ? updater(prev) : updater;
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('ib_user_progress', JSON.stringify(nextProgress));
       }
-    }
-  };
 
-  const setProblemStatus = (problemId: string, status: ProblemStatus) => {
-    const nextCodingStatus = {
-      ...progress.codingStatus,
-      [problemId]: status
-    };
-    saveProgress({
-      ...progress,
-      codingStatus: nextCodingStatus
+      if (user && db) {
+        try {
+          const docRef = doc(db, 'users', user.uid, 'profile', 'progress');
+          setDoc(docRef, nextProgress, { merge: true }).catch(err => {
+            console.error('Error saving progress to Firestore:', err);
+          });
+        } catch (err) {
+          console.error('Error saving progress to Firestore:', err);
+        }
+      }
+
+      return nextProgress;
     });
   };
 
-  const toggleBookmark = (resourceId: string) => {
-    const exists = progress.bookmarkedResources.includes(resourceId);
-    const nextBookmarks = exists 
-      ? progress.bookmarkedResources.filter(id => id !== resourceId)
-      : [...progress.bookmarkedResources, resourceId];
+  const setProblemStatus = (problemId: string, status: ProblemStatus) => {
+    saveProgress(prev => ({
+      ...prev,
+      codingStatus: {
+        ...prev.codingStatus,
+        [problemId]: status
+      }
+    }));
+  };
 
-    saveProgress({
-      ...progress,
-      bookmarkedResources: nextBookmarks
+  const toggleBookmark = (resourceId: string) => {
+    saveProgress(prev => {
+      const exists = prev.bookmarkedResources.includes(resourceId);
+      const nextBookmarks = exists 
+        ? prev.bookmarkedResources.filter(id => id !== resourceId)
+        : [...prev.bookmarkedResources, resourceId];
+
+      return {
+        ...prev,
+        bookmarkedResources: nextBookmarks
+      };
     });
   };
 
   const toggleDailyTask = (taskId: string) => {
-    const exists = progress.completedTasksToday.includes(taskId);
-    const nextTasks = exists
-      ? progress.completedTasksToday.filter(id => id !== taskId)
-      : [...progress.completedTasksToday, taskId];
+    saveProgress(prev => {
+      const exists = prev.completedTasksToday.includes(taskId);
+      const nextTasks = exists
+        ? prev.completedTasksToday.filter(id => id !== taskId)
+        : [...prev.completedTasksToday, taskId];
 
-    saveProgress({
-      ...progress,
-      completedTasksToday: nextTasks
+      return {
+        ...prev,
+        completedTasksToday: nextTasks
+      };
     });
   };
 
   const toggleRoadmapTask = (taskId: string) => {
-    const nextRoadmapTasks = {
-      ...progress.roadmapTasks,
-      [taskId]: !progress.roadmapTasks[taskId]
-    };
-
-    saveProgress({
-      ...progress,
-      roadmapTasks: nextRoadmapTasks
-    });
+    saveProgress(prev => ({
+      ...prev,
+      roadmapTasks: {
+        ...prev.roadmapTasks,
+        [taskId]: !prev.roadmapTasks[taskId]
+      }
+    }));
   };
 
   const setActiveTrack = (trackId: string) => {
-    saveProgress({
-      ...progress,
+    saveProgress(prev => ({
+      ...prev,
       activeTrack: trackId
-    });
+    }));
   };
 
   const setTargetInterviewDate = (date: string) => {
-    saveProgress({
-      ...progress,
+    saveProgress(prev => ({
+      ...prev,
       targetInterviewDate: date
+    }));
+  };
+
+  const saveCustomPlan = (plan: CustomPlanData, activeTrackId?: string) => {
+    saveProgress(prev => ({
+      ...prev,
+      customPlan: plan,
+      ...(activeTrackId ? { activeTrack: activeTrackId } : {})
+    }));
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('ib_user_custom_plan', JSON.stringify(plan));
+      } catch (e) {
+        console.error('Error saving custom plan to localStorage:', e);
+      }
+    }
+  };
+
+  const togglePlanMilestone = (milestoneId: string) => {
+    saveProgress(prev => {
+      if (!prev.customPlan) return prev;
+      const nextMilestones = prev.customPlan.milestones.map(m => {
+        if (m.id === milestoneId) {
+          return { ...m, completed: !m.completed };
+        }
+        return m;
+      });
+
+      const updatedPlan: CustomPlanData = {
+        ...prev.customPlan,
+        milestones: nextMilestones
+      };
+
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem('ib_user_custom_plan', JSON.stringify(updatedPlan));
+        } catch (e) {
+          console.error('Error saving custom plan to localStorage:', e);
+        }
+      }
+
+      return {
+        ...prev,
+        customPlan: updatedPlan
+      };
     });
+  };
+
+  const resetCustomPlan = () => {
+    saveProgress(prev => ({
+      ...prev,
+      customPlan: undefined
+    }));
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem('ib_user_custom_plan');
+      } catch (e) {
+        console.error('Error clearing custom plan from localStorage:', e);
+      }
+    }
   };
 
   const loginWithGoogle = async () => {
@@ -214,6 +317,7 @@ export function useProgress() {
   return {
     user,
     loading,
+    mounted,
     progress,
     setProblemStatus,
     toggleBookmark,
@@ -221,6 +325,9 @@ export function useProgress() {
     toggleRoadmapTask,
     setActiveTrack,
     setTargetInterviewDate,
+    saveCustomPlan,
+    togglePlanMilestone,
+    resetCustomPlan,
     loginWithGoogle,
     logout
   };

@@ -6,6 +6,8 @@ export interface SyllabusTopic {
   practiceLink?: string;
   deepLink?: string;
   linkLabel?: string;
+  sandboxLink?: string;
+  sandboxLabel?: string;
   tags?: string[];
 }
 
@@ -36,6 +38,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Contiguous memory, cache locality, prefix sums, circular arrays, and two-pointer traversal techniques.',
         deepLink: '/grind75',
         linkLabel: 'Practice in Grind 75',
+        sandboxLink: 'https://visualgo.net/en/array',
+        sandboxLabel: 'VisuAlgo Array Sandbox ⚡',
         tags: ['O(1) Access', 'Prefix Sums', 'Two Pointers']
       },
       {
@@ -44,6 +48,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Immutable vs mutable strings, StringBuilder, ASCII/Unicode char arrays, frequency counts, and anagram verification.',
         deepLink: '/grind75',
         linkLabel: 'Practice Strings',
+        sandboxLink: 'https://regex101.com/',
+        sandboxLabel: 'Regex101 Debugger ⚡',
         tags: ['Frequency Maps', 'Sliding Window', 'Palindromes']
       },
       {
@@ -52,6 +58,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Pointer manipulation, dummy head nodes, fast/slow Floyd cycle detection, in-place reversal, and LRU cache doubly-linked lists.',
         deepLink: '/cheatsheets',
         linkLabel: 'Corner Cases & Invariants',
+        sandboxLink: 'https://pythontutor.com/',
+        sandboxLabel: 'Python Tutor Pointer Visualizer ⚡',
         tags: ['Floyd Cycle', 'Dummy Head', 'In-Place Reversal']
       },
       {
@@ -60,6 +68,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'LIFO structure, parenthesis matching, infix to postfix, expression evaluation, and Next Greater Element using Monotonic Stacks.',
         deepLink: '/grind75',
         linkLabel: 'Practice Stacks',
+        sandboxLink: 'https://visualgo.net/en/stack',
+        sandboxLabel: 'VisuAlgo Stack Sandbox ⚡',
         tags: ['LIFO', 'Monotonic Stack', 'Valid Parentheses']
       },
       {
@@ -68,6 +78,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'FIFO structure, double-ended queues (Deque), BFS level-order queue, and Sliding Window Maximum.',
         deepLink: '/grind75',
         linkLabel: 'Practice Queues',
+        sandboxLink: 'https://visualgo.net/en/queue',
+        sandboxLabel: 'VisuAlgo Queue Sandbox ⚡',
         tags: ['FIFO', 'Deque', 'BFS Queue']
       },
       {
@@ -76,6 +88,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Inorder, Preorder, Postorder, Level-order BFS, tree height, maximum diameter, and Lowest Common Ancestor (LCA).',
         deepLink: '/grind75',
         linkLabel: 'Practice Trees',
+        sandboxLink: 'https://visualgo.net/en/bst',
+        sandboxLabel: 'VisuAlgo Tree Visualizer ⚡',
         tags: ['Traversals', 'LCA', 'Recursion']
       },
       {
@@ -84,6 +98,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'BST invariants (left < root < right), BST validation with min/max bounds, insertion, deletion, and AVL / Red-Black Tree concepts.',
         deepLink: '/cheatsheets',
         linkLabel: 'BST Validation Rules',
+        sandboxLink: 'https://visualgo.net/en/avl',
+        sandboxLabel: 'VisuAlgo AVL Tree Rotations ⚡',
         tags: ['BST Invariants', 'Boundary Validation', 'Inorder Sort']
       },
       {
@@ -92,6 +108,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Min-Heap and Max-Heap, binary heap array representation, heapify in O(N), Top-K Frequent Elements, and K-Way Merge.',
         deepLink: '/grind75',
         linkLabel: 'Practice Heaps',
+        sandboxLink: 'https://visualgo.net/en/heap',
+        sandboxLabel: 'VisuAlgo Binary Heap Sandbox ⚡',
         tags: ['Top-K Elements', 'O(log N)', 'K-Way Merge']
       },
       {
@@ -108,6 +126,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Directed vs Undirected graphs, weighted graphs, cycle detection, topological sorting, and connected components.',
         deepLink: '/grind75',
         linkLabel: 'Practice Graphs',
+        sandboxLink: 'https://visualgo.net/en/graphds',
+        sandboxLabel: 'VisuAlgo Graph Traversal ⚡',
         tags: ['Adjacency List', 'Topological Sort', 'Cycle Detection']
       },
       {
@@ -124,6 +144,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Prefix search, autocomplete dictionary implementation, word break with Trie, and bitwise XOR tries.',
         deepLink: '/coding',
         linkLabel: 'View Trie Matrix',
+        sandboxLink: 'https://visualgo.net/en/trie',
+        sandboxLabel: 'VisuAlgo Trie Sandbox ⚡',
         tags: ['Prefix Search', 'Autocomplete', 'Dictionary']
       },
       {
@@ -132,6 +154,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Disjoint set data structure, path compression, union by rank, and cycle detection in undirected graphs.',
         deepLink: '/coding',
         linkLabel: 'View DSU Practice',
+        sandboxLink: 'https://visualgo.net/en/ufds',
+        sandboxLabel: 'VisuAlgo Union-Find Sandbox ⚡',
         tags: ['Union-Find', 'Path Compression', 'Connected Components']
       }
     ]
@@ -151,6 +175,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Time and space complexity formulas, Big-O, Big-Omega, Big-Theta, and Master Theorem for recursion.',
         deepLink: '/cheatsheets',
         linkLabel: 'View Big-O Cheat Sheet',
+        sandboxLink: '/tools',
+        sandboxLabel: 'Interactive Latency & Complexity Tool ⚡',
         tags: ['Big-O', 'Space Complexity', 'Master Theorem']
       },
       {
@@ -159,6 +185,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Standard Binary Search, search in rotated sorted array, find first and last occurrence, and Binary Search on Answer Space.',
         deepLink: '/grind75',
         linkLabel: 'Practice Binary Search',
+        sandboxLink: 'https://visualgo.net/en/sorting',
+        sandboxLabel: 'VisuAlgo Search & Sort ⚡',
         tags: ['O(log N)', 'Rotated Array', 'Answer Space']
       },
       {
@@ -167,6 +195,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Divide and conquer sorting, stability, in-place vs extra memory, non-comparison sorts (Counting Sort, Radix Sort).',
         deepLink: '/cheatsheets',
         linkLabel: 'Sorting Complexities',
+        sandboxLink: 'https://visualgo.net/en/sorting',
+        sandboxLabel: 'VisuAlgo Animated Sorts ⚡',
         tags: ['MergeSort O(N log N)', 'QuickSort', 'Stability']
       },
       {
@@ -191,6 +221,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Overlapping subproblems, optimal substructure, memoization (top-down), tabulation (bottom-up), Climbing Stairs, Coin Change, and 0/1 Knapsack.',
         deepLink: '/grind75',
         linkLabel: 'Practice DP in Grind 75',
+        sandboxLink: 'https://algorithm-visualizer.org/',
+        sandboxLabel: 'Algorithm Visualizer DP ⚡',
         tags: ['Memoization', 'Tabulation', 'Knapsack']
       },
       {
@@ -199,6 +231,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'State space tree exploration, pruning, Subsets, Permutations, Combination Sum, and N-Queens problem.',
         deepLink: '/grind75',
         linkLabel: 'Practice Backtracking',
+        sandboxLink: 'https://pythontutor.com/',
+        sandboxLabel: 'Python Tutor Call-Stack ⚡',
         tags: ['Recursion Tree', 'Pruning', 'Subsets & Permutations']
       },
       {
@@ -207,6 +241,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Shortest path with Dijkstra, topological sorting with Kahn\'s algorithm, Tarjan\'s strongly connected components, and Kruskal\'s MST.',
         deepLink: '/grind75',
         linkLabel: 'Practice Graph Algos',
+        sandboxLink: 'https://visualgo.net/en/sssp',
+        sandboxLabel: 'VisuAlgo Dijkstra Visualizer ⚡',
         tags: ['Dijkstra', 'Kahn Algorithm', 'Topological Sort']
       }
     ]
@@ -250,6 +286,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Design Parking Lot, Design Snake & Ladder, Design Rate Limiter class structure, and Tic-Tac-Toe.',
         deepLink: '/system-design',
         linkLabel: 'View Machine Coding Framework',
+        sandboxLink: 'https://mermaid.live/',
+        sandboxLabel: 'Mermaid Class Diagrammer ⚡',
         tags: ['Parking Lot', 'LLD', 'Class Diagrams']
       }
     ]
@@ -285,6 +323,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'ACID properties, Database Normalization (1NF to BCNF), B+ Tree Indexing internals, SQL Joins, and Transaction Isolation Levels (Dirty reads, Phantom reads, Repeatable Read).',
         deepLink: '/resources',
         linkLabel: 'View Database & SQL Guides',
+        sandboxLink: 'https://www.drawdb.app/',
+        sandboxLabel: 'drawDB Schema Designer ⚡',
         tags: ['ACID', 'B+ Tree Indexing', 'Normalization', 'Isolation Levels']
       }
     ]
@@ -304,6 +344,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Scope requirements -> Capacity estimation & SLA math -> High-level architecture -> Deep dive into bottlenecks & failure modes.',
         deepLink: '/system-design',
         linkLabel: 'View 4-Step HLD Blueprint',
+        sandboxLink: '/tools',
+        sandboxLabel: 'Capacity Estimator & Latency Tool ⚡',
         tags: ['4-Step Framework', 'Capacity Sizing', '45-Min Allocation']
       },
       {
@@ -320,6 +362,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'End-to-end case studies covering Base62 vs KGS, Fan-out on write vs read, Bloom filters, and URL Frontier queues.',
         deepLink: '/system-design',
         linkLabel: 'Explore Case Studies',
+        sandboxLink: 'https://excalidraw.com/',
+        sandboxLabel: 'Excalidraw Whiteboard ⚡',
         tags: ['TinyURL', 'Twitter Timeline', 'Web Crawler']
       },
       {
@@ -363,6 +407,8 @@ export const COMPREHENSIVE_SYLLABUS: SyllabusStage[] = [
         description: 'Git flow, trunk-based development, resolving merge conflicts, git rebase vs merge, and semantic versioning.',
         deepLink: '/cheatsheets',
         linkLabel: 'View Developer Cheat Sheets',
+        sandboxLink: 'https://learngitbranching.js.org/',
+        sandboxLabel: 'Learn Git Branching Sandbox ⚡',
         tags: ['Git Rebase', 'Trunk-Based', 'Semantic Versioning']
       },
       {

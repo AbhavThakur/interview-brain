@@ -6,6 +6,7 @@ import { CAREER_TRACKS, LEVELING_MATRIX, RoadmapTask } from '@/lib/roadmapData';
 import { COMPREHENSIVE_SYLLABUS, SyllabusStage, SyllabusTopic } from '@/lib/comprehensiveSyllabusData';
 import { useProgress } from '@/lib/useProgress';
 import AuthModal from '@/components/AuthModal';
+import ActivePlanWidget from '@/components/ActivePlanWidget';
 
 export default function RoadmapClient() {
   const { progress, toggleRoadmapTask, setActiveTrack, user } = useProgress();
@@ -149,6 +150,9 @@ export default function RoadmapClient() {
           </div>
         </div>
       )}
+
+      {/* Active Personalized Study Plan & Next Action */}
+      <ActivePlanWidget />
 
       {/* Main View Mode Selector */}
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
@@ -524,15 +528,29 @@ export default function RoadmapClient() {
                             </div>
                           </div>
 
-                          {topic.deepLink && (
-                            <div className="flex items-center justify-end pt-2 border-t border-white/5">
-                              <Link
-                                href={topic.deepLink}
-                                className="text-[11px] font-semibold text-primary hover:underline flex items-center gap-1"
-                              >
-                                <span>{topic.linkLabel || 'Practice in Interview Brain'}</span>
-                                <span>&rarr;</span>
-                              </Link>
+                          {(topic.deepLink || topic.sandboxLink) && (
+                            <div className="flex items-center justify-between pt-2 border-t border-white/5 flex-wrap gap-2">
+                              {topic.sandboxLink ? (
+                                <a
+                                  href={topic.sandboxLink}
+                                  target={topic.sandboxLink.startsWith('http') ? '_blank' : undefined}
+                                  rel={topic.sandboxLink.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                  className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/20 transition-all flex items-center gap-1"
+                                >
+                                  <span>{topic.sandboxLabel || 'In-Browser Sandbox ⚡'}</span>
+                                  {topic.sandboxLink.startsWith('http') && <span>↗</span>}
+                                </a>
+                              ) : <div></div>}
+
+                              {topic.deepLink && (
+                                <Link
+                                  href={topic.deepLink}
+                                  className="text-[11px] font-semibold text-primary hover:underline flex items-center gap-1 ml-auto"
+                                >
+                                  <span>{topic.linkLabel || 'Practice in Interview Brain'}</span>
+                                  <span>&rarr;</span>
+                                </Link>
+                              )}
                             </div>
                           )}
                         </div>

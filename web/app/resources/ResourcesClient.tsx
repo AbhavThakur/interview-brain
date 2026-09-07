@@ -6,6 +6,8 @@ import { useProgress } from '@/lib/useProgress';
 
 const categoryLabels: Record<string, string> = {
   all: 'All Categories',
+  'zero-signup-tools': '⚡ Zero-Signup Dev Tools',
+  'interactive-learning': '🎓 Interactive CS & Simulators',
   'ai-ml': '🤖 AI & LLM Engineering',
   backend: '⚙️ Backend & Distributed',
   frontend: '⚛️ Frontend & Web',
@@ -17,6 +19,81 @@ const categoryLabels: Record<string, string> = {
   behavioral: '⭐ Behavioral & Careers'
 };
 
+const INSTANT_SANDBOXES = [
+  {
+    name: 'drawDB',
+    badge: 'SQL & Schema',
+    emoji: '🗄️',
+    desc: 'Free in-browser ERD diagrammer & SQL DDL generator',
+    url: 'https://www.drawdb.app/',
+    gradient: 'from-blue-500/20 to-cyan-500/20',
+    border: 'border-cyan-500/30'
+  },
+  {
+    name: 'Algorithm Visualizer',
+    badge: 'Code Execution',
+    emoji: '⚡',
+    desc: 'Watch real algorithms step through pointers & trees',
+    url: 'https://algorithm-visualizer.org/',
+    gradient: 'from-amber-500/20 to-orange-500/20',
+    border: 'border-amber-500/30'
+  },
+  {
+    name: 'VisuAlgo',
+    badge: 'Trees & Graphs',
+    emoji: '🌳',
+    desc: 'Animated BST, AVL, Segment Tree & Graph Max-Flow',
+    url: 'https://visualgo.net/',
+    gradient: 'from-emerald-500/20 to-teal-500/20',
+    border: 'border-emerald-500/30'
+  },
+  {
+    name: 'Python Tutor',
+    badge: 'Call Stack & Memory',
+    emoji: '🧠',
+    desc: 'Step-by-step memory pointer & stack frame visualizer',
+    url: 'https://pythontutor.com/',
+    gradient: 'from-indigo-500/20 to-purple-500/20',
+    border: 'border-indigo-500/30'
+  },
+  {
+    name: 'Excalidraw',
+    badge: 'Whiteboard',
+    emoji: '🎨',
+    desc: 'FAANG-standard hand-drawn system design canvas',
+    url: 'https://excalidraw.com/',
+    gradient: 'from-pink-500/20 to-rose-500/20',
+    border: 'border-pink-500/30'
+  },
+  {
+    name: 'Mermaid Live',
+    badge: 'Markdown Diagrams',
+    emoji: '📐',
+    desc: 'Generate sequence & architecture diagrams from text',
+    url: 'https://mermaid.live/',
+    gradient: 'from-purple-500/20 to-blue-500/20',
+    border: 'border-purple-500/30'
+  },
+  {
+    name: 'Regex101',
+    badge: 'Regex Debugger',
+    emoji: '🔍',
+    desc: 'Real-time regular expression tester with syntax breakdown',
+    url: 'https://regex101.com/',
+    gradient: 'from-red-500/20 to-orange-500/20',
+    border: 'border-red-500/30'
+  },
+  {
+    name: 'IT-Tools',
+    badge: 'Dev Swiss Knife',
+    emoji: '🛠️',
+    desc: 'JWT inspector, UUID, SQL formatter, text diffs in-browser',
+    url: 'https://it-tools.tech/',
+    gradient: 'from-sky-500/20 to-indigo-500/20',
+    border: 'border-sky-500/30'
+  }
+];
+
 export default function ResourcesClient({ initialResources }: { initialResources: ResourceItem[] }) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -26,7 +103,20 @@ export default function ResourcesClient({ initialResources }: { initialResources
   const { progress, toggleBookmark } = useProgress();
 
   const categories = useMemo(() => {
-    return ['all', 'ai-ml', 'backend', 'frontend', 'company-guides', 'system-design', 'dsa', 'blogs', 'mobile', 'behavioral'];
+    return [
+      'all',
+      'zero-signup-tools',
+      'interactive-learning',
+      'ai-ml',
+      'backend',
+      'frontend',
+      'company-guides',
+      'system-design',
+      'dsa',
+      'blogs',
+      'mobile',
+      'behavioral'
+    ];
   }, []);
 
   const filteredResources = useMemo(() => {
@@ -106,6 +196,46 @@ export default function ResourcesClient({ initialResources }: { initialResources
         </div>
       </div>
 
+      {/* Instant Zero-Signup Sandboxes & Visualizers Shelf */}
+      <div className="flex flex-col gap-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-bold text-foreground">⚡ Instant In-Browser Sandboxes & Visualizers</span>
+            <span className="text-[10px] font-semibold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30">
+              100% Free · No Sign Up Required
+            </span>
+          </div>
+          <span className="text-xs text-foreground/40 hidden sm:inline-block">Click to launch in-browser sandbox</span>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+          {INSTANT_SANDBOXES.map((box) => (
+            <a
+              key={box.name}
+              href={box.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`p-3 rounded-2xl bg-gradient-to-b ${box.gradient} border ${box.border} hover:scale-105 transition-all duration-200 flex flex-col justify-between group shadow-sm hover:shadow-lg`}
+              title={box.desc}
+            >
+              <div>
+                <div className="text-2xl mb-1 group-hover:scale-110 transition-transform">{box.emoji}</div>
+                <div className="text-xs font-bold text-foreground group-hover:text-primary transition-colors truncate">
+                  {box.name}
+                </div>
+                <div className="text-[10px] text-foreground/50 truncate mt-0.5">
+                  {box.badge}
+                </div>
+              </div>
+              <div className="text-[10px] text-primary/80 font-semibold mt-2 flex items-center gap-0.5">
+                <span>Launch</span>
+                <span>↗</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
       {/* Random Blog Highlight Banner */}
       {randomBlog && (
         <div className="glass-card p-6 border-purple-500/30 bg-purple-500/5 animate-in zoom-in-95 duration-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
@@ -135,29 +265,6 @@ export default function ResourcesClient({ initialResources }: { initialResources
             >
               ✕
             </button>
-          </div>
-        </div>
-      )}
-
-      {/* Weekly Blog Study Framework Callout */}
-      {selectedCategory === 'blogs' && (
-        <div className="bg-white/[0.02] border border-white/10 p-5 rounded-2xl flex flex-col gap-3">
-          <h3 className="text-xs font-bold text-primary uppercase tracking-wider">
-            💡 How Senior Engineers Read Architecture Blogs
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-foreground/75">
-            <div className="p-3 bg-white/5 rounded-xl border border-white/5">
-              <strong className="text-foreground block mb-1">1. Identify the Core Bottleneck</strong>
-              <p>What problem was this company facing? (e.g. Scaling Kafka to 10M msg/s, p99 latency spikes, split-brain in DB).</p>
-            </div>
-            <div className="p-3 bg-white/5 rounded-xl border border-white/5">
-              <strong className="text-foreground block mb-1">2. Note the Architecture Choice</strong>
-              <p>Why did they choose this pattern over alternatives? (e.g. ScyllaDB vs Cassandra, JSI vs Bridge, Redis Lua scripts).</p>
-            </div>
-            <div className="p-3 bg-white/5 rounded-xl border border-white/5">
-              <strong className="text-foreground block mb-1">3. Study Tradeoffs & Failures</strong>
-              <p>What were the failure modes? How did they maintain backward compatibility and zero-downtime migrations?</p>
-            </div>
           </div>
         </div>
       )}
@@ -194,6 +301,7 @@ export default function ResourcesClient({ initialResources }: { initialResources
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {filteredResources.map((res) => {
             const isBookmarked = progress.bookmarkedResources.includes(res.id);
+            const isZeroSignup = res.category === 'zero-signup-tools' || res.tags.includes('zero-signup');
             return (
               <div 
                 key={res.id} 
@@ -204,6 +312,11 @@ export default function ResourcesClient({ initialResources }: { initialResources
                   {/* Top Badges */}
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2 flex-wrap">
+                      {isZeroSignup && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+                          <span>⚡</span> ZERO SIGNUP
+                        </span>
+                      )}
                       <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-primary/20 text-primary border border-primary/20">
                         {res.platform}
                       </span>
@@ -262,7 +375,7 @@ export default function ResourcesClient({ initialResources }: { initialResources
                 {/* Direct Action Link */}
                 <div className="border-t border-white/5 pt-4 flex items-center justify-between">
                   <span className="text-[11px] text-foreground/40">
-                    {res.category === 'blogs' ? 'Tech Blog' : 'External Guide'}
+                    {res.category === 'blogs' ? 'Tech Blog' : isZeroSignup ? '⚡ In-Browser Sandbox' : 'External Guide'}
                   </span>
                   <a
                     href={res.url}
@@ -270,7 +383,7 @@ export default function ResourcesClient({ initialResources }: { initialResources
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 bg-primary/15 hover:bg-primary text-primary hover:text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all group-hover:scale-105"
                   >
-                    <span>{res.category === 'blogs' ? 'Visit Blog' : 'Launch Resource'}</span>
+                    <span>{res.category === 'blogs' ? 'Visit Blog' : isZeroSignup ? 'Open Sandbox ⚡' : 'Launch Resource'}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                       <polyline points="15 3 21 3 21 9"></polyline>

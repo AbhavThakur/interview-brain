@@ -7,7 +7,13 @@
     "url": "https://neetcode.io/practice",
     "difficulty": "All Levels",
     "estimatedTime": "15-30m per problem",
-    "tags": ["dsa", "leetcode", "blind75", "algorithms", "patterns"],
+    "tags": [
+      "dsa",
+      "leetcode",
+      "blind75",
+      "algorithms",
+      "patterns"
+    ],
     "description": "The gold-standard curated roadmap of 150 LeetCode problems grouped logically by algorithmic patterns (Arrays, Two Pointers, Sliding Window, Trees, DP, Graphs) with video explanations in Python, JS, C++, and Java.",
     "whyItMatters": "The fastest way to master algorithmic pattern recognition without grinding 1000+ random LeetCode questions."
   },
@@ -19,7 +25,14 @@
     "url": "https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2",
     "difficulty": "Beginner to Advanced",
     "estimatedTime": "1-2h per topic",
-    "tags": ["dsa", "striver", "arrays", "trees", "graphs", "dp"],
+    "tags": [
+      "dsa",
+      "striver",
+      "arrays",
+      "trees",
+      "graphs",
+      "dp"
+    ],
     "description": "Exhaustive step-by-step DSA guide from foundational math and recursion to complex graph algorithms and DP with written intuition and multi-language code snippets.",
     "whyItMatters": "Provides deep conceptual intuition and multiple solution approaches (brute-force -> better -> optimal)."
   },
@@ -31,7 +44,14 @@
     "url": "https://www.geeksforgeeks.org/explore?page=1&category=Must-Do-Coding-Questions",
     "difficulty": "Beginner to Senior",
     "estimatedTime": "20-40m per question",
-    "tags": ["gfg", "dsa", "company-archives", "amazon", "microsoft", "flipkart"],
+    "tags": [
+      "gfg",
+      "dsa",
+      "company-archives",
+      "amazon",
+      "microsoft",
+      "flipkart"
+    ],
     "description": "The quintessential collection of interview questions asked at top product companies (Amazon, Microsoft, Google, Adobe, Flipkart) categorized by data structure with detailed editorials.",
     "whyItMatters": "Helps you prepare company-specific problem variations and practice core coding patterns under real interview constraints."
   },
@@ -43,7 +63,13 @@
     "url": "https://www.freecodecamp.org/learn/coding-interview-prep/",
     "difficulty": "Beginner to Intermediate",
     "estimatedTime": "15-30m per problem",
-    "tags": ["freecodecamp", "dsa", "algorithms", "data-structures", "beginner"],
+    "tags": [
+      "freecodecamp",
+      "dsa",
+      "algorithms",
+      "data-structures",
+      "beginner"
+    ],
     "description": "Hundreds of interactive algorithm challenges, Rosetta Code implementations, Euler Project math problems, and data structure implementations directly inside your browser.",
     "whyItMatters": "Ideal for beginners starting from scratch to get hands-on muscle memory without any environment setup."
   },
@@ -55,7 +81,11 @@
     "url": "https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions",
     "difficulty": "Medium to Hard",
     "estimatedTime": "20m per problem",
-    "tags": ["blind75", "top-interview", "dsa"],
+    "tags": [
+      "blind75",
+      "top-interview",
+      "dsa"
+    ],
     "description": "The classic 75 questions compiled by Yangshun Tay (ex-Meta) that cover 90% of technical interview coding patterns across FAANG and top product companies.",
     "whyItMatters": "Essential high-yield revision list when you have less than 4 weeks to prepare."
   },
@@ -67,7 +97,12 @@
     "url": "https://www.hackerrank.com/domains/algorithms",
     "difficulty": "Beginner",
     "estimatedTime": "15m per challenge",
-    "tags": ["hackerrank", "beginner", "problem-solving", "practice"],
+    "tags": [
+      "hackerrank",
+      "beginner",
+      "problem-solving",
+      "practice"
+    ],
     "description": "Structured algorithmic tracks for warming up on arrays, strings, warmup problems, and earning language skill badges (JavaScript, Python, C++, Java).",
     "whyItMatters": "Great for early-stage beginners to build confidence and prepare for automated Online Assessments (OAs)."
   },
@@ -79,7 +114,12 @@
     "url": "https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/",
     "difficulty": "All Levels",
     "estimatedTime": "10m read",
-    "tags": ["cheatsheet", "algorithms", "big-o", "dsa"],
+    "tags": [
+      "cheatsheet",
+      "algorithms",
+      "big-o",
+      "dsa"
+    ],
     "description": "Concise cheatsheets for algorithmic time & space complexities, corner case checklists, and pattern identification strategies.",
     "whyItMatters": "Perfect 5-minute pre-coding round refresher to avoid common edge-case blunders (empty arrays, integer overflow, cycle detection)."
   },
@@ -91,7 +131,13 @@
     "url": "https://www.greatfrontend.com/",
     "difficulty": "Mid to Staff",
     "estimatedTime": "20-45m per challenge",
-    "tags": ["frontend", "javascript", "react", "ui-components", "system-design"],
+    "tags": [
+      "frontend",
+      "javascript",
+      "react",
+      "ui-components",
+      "system-design"
+    ],
     "description": "Specialized frontend interview preparation platform created by ex-FAANG engineers covering JavaScript utilities, React components, DOM manipulation, and Frontend System Design.",
     "whyItMatters": "Fills the gap that LeetCode ignores: practical frontend coding, debounce/throttle polyfills, virtualized lists, and custom hooks."
   },
@@ -103,7 +149,13 @@
     "url": "https://bigfrontend.dev/",
     "difficulty": "Mid to Senior",
     "estimatedTime": "15-30m per problem",
-    "tags": ["javascript", "polyfills", "dom", "typescript", "bfe"],
+    "tags": [
+      "javascript",
+      "polyfills",
+      "dom",
+      "typescript",
+      "bfe"
+    ],
     "description": "Hands-on coding challenges for JS polyfills (Promise.all, Promise.race, curry, flatten, deepClone, EventEmitter), DOM manipulation, and React questions.",
     "whyItMatters": "Over 80% of senior frontend machine coding rounds ask variations directly from BFE.dev."
   },
@@ -115,7 +167,13 @@
     "url": "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/",
     "difficulty": "Beginner to Intermediate",
     "estimatedTime": "30m per module",
-    "tags": ["javascript", "freecodecamp", "beginner", "es6", "dom"],
+    "tags": [
+      "javascript",
+      "freecodecamp",
+      "beginner",
+      "es6",
+      "dom"
+    ],
     "description": "Hands-on, zero-friction JavaScript curriculum teaching ES6+, Functional Programming, OOP, Regular Expressions, and Basic Algorithms in an interactive web editor.",
     "whyItMatters": "The highest-rated free interactive starting point for engineers transitioning to JavaScript & Web."
   },
@@ -127,7 +185,13 @@
     "url": "https://www.patterns.dev/",
     "difficulty": "Senior / Architect",
     "estimatedTime": "15m read",
-    "tags": ["react", "architecture", "design-patterns", "performance", "rendering"],
+    "tags": [
+      "react",
+      "architecture",
+      "design-patterns",
+      "performance",
+      "rendering"
+    ],
     "description": "Free book and guide on modern React design patterns, performance optimizations, rendering strategies (SSR, SSG, ISR, Streaming, Islands), and module architectures by Addy Osmani and Lydia Hallie.",
     "whyItMatters": "Gives you the exact terminology and trade-off mental models needed for Frontend Architecture and LLD rounds."
   },
@@ -139,7 +203,13 @@
     "url": "https://javascript.info/",
     "difficulty": "Foundational to Advanced",
     "estimatedTime": "10-20m per chapter",
-    "tags": ["javascript", "event-loop", "prototypes", "async", "v8"],
+    "tags": [
+      "javascript",
+      "event-loop",
+      "prototypes",
+      "async",
+      "v8"
+    ],
     "description": "Comprehensive, deep-dive reference on JavaScript engine mechanics: event loop micro/macrotasks, prototype inheritance, closures, garbage collection, and Web APIs.",
     "whyItMatters": "The definitive source of truth when an interviewer asks how V8 executes async code under the hood."
   },
@@ -151,7 +221,13 @@
     "url": "https://developer.mozilla.org/",
     "difficulty": "All Levels",
     "estimatedTime": "5-10m reference",
-    "tags": ["mdn", "html", "css", "javascript", "web-apis"],
+    "tags": [
+      "mdn",
+      "html",
+      "css",
+      "javascript",
+      "web-apis"
+    ],
     "description": "The official encyclopedia for web developers: JavaScript API specs, DOM manipulation methods, CSS flexbox/grid layout properties, and browser security models.",
     "whyItMatters": "The industry-standard reference for checking standard library behaviors and browser support."
   },
@@ -163,7 +239,14 @@
     "url": "https://web.dev/explore/fast",
     "difficulty": "Mid to Staff",
     "estimatedTime": "15m read",
-    "tags": ["performance", "cwv", "lcp", "inp", "cls", "optimization"],
+    "tags": [
+      "performance",
+      "cwv",
+      "lcp",
+      "inp",
+      "cls",
+      "optimization"
+    ],
     "description": "Official Google guide to Core Web Vitals (Largest Contentful Paint, Interaction to Next Paint, Cumulative Layout Shift), critical rendering path, and asset optimization.",
     "whyItMatters": "Performance optimization rounds at top tech companies evaluate how you diagnose and fix CWV bottlenecks."
   },
@@ -175,7 +258,13 @@
     "url": "https://reactnative.dev/docs/the-new-architecture/landing-page",
     "difficulty": "Senior / Staff",
     "estimatedTime": "20m read",
-    "tags": ["react-native", "fabric", "turbomodules", "jsi", "hermes"],
+    "tags": [
+      "react-native",
+      "fabric",
+      "turbomodules",
+      "jsi",
+      "hermes"
+    ],
     "description": "Official documentation explaining the architectural evolution from the asynchronous JSON Bridge to synchronous C++ JSI bindings, Fabric UI renderer, and TurboModules.",
     "whyItMatters": "Mandatory knowledge for React Native senior roles: explains how JS communicates directly with Native C++ without bridge serialization."
   },
@@ -187,7 +276,13 @@
     "url": "https://www.callstack.com/the-ultimate-guide-to-react-native-optimization",
     "difficulty": "Senior / Staff",
     "estimatedTime": "30m read",
-    "tags": ["react-native", "performance", "profiling", "memory", "callstack"],
+    "tags": [
+      "react-native",
+      "performance",
+      "profiling",
+      "memory",
+      "callstack"
+    ],
     "description": "Comprehensive guide from Callstack engineers detailing Hermes bytecode tuning, UI thread frame rate debugging, native profiling (Systrace/Instruments), memory leak prevention, and bundle optimization.",
     "whyItMatters": "Real-world production battle stories that make your interview answers sound deeply experienced."
   },
@@ -199,7 +294,13 @@
     "url": "https://docs.swmansion.com/react-native-reanimated/",
     "difficulty": "Mid to Senior",
     "estimatedTime": "15m read",
-    "tags": ["react-native", "animations", "worklets", "reanimated", "ui-thread"],
+    "tags": [
+      "react-native",
+      "animations",
+      "worklets",
+      "reanimated",
+      "ui-thread"
+    ],
     "description": "Documentation and deep dives into JS worklets running synchronous gesture and animation physics on the UI thread at a locked 60/120 FPS.",
     "whyItMatters": "Explains how to build smooth gestures without crossing the asynchronous React Native bridge."
   },
@@ -211,7 +312,13 @@
     "url": "https://github.com/donnemartin/system-design-primer",
     "difficulty": "Mid to Staff",
     "estimatedTime": "30m per chapter",
-    "tags": ["system-design", "hld", "distributed-systems", "scaling", "architecture"],
+    "tags": [
+      "system-design",
+      "hld",
+      "distributed-systems",
+      "scaling",
+      "architecture"
+    ],
     "description": "The most comprehensive open-source collection for learning large-scale distributed system design: load balancers, caching, DB sharding, CAP theorem, asynchronous message queues, and end-to-end case studies.",
     "whyItMatters": "The standard foundation every software engineer must master for High-Level Design (HLD) rounds."
   },
@@ -223,7 +330,13 @@
     "url": "https://bytebytego.com/",
     "difficulty": "All Levels",
     "estimatedTime": "10-15m read",
-    "tags": ["system-design", "visuals", "architecture", "microservices", "alex-xu"],
+    "tags": [
+      "system-design",
+      "visuals",
+      "architecture",
+      "microservices",
+      "alex-xu"
+    ],
     "description": "Visual diagrams and concise summaries explaining complex architectures: Rate Limiters, Payment Gateways, URL Shorteners, Chat Systems, S3-like Object Stores, and YouTube Video Transcoding.",
     "whyItMatters": "High-retention visual diagrams that help you structure your whiteboard diagrams during interviews."
   },
@@ -235,7 +348,14 @@
     "url": "https://roadmap.sh/",
     "difficulty": "Beginner to Senior",
     "estimatedTime": "Interactive",
-    "tags": ["roadmaps", "frontend", "backend", "system-design", "react", "devops"],
+    "tags": [
+      "roadmaps",
+      "frontend",
+      "backend",
+      "system-design",
+      "react",
+      "devops"
+    ],
     "description": "Interactive visual roadmaps covering all developer career paths (Frontend, Backend, React, Node.js, System Design, Software Architect, DevOps) with recommended learning order.",
     "whyItMatters": "Gives you a bird's-eye view of everything required for a given engineering role so you never miss a blind spot."
   },
@@ -247,7 +367,13 @@
     "url": "https://www.frontendinterviewhandbook.com/front-end-system-design",
     "difficulty": "Senior / Staff",
     "estimatedTime": "20m read",
-    "tags": ["frontend", "system-design", "architecture", "caching", "state-management"],
+    "tags": [
+      "frontend",
+      "system-design",
+      "architecture",
+      "caching",
+      "state-management"
+    ],
     "description": "Dedicated framework for tackling Frontend and Mobile system design questions: Component Architecture, Data Flow, Network & Caching, Performance & Optimization, and Accessibility.",
     "whyItMatters": "Gives a structured 4-step framework (RADIO: Requirements, Architecture, Data Model, Interface, Optimizations) to lead frontend design discussions."
   },
@@ -259,7 +385,14 @@
     "url": "https://www.geeksforgeeks.org/last-minute-notes-core-computer-science-subjects-for-interview/",
     "difficulty": "All Levels",
     "estimatedTime": "15m read",
-    "tags": ["core-cs", "os", "dbms", "networks", "oops", "gfg"],
+    "tags": [
+      "core-cs",
+      "os",
+      "dbms",
+      "networks",
+      "oops",
+      "gfg"
+    ],
     "description": "Last-minute revision notes for core engineering subjects: Process vs Thread, Deadlocks, SQL ACID vs BASE, Indexing, TCP 3-way Handshake, HTTP/2 vs HTTP/3, and OOP Principles.",
     "whyItMatters": "High-yield refresher for technical screening rounds at Amazon, Microsoft, and banking/finance firms."
   },
@@ -271,7 +404,13 @@
     "url": "https://sqlbolt.com/",
     "difficulty": "Beginner to Intermediate",
     "estimatedTime": "10m per lesson",
-    "tags": ["sql", "database", "joins", "aggregations", "beginner"],
+    "tags": [
+      "sql",
+      "database",
+      "joins",
+      "aggregations",
+      "beginner"
+    ],
     "description": "Interactive in-browser SQL tutorial covering SELECT queries, multi-table JOINs, GROUP BY aggregations, schema design, and table modifications with instant query execution.",
     "whyItMatters": "The fastest way to brush up on SQL interview queries without spinning up a local database."
   },
@@ -283,7 +422,12 @@
     "url": "https://www.pramp.com/",
     "difficulty": "All Levels",
     "estimatedTime": "1 hour session",
-    "tags": ["mock-interviews", "peer-practice", "live-coding", "behavioral"],
+    "tags": [
+      "mock-interviews",
+      "peer-practice",
+      "live-coding",
+      "behavioral"
+    ],
     "description": "Free platform that pairs you with other practicing software engineers for bi-directional live coding, data structures, system design, and behavioral mock interviews with detailed feedback rubrics.",
     "whyItMatters": "Practicing thinking out loud with a real person cures interview anxiety 10x faster than solo prep."
   },
@@ -295,7 +439,13 @@
     "url": "https://www.amazon.jobs/content/en/our-workplace/leadership-principles",
     "difficulty": "All Levels",
     "estimatedTime": "15m read",
-    "tags": ["behavioral", "leadership", "star", "amazon", "culture"],
+    "tags": [
+      "behavioral",
+      "leadership",
+      "star",
+      "amazon",
+      "culture"
+    ],
     "description": "The 16 core principles (Customer Obsession, Ownership, Bias for Action, Deliver Results, Dive Deep, Have Backbone) that form the basis for behavioral rounds at Amazon, Meta, Google, and top tech companies.",
     "whyItMatters": "Mapping your STAR stories directly to these principles ensures you check all grading criteria in behavioral rounds."
   },
@@ -307,7 +457,12 @@
     "url": "https://www.levels.fyi/blog/salary-negotiation-guide.html",
     "difficulty": "All Levels",
     "estimatedTime": "15m read",
-    "tags": ["compensation", "negotiation", "offers", "levels"],
+    "tags": [
+      "compensation",
+      "negotiation",
+      "offers",
+      "levels"
+    ],
     "description": "Step-by-step tactical playbook on handling recruiter salary expectations, leveraging competing offers, negotiating sign-on bonuses, and maximizing equity grants.",
     "whyItMatters": "Translates your technical interview preparation directly into the highest possible compensation."
   },
@@ -319,7 +474,12 @@
     "url": "https://www.overleaf.com/latex/templates/jakes-resume/syzsqbzwjvdq",
     "difficulty": "All Levels",
     "estimatedTime": "1-2 hours",
-    "tags": ["resume", "latex", "ats-friendly", "overleaf"],
+    "tags": [
+      "resume",
+      "latex",
+      "ats-friendly",
+      "overleaf"
+    ],
     "description": "The single most popular, clean single-page LaTeX resume template designed specifically for software engineers to pass ATS screening and recruiter 6-second scans.",
     "whyItMatters": "Ensures your resume is cleanly parsed by applicant tracking systems and formatted cleanly."
   },
@@ -331,7 +491,12 @@
     "url": "https://www.techinterviewhandbook.org/software-engineering-interview-guide/",
     "difficulty": "All Levels",
     "estimatedTime": "20m read",
-    "tags": ["interview-guide", "faang", "preparation-plan", "playbook"],
+    "tags": [
+      "interview-guide",
+      "faang",
+      "preparation-plan",
+      "playbook"
+    ],
     "description": "End-to-end master playbook detailing how to prepare for coding, system design, behavioral, offer negotiation, and mock interviews at top tech companies.",
     "whyItMatters": "Clear timeline roadmap that prevents common interview prep mistakes."
   },
@@ -343,7 +508,14 @@
     "url": "https://www.uber.com/blog/engineering/",
     "difficulty": "Mid to Staff",
     "estimatedTime": "15-20m per post",
-    "tags": ["blogs", "uber", "geospatial", "distributed-systems", "hld", "microservices"],
+    "tags": [
+      "blogs",
+      "uber",
+      "geospatial",
+      "distributed-systems",
+      "hld",
+      "microservices"
+    ],
     "description": "Pioneering real-world architecture case studies on H3 geospatial indexing, high-scale trip dispatch systems, Schemaless sharding, and microservices resilience.",
     "whyItMatters": "Essential reading for understanding real-time geospatial matching and distributed transactions at massive global scale."
   },
@@ -355,7 +527,15 @@
     "url": "https://engineering.fb.com/",
     "difficulty": "Senior / Staff",
     "estimatedTime": "15-25m per post",
-    "tags": ["blogs", "meta", "react", "graphql", "memcached", "infrastructure", "ai"],
+    "tags": [
+      "blogs",
+      "meta",
+      "react",
+      "graphql",
+      "memcached",
+      "infrastructure",
+      "ai"
+    ],
     "description": "Deep architectural papers on React Server Components, GraphQL federation, TAO social graph datastore, Memcached scaling, and global network backbone.",
     "whyItMatters": "Definitive source for how the largest social infrastructure in the world manages cache consistency and high-throughput feeds."
   },
@@ -367,7 +547,14 @@
     "url": "https://netflixtechblog.com/",
     "difficulty": "Senior / Staff",
     "estimatedTime": "15-20m per post",
-    "tags": ["blogs", "netflix", "chaos-engineering", "microservices", "streaming", "caching"],
+    "tags": [
+      "blogs",
+      "netflix",
+      "chaos-engineering",
+      "microservices",
+      "streaming",
+      "caching"
+    ],
     "description": "Industry gold standard for Chaos Engineering (Simian Army), microservices orchestration (Conductor), distributed caching with EVCache, and adaptive video streaming.",
     "whyItMatters": "Teaches you high-availability patterns, graceful degradation, and resilient distributed systems."
   },
@@ -379,7 +566,14 @@
     "url": "https://stripe.com/blog/engineering",
     "difficulty": "Senior / Staff",
     "estimatedTime": "15-20m per post",
-    "tags": ["blogs", "stripe", "payments", "idempotency", "api-design", "reliability"],
+    "tags": [
+      "blogs",
+      "stripe",
+      "payments",
+      "idempotency",
+      "api-design",
+      "reliability"
+    ],
     "description": "Masterclass in API design, financial ledger idempotency, rate limiting, zero-downtime database migrations, and 99.999% availability architectures.",
     "whyItMatters": "The best reference for designing robust, idempotent payment APIs and mission-critical distributed databases."
   },
@@ -391,7 +585,14 @@
     "url": "https://discord.com/blog/category/engineering",
     "difficulty": "Mid to Staff",
     "estimatedTime": "10-15m per post",
-    "tags": ["blogs", "discord", "rust", "elixir", "scylladb", "real-time"],
+    "tags": [
+      "blogs",
+      "discord",
+      "rust",
+      "elixir",
+      "scylladb",
+      "real-time"
+    ],
     "description": "Famous case studies on migrating billions of messages from Cassandra to ScyllaDB, managing millions of concurrent voice/chat WebSocket connections, and Rust performance tuning.",
     "whyItMatters": "Explains real-world tradeoffs in real-time low-latency systems and database migration strategies."
   },
@@ -403,7 +604,13 @@
     "url": "https://www.allthingsdistributed.com/",
     "difficulty": "Senior / Staff",
     "estimatedTime": "15m read",
-    "tags": ["blogs", "aws", "werner-vogels", "cloud", "distributed-systems"],
+    "tags": [
+      "blogs",
+      "aws",
+      "werner-vogels",
+      "cloud",
+      "distributed-systems"
+    ],
     "description": "Foundational architectural wisdom, 21st-century software architecture principles, asynchronous messaging, and scalable cloud systems design.",
     "whyItMatters": "Direct insights from the architect behind Amazon Web Services on building resilient distributed systems."
   },
@@ -415,7 +622,13 @@
     "url": "https://aws.amazon.com/blogs/architecture/",
     "difficulty": "Mid to Senior",
     "estimatedTime": "15m read",
-    "tags": ["blogs", "aws", "cloud", "architecture", "well-architected"],
+    "tags": [
+      "blogs",
+      "aws",
+      "cloud",
+      "architecture",
+      "well-architected"
+    ],
     "description": "Reference architectures, AWS Well-Architected Framework pillars (Security, Reliability, Performance, Cost), serverless patterns, and multi-region failover.",
     "whyItMatters": "Helps you structure enterprise cloud architecture diagrams with accurate AWS components (ALB, SQS, DynamoDB, Lambda)."
   },
@@ -427,7 +640,13 @@
     "url": "https://bytes.swiggy.com/",
     "difficulty": "Mid to Senior",
     "estimatedTime": "10-15m read",
-    "tags": ["blogs", "swiggy", "hyperlocal", "real-time", "food-tech"],
+    "tags": [
+      "blogs",
+      "swiggy",
+      "hyperlocal",
+      "real-time",
+      "food-tech"
+    ],
     "description": "Deep dives into hyperlocal delivery routing, surge pricing algorithms, real-time tracking at IPL scale, and high-throughput order fulfillment engines.",
     "whyItMatters": "Ideal for studying hyperlocal logistics, real-time geospatial tracking, and peak load scaling in Indian tech."
   },
@@ -439,7 +658,13 @@
     "url": "https://blog.zomato.com/",
     "difficulty": "Mid to Senior",
     "estimatedTime": "10-15m read",
-    "tags": ["blogs", "zomato", "hyperlocal", "mobile", "architecture"],
+    "tags": [
+      "blogs",
+      "zomato",
+      "hyperlocal",
+      "mobile",
+      "architecture"
+    ],
     "description": "Case studies on app performance optimization, microservices migration, live tracking architectures, and high-concurrency order placement systems.",
     "whyItMatters": "Great examples of consumer-facing mobile and backend scale in high-volume e-commerce."
   },
@@ -451,7 +676,14 @@
     "url": "https://blog.hotstar.com/",
     "difficulty": "Senior / Staff",
     "estimatedTime": "15-20m per post",
-    "tags": ["blogs", "hotstar", "concurrency", "cricket", "streaming", "scaling"],
+    "tags": [
+      "blogs",
+      "hotstar",
+      "concurrency",
+      "cricket",
+      "streaming",
+      "scaling"
+    ],
     "description": "How Hotstar scales to 50+ Million concurrent live video streaming viewers during World Cup cricket matches without system crashes.",
     "whyItMatters": "The ultimate benchmark for extreme concurrency, distributed caching, and burst traffic handling."
   },
@@ -463,7 +695,13 @@
     "url": "https://dropbox.tech/",
     "difficulty": "Senior / Staff",
     "estimatedTime": "15-20m per post",
-    "tags": ["blogs", "dropbox", "file-sync", "storage", "databases"],
+    "tags": [
+      "blogs",
+      "dropbox",
+      "file-sync",
+      "storage",
+      "databases"
+    ],
     "description": "Detailed engineering behind block-level file chunking, delta syncing, custom high-performance storage engines (Magic Pocket), and database partitioning.",
     "whyItMatters": "The standard case study for designing Google Drive or Dropbox in System Design interviews."
   },
@@ -475,7 +713,13 @@
     "url": "https://canvatechblog.com/",
     "difficulty": "Mid to Senior",
     "estimatedTime": "15m read",
-    "tags": ["blogs", "canva", "canvas", "rendering", "frontend-architecture"],
+    "tags": [
+      "blogs",
+      "canva",
+      "canvas",
+      "rendering",
+      "frontend-architecture"
+    ],
     "description": "WebAssembly performance, deep canvas rendering pipelines, collaborative real-time graphic editing, and microfrontend architectures.",
     "whyItMatters": "Superb insights into high-performance web graphics, DOM virtual rendering, and client-side memory optimizations."
   },
@@ -487,7 +731,14 @@
     "url": "https://engineering.linkedin.com/blog",
     "difficulty": "Senior / Staff",
     "estimatedTime": "15-20m per post",
-    "tags": ["blogs", "linkedin", "kafka", "pinot", "big-data", "graphs"],
+    "tags": [
+      "blogs",
+      "linkedin",
+      "kafka",
+      "pinot",
+      "big-data",
+      "graphs"
+    ],
     "description": "The birthplace of Apache Kafka and Apache Pinot: distributed stream processing, economic graph analysis, feed generation, and high-scale RPC frameworks.",
     "whyItMatters": "Critical for understanding event-driven architectures, pub/sub log streams, and OLAP real-time analytics."
   },
@@ -499,7 +750,14 @@
     "url": "https://engineering.atspotify.com/",
     "difficulty": "Mid to Senior",
     "estimatedTime": "15m read",
-    "tags": ["blogs", "spotify", "recommendations", "microservices", "p2p", "audio"],
+    "tags": [
+      "blogs",
+      "spotify",
+      "recommendations",
+      "microservices",
+      "p2p",
+      "audio"
+    ],
     "description": "Microservices fleet governance (Backstage), music recommendation pipelines, event-driven audio streaming, and squad engineering culture.",
     "whyItMatters": "Great for learning recommendation system design, audio CDN distribution, and developer platform tooling."
   },
@@ -511,7 +769,15 @@
     "url": "https://github.blog/category/engineering/",
     "difficulty": "Mid to Senior",
     "estimatedTime": "15m read",
-    "tags": ["blogs", "github", "git", "mysql", "ruby", "ci-cd", "scaling"],
+    "tags": [
+      "blogs",
+      "github",
+      "git",
+      "mysql",
+      "ruby",
+      "ci-cd",
+      "scaling"
+    ],
     "description": "Real-world zero-downtime MySQL sharding (Vitess), resilient Git virtual file systems, GitHub Actions infrastructure, and code search at scale.",
     "whyItMatters": "Practical insights into maintaining monoliths at massive scale and high-frequency code repository operations."
   },
@@ -523,7 +789,13 @@
     "url": "https://medium.com/airbnb-engineering",
     "difficulty": "Senior / Staff",
     "estimatedTime": "15-20m per post",
-    "tags": ["blogs", "airbnb", "server-driven-ui", "search", "kubernetes"],
+    "tags": [
+      "blogs",
+      "airbnb",
+      "server-driven-ui",
+      "search",
+      "kubernetes"
+    ],
     "description": "Pioneers of Server-Driven UI (Lona/Ghost), listing search ranking algorithms, data pipeline scheduling (Airflow), and unified pricing architectures.",
     "whyItMatters": "The definitive resource for Server-Driven UI (SDUI) and large-scale search ranking systems."
   },
@@ -535,7 +807,13 @@
     "url": "https://medium.com/pinterest-engineering",
     "difficulty": "Senior / Staff",
     "estimatedTime": "15m read",
-    "tags": ["blogs", "pinterest", "graph-databases", "image-serving", "pinboard"],
+    "tags": [
+      "blogs",
+      "pinterest",
+      "graph-databases",
+      "image-serving",
+      "pinboard"
+    ],
     "description": "Graph storage architectures, real-time image search & visual embeddings, asynchronous task worker queues (PinLater), and automated sharding.",
     "whyItMatters": "Excellent for studying graph database modeling and image-heavy feed architectures."
   },
@@ -547,7 +825,14 @@
     "url": "https://shopify.engineering/",
     "difficulty": "Senior / Staff",
     "estimatedTime": "15-20m per post",
-    "tags": ["blogs", "shopify", "e-commerce", "flash-sales", "ruby", "mysql"],
+    "tags": [
+      "blogs",
+      "shopify",
+      "e-commerce",
+      "flash-sales",
+      "ruby",
+      "mysql"
+    ],
     "description": "Handling Black Friday / Cyber Monday flash sales traffic, modular monolith design, high-volume checkout pipelines, and global edge computing.",
     "whyItMatters": "The best case study for flash sale concurrency, distributed locks, and e-commerce inventory management."
   },
@@ -559,7 +844,14 @@
     "url": "https://eng.lyft.com/",
     "difficulty": "Senior / Staff",
     "estimatedTime": "15m read",
-    "tags": ["blogs", "lyft", "envoy", "service-mesh", "dispatch", "pricing"],
+    "tags": [
+      "blogs",
+      "lyft",
+      "envoy",
+      "service-mesh",
+      "dispatch",
+      "pricing"
+    ],
     "description": "Birthplace of Envoy Proxy: service mesh architecture, dynamic ride-pricing models, map routing engines, and microservices observability.",
     "whyItMatters": "Crucial for answering questions about service meshes, API gateway routing, and sidecar proxies."
   },
@@ -571,7 +863,13 @@
     "url": "https://www.databricks.com/blog/category/engineering",
     "difficulty": "Staff / Principal",
     "estimatedTime": "20m read",
-    "tags": ["blogs", "databricks", "spark", "delta-lake", "query-engine"],
+    "tags": [
+      "blogs",
+      "databricks",
+      "spark",
+      "delta-lake",
+      "query-engine"
+    ],
     "description": "Apache Spark engine optimizations, Delta Lake transactional storage, vectorized query engines (Photon), and distributed ML pipelines.",
     "whyItMatters": "Advanced insights into query optimization, columnar storage, and distributed data processing."
   },
@@ -583,7 +881,13 @@
     "url": "https://www.etsy.com/codeascraft",
     "difficulty": "Mid to Senior",
     "estimatedTime": "15m read",
-    "tags": ["blogs", "etsy", "devops", "continuous-deployment", "monitoring"],
+    "tags": [
+      "blogs",
+      "etsy",
+      "devops",
+      "continuous-deployment",
+      "monitoring"
+    ],
     "description": "Pioneering continuous deployment, experiment-driven development, search ranking, and observability culture.",
     "whyItMatters": "Great for learning deployment pipelines, canary releases, and metric-driven architecture."
   },
@@ -595,7 +899,13 @@
     "url": "https://seanprashad.com/leetcode-patterns/",
     "difficulty": "All Levels",
     "estimatedTime": "20m per problem",
-    "tags": ["leetcode", "patterns", "dsa", "blind75", "companies"],
+    "tags": [
+      "leetcode",
+      "patterns",
+      "dsa",
+      "blind75",
+      "companies"
+    ],
     "description": "Interactive question matrix categorized by difficulty and algorithmic pattern with company frequency filters (Google, Amazon, Meta, Microsoft, Apple).",
     "whyItMatters": "Great companion to NeetCode and Grind 75 for filtering patterns by specific target companies."
   },
@@ -607,7 +917,14 @@
     "url": "https://github.com/ept/ddia-references",
     "difficulty": "Senior / Staff",
     "estimatedTime": "30m read",
-    "tags": ["ddia", "distributed-systems", "replication", "partitioning", "transactions", "consensus"],
+    "tags": [
+      "ddia",
+      "distributed-systems",
+      "replication",
+      "partitioning",
+      "transactions",
+      "consensus"
+    ],
     "description": "The definitive book on modern data systems by Martin Kleppmann: Single-leader vs Multi-leader replication, Log-Structured Merge-Trees (LSM) vs B-Trees, 2PC, Raft consensus, and event-driven architectures.",
     "whyItMatters": "The ultimate theoretical and practical foundation for Staff-level distributed systems design rounds."
   },
@@ -619,7 +936,13 @@
     "url": "https://microservices.io/patterns/index.html",
     "difficulty": "Senior / Staff",
     "estimatedTime": "20m read",
-    "tags": ["microservices", "saga-pattern", "cqrs", "event-sourcing", "api-gateway"],
+    "tags": [
+      "microservices",
+      "saga-pattern",
+      "cqrs",
+      "event-sourcing",
+      "api-gateway"
+    ],
     "description": "Comprehensive pattern catalog covering distributed transaction management (Saga Pattern), CQRS, Event Sourcing, API Gateway aggregation, and Circuit Breakers.",
     "whyItMatters": "Provides standard, proven architectural solutions when interviewers ask how to handle distributed transactions across microservices."
   },
@@ -631,7 +954,14 @@
     "url": "https://javascript30.com/",
     "difficulty": "Beginner to Intermediate",
     "estimatedTime": "30m per project",
-    "tags": ["javascript", "vanilla-js", "dom", "html5", "audio", "canvas"],
+    "tags": [
+      "javascript",
+      "vanilla-js",
+      "dom",
+      "html5",
+      "audio",
+      "canvas"
+    ],
     "description": "Build 30 mini web projects in 30 days with pure Vanilla JavaScript without frameworks, compilers, or boilerplate libraries.",
     "whyItMatters": "Builds unmatched muscle memory for DOM manipulation, native event listeners, CSS variables, and HTML5 Canvas."
   },
@@ -643,7 +973,13 @@
     "url": "https://www.frontendmentor.io/",
     "difficulty": "All Levels",
     "estimatedTime": "1-2h per project",
-    "tags": ["frontend", "ui-design", "responsive", "css-grid", "flexbox"],
+    "tags": [
+      "frontend",
+      "ui-design",
+      "responsive",
+      "css-grid",
+      "flexbox"
+    ],
     "description": "Professional Figma design mockups and specifications to practice building pixel-perfect, accessible, responsive websites and components.",
     "whyItMatters": "Perfect for machine coding and portfolio take-home projects."
   },
@@ -655,7 +991,14 @@
     "url": "https://karpathy.ai/zero-to-hero.html",
     "difficulty": "All Levels",
     "estimatedTime": "1-2h per lecture",
-    "tags": ["ai-ml", "neural-networks", "backprop", "gpt", "transformers", "karpathy"],
+    "tags": [
+      "ai-ml",
+      "neural-networks",
+      "backprop",
+      "gpt",
+      "transformers",
+      "karpathy"
+    ],
     "description": "The highest-rated step-by-step masterclass by Andrej Karpathy (ex-Tesla AI Director, OpenAI co-founder) coding micrograd, neural net backprop, Tokenizers, and GPT from scratch in pure Python.",
     "whyItMatters": "Builds fundamental intuition on how Large Language Models and Deep Learning architectures operate under the hood."
   },
@@ -667,7 +1010,14 @@
     "url": "https://www.deeplearning.ai/",
     "difficulty": "Beginner to Senior",
     "estimatedTime": "Self-paced",
-    "tags": ["ai-ml", "andrew-ng", "genai", "prompt-engineering", "rag", "langchain"],
+    "tags": [
+      "ai-ml",
+      "andrew-ng",
+      "genai",
+      "prompt-engineering",
+      "rag",
+      "langchain"
+    ],
     "description": "Andrew Ng's world-famous courses covering Supervised Learning, Deep Neural Networks, Vector Databases, RAG (Retrieval-Augmented Generation), and Agentic Workflows.",
     "whyItMatters": "The standard foundational curriculum for AI engineers, data scientists, and ML software engineers."
   },
@@ -679,7 +1029,14 @@
     "url": "https://huggingface.co/learn/nlp-course",
     "difficulty": "Intermediate to Staff",
     "estimatedTime": "30m per chapter",
-    "tags": ["ai-ml", "transformers", "bert", "gpt", "fine-tuning", "huggingface"],
+    "tags": [
+      "ai-ml",
+      "transformers",
+      "bert",
+      "gpt",
+      "fine-tuning",
+      "huggingface"
+    ],
     "description": "Hands-on guide to using PyTorch, Hugging Face Transformers, Tokenizers, Dataset pipelines, fine-tuning LLMs with LoRA/QLoRA, and deploying models to production.",
     "whyItMatters": "Essential for AI application developers building production LLM pipelines."
   },
@@ -691,7 +1048,13 @@
     "url": "https://huyenchip.com/",
     "difficulty": "Senior / Staff",
     "estimatedTime": "20m read",
-    "tags": ["ai-ml", "mlops", "data-pipelines", "feature-stores", "system-design"],
+    "tags": [
+      "ai-ml",
+      "mlops",
+      "data-pipelines",
+      "feature-stores",
+      "system-design"
+    ],
     "description": "The definitive guide on ML system architecture: training vs inference pipelines, feature stores (Feast), data drift, vector search indexing (HNSW), and low-latency model serving.",
     "whyItMatters": "The foundational reference for Machine Learning System Design and AI Architect interview rounds."
   },
@@ -703,7 +1066,13 @@
     "url": "https://developers.google.com/machine-learning/crash-course",
     "difficulty": "Beginner to Intermediate",
     "estimatedTime": "15m per module",
-    "tags": ["ai-ml", "google", "tensorflow", "embeddings", "classification"],
+    "tags": [
+      "ai-ml",
+      "google",
+      "tensorflow",
+      "embeddings",
+      "classification"
+    ],
     "description": "Google's interactive fast-paced machine learning course with real-world case studies, TensorFlow playground exercises, and loss function visualizations.",
     "whyItMatters": "Great for software engineers looking to gain practical ML fundamentals quickly."
   },
@@ -715,7 +1084,15 @@
     "url": "https://roadmap.sh/backend",
     "difficulty": "All Levels",
     "estimatedTime": "Interactive",
-    "tags": ["backend", "databases", "rest", "graphql", "grpc", "caching", "devops"],
+    "tags": [
+      "backend",
+      "databases",
+      "rest",
+      "graphql",
+      "grpc",
+      "caching",
+      "devops"
+    ],
     "description": "Interactive visual learning path for backend engineering: RESTful APIs, gRPC, PostgreSQL/MySQL indexing, Redis caching strategies, RabbitMQ/Kafka queues, and containerization.",
     "whyItMatters": "Gives a structured bird's-eye view of all core backend engineering competencies."
   },
@@ -727,7 +1104,15 @@
     "url": "https://www.postgresqltutorial.com/",
     "difficulty": "Beginner to Senior",
     "estimatedTime": "15m per topic",
-    "tags": ["backend", "sql", "postgresql", "indexing", "acid", "locks", "wal"],
+    "tags": [
+      "backend",
+      "sql",
+      "postgresql",
+      "indexing",
+      "acid",
+      "locks",
+      "wal"
+    ],
     "description": "Comprehensive PostgreSQL reference: B-Tree and GIN indexes, EXPLAIN ANALYZE execution plans, MVCC (Multi-Version Concurrency Control), row locks, and JSONB queries.",
     "whyItMatters": "Postgres is the most asked relational database in modern backend interviews."
   },
@@ -739,7 +1124,14 @@
     "url": "https://university.redis.io/",
     "difficulty": "Mid to Senior",
     "estimatedTime": "30m per course",
-    "tags": ["backend", "redis", "caching", "pubsub", "streams", "data-structures"],
+    "tags": [
+      "backend",
+      "redis",
+      "caching",
+      "pubsub",
+      "streams",
+      "data-structures"
+    ],
     "description": "Deep dive from Redis core engineers into Redis data structures (Hashes, Sorted Sets, HyperLogLog, Bitmaps, Streams), caching strategies (Cache-Aside, Write-Through), and Lua atomic scripts.",
     "whyItMatters": "Redis is used in 90% of High-Level Design rounds (rate limiting, session store, feed ranking, leaderboards)."
   },
@@ -751,7 +1143,14 @@
     "url": "https://developer.confluent.io/",
     "difficulty": "Senior / Staff",
     "estimatedTime": "20m read",
-    "tags": ["backend", "kafka", "event-driven", "pubsub", "partitions", "cdc"],
+    "tags": [
+      "backend",
+      "kafka",
+      "event-driven",
+      "pubsub",
+      "partitions",
+      "cdc"
+    ],
     "description": "The definitive resource on distributed event streaming: Kafka topic partitions, consumer group rebalancing, exactly-once semantics, Kafka Connect, and CDC (Change Data Capture).",
     "whyItMatters": "Mandatory knowledge for Senior backend and distributed systems architecture interviews."
   },
@@ -763,7 +1162,14 @@
     "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
     "difficulty": "All Levels",
     "estimatedTime": "30m per chapter",
-    "tags": ["backend", "os", "threads", "virtual-memory", "concurrency", "deadlocks"],
+    "tags": [
+      "backend",
+      "os",
+      "threads",
+      "virtual-memory",
+      "concurrency",
+      "deadlocks"
+    ],
     "description": "The best free textbook on Operating Systems: Virtualization (CPU scheduling & virtual memory), Concurrency (locks, semaphores, condition variables), and Persistence (file systems & I/O).",
     "whyItMatters": "Answers tricky OS screening questions at Google, Apple, and quantitative finance firms."
   },
@@ -775,7 +1181,13 @@
     "url": "https://www.amazon.jobs/en/landing_pages/in-person-interview",
     "difficulty": "All Levels",
     "estimatedTime": "15m read",
-    "tags": ["amazon", "faang", "leadership-principles", "bar-raiser", "hiring"],
+    "tags": [
+      "amazon",
+      "faang",
+      "leadership-principles",
+      "bar-raiser",
+      "hiring"
+    ],
     "description": "Amazon's official guide to their technical interview loops: Coding, System Design / OOD, and the Bar Raiser round evaluated against the 16 Leadership Principles.",
     "whyItMatters": "Direct official tips from Amazon recruiting on how candidates are graded."
   },
@@ -787,7 +1199,13 @@
     "url": "https://www.google.com/about/careers/applications/interviewing/",
     "difficulty": "All Levels",
     "estimatedTime": "15m read",
-    "tags": ["google", "faang", "googleyness", "algorithms", "system-design"],
+    "tags": [
+      "google",
+      "faang",
+      "googleyness",
+      "algorithms",
+      "system-design"
+    ],
     "description": "Official Google guide to coding interviews, system design scalability assessments, and Googleyness & Leadership evaluation criteria.",
     "whyItMatters": "Official advice on how to communicate thought process out loud during Google interviews."
   },
@@ -799,7 +1217,13 @@
     "url": "https://www.metacareers.com/swe-prep",
     "difficulty": "All Levels",
     "estimatedTime": "20m read",
-    "tags": ["meta", "facebook", "faang", "coding-loop", "system-design"],
+    "tags": [
+      "meta",
+      "facebook",
+      "faang",
+      "coding-loop",
+      "system-design"
+    ],
     "description": "Meta's official candidate preparation hub covering 45-minute live coding expectations, Product Architecture / System Design rubrics, and behavioral behavioral stories.",
     "whyItMatters": "Explains Meta's fast-paced interview expectations (solving 2 coding problems in 45 minutes)."
   },
@@ -811,7 +1235,13 @@
     "url": "https://careers.microsoft.com/v2/global/en/hiringprocess",
     "difficulty": "All Levels",
     "estimatedTime": "15m read",
-    "tags": ["microsoft", "faang", "core-cs", "algorithms", "azure"],
+    "tags": [
+      "microsoft",
+      "faang",
+      "core-cs",
+      "algorithms",
+      "azure"
+    ],
     "description": "Microsoft's official guide to their As-Appropriate (AA) interview loop, Core CS questioning, and cloud architecture discussions.",
     "whyItMatters": "Prepares you for the specific structure of Microsoft engineering loops."
   },
@@ -823,67 +1253,105 @@
     "url": "https://jobs.netflix.com/culture",
     "difficulty": "Senior / Staff",
     "estimatedTime": "20m read",
-    "tags": ["netflix", "freedom-and-responsibility", "high-performance", "culture"],
+    "tags": [
+      "netflix",
+      "freedom-and-responsibility",
+      "high-performance",
+      "culture"
+    ],
     "description": "The world-famous Netflix culture memo detailing 'Freedom & Responsibility', 'Highly Aligned, Loosely Coupled', and Senior-only engineering talent density.",
     "whyItMatters": "Mandatory reading before any Netflix interview to understand their unique culture rubric."
   },
   {
     "id": "coding-interview-university-jwasham",
-    "title": "Coding Interview University by John Washam (358k+ ★)",
+    "title": "Coding Interview University by John Washam (358k+ \u2605)",
     "category": "dsa",
     "platform": "GitHub (358k+ Stars)",
     "url": "https://github.com/jwasham/coding-interview-university",
     "difficulty": "All Levels",
     "estimatedTime": "Comprehensive Multi-Month",
-    "tags": ["github-top", "cs-degree", "algorithms", "data-structures", "bitwise", "os"],
+    "tags": [
+      "github-top",
+      "cs-degree",
+      "algorithms",
+      "data-structures",
+      "bitwise",
+      "os"
+    ],
     "description": "The #1 most-starred computer science and interview study roadmap on GitHub: from Big-O time complexity and binary heaps to bitwise operations, graph traversals, and dynamic programming.",
     "whyItMatters": "The ultimate self-study curriculum for non-CS majors and engineers refreshing computer science fundamentals."
   },
   {
     "id": "javascript-algorithms-trekhleb",
-    "title": "JavaScript Algorithms & Data Structures (204k+ ★)",
+    "title": "JavaScript Algorithms & Data Structures (204k+ \u2605)",
     "category": "frontend",
     "platform": "GitHub (204k+ Stars)",
     "url": "https://github.com/trekhleb/javascript-algorithms",
     "difficulty": "All Levels",
     "estimatedTime": "15m per algorithm",
-    "tags": ["github-top", "javascript", "algorithms", "data-structures", "visuals"],
+    "tags": [
+      "github-top",
+      "javascript",
+      "algorithms",
+      "data-structures",
+      "visuals"
+    ],
     "description": "Algorithms and data structures implemented in pure modern JavaScript with animated visual diagrams, complexity breakdowns, and test suites.",
     "whyItMatters": "The standard JavaScript implementation reference for web and frontend interview preparation."
   },
   {
     "id": "javascript-questions-lydia",
-    "title": "JavaScript Questions Master Collection by Lydia Hallie (71k+ ★)",
+    "title": "JavaScript Questions Master Collection by Lydia Hallie (71k+ \u2605)",
     "category": "frontend",
     "platform": "GitHub (71k+ Stars)",
     "url": "https://github.com/lydiahallie/javascript-questions",
     "difficulty": "Mid to Senior",
     "estimatedTime": "5m per quiz",
-    "tags": ["github-top", "javascript", "quiz", "event-loop", "closures", "hoisting"],
+    "tags": [
+      "github-top",
+      "javascript",
+      "quiz",
+      "event-loop",
+      "closures",
+      "hoisting"
+    ],
     "description": "Comprehensive list of advanced JavaScript trivia and execution quirks: scoping, closures, hoisting, type coercion, `this` binding, promises, and the event loop with detailed line-by-line explanations.",
     "whyItMatters": "The single best quiz compilation for clearing live JavaScript technical screening rounds."
   },
   {
     "id": "reverse-interview-viraptor",
-    "title": "Reverse Interview: Questions to Ask the Company (35k+ ★)",
+    "title": "Reverse Interview: Questions to Ask the Company (35k+ \u2605)",
     "category": "behavioral",
     "platform": "GitHub (35k+ Stars)",
     "url": "https://github.com/viraptor/reverse-interview",
     "difficulty": "All Levels",
     "estimatedTime": "10m read",
-    "tags": ["github-top", "reverse-interview", "culture", "on-call", "tech-debt"],
+    "tags": [
+      "github-top",
+      "reverse-interview",
+      "culture",
+      "on-call",
+      "tech-debt"
+    ],
     "description": "Curated list of questions to ask interviewers about engineering culture, tech debt management, on-call schedules, CI/CD deployment pipelines, and promotion transparency.",
     "whyItMatters": "Turns the final 10 minutes of the interview into a high-signal conversation where you interview the employer."
   },
   {
     "id": "reactjs-interview-questions-sudheer",
-    "title": "500+ ReactJS Interview Questions & Answers (45k+ ★)",
+    "title": "500+ ReactJS Interview Questions & Answers (45k+ \u2605)",
     "category": "frontend",
     "platform": "GitHub (45k+ Stars)",
     "url": "https://github.com/sudheerj/reactjs-interview-questions",
     "difficulty": "All Levels",
     "estimatedTime": "15m per chapter",
-    "tags": ["github-top", "react", "hooks", "fiber", "reconciliation", "ssr"],
+    "tags": [
+      "github-top",
+      "react",
+      "hooks",
+      "fiber",
+      "reconciliation",
+      "ssr"
+    ],
     "description": "Exhaustive question bank covering React 19, Virtual DOM, React Fiber architecture, custom hooks, Server Components, Context API, and state management.",
     "whyItMatters": "The most widely referenced Q&A bank for React and frontend engineering loops."
   },
@@ -891,11 +1359,18 @@
     "id": "algorithm-visualizer",
     "title": "Algorithm Visualizer (Interactive Code-to-Animation Platform)",
     "category": "zero-signup-tools",
-    "platform": "Open Source (48k+ ★)",
+    "platform": "Open Source (48k+ \u2605)",
     "url": "https://algorithm-visualizer.org/",
     "difficulty": "All Levels",
     "estimatedTime": "10-20m per algorithm",
-    "tags": ["zero-signup", "visualizer", "algorithms", "dsa", "in-browser", "interactive"],
+    "tags": [
+      "zero-signup",
+      "visualizer",
+      "algorithms",
+      "dsa",
+      "in-browser",
+      "interactive"
+    ],
     "description": "Interactive online platform that visualizes algorithms from actual code execution (DP, Dijkstra, BFS/DFS, sorting, backtracking). You can tweak the input code and watch the step-by-step visual transformations.",
     "whyItMatters": "Helps you develop spatial intuition for pointers, recursion trees, and dynamic programming tables."
   },
@@ -907,7 +1382,15 @@
     "url": "https://visualgo.net/",
     "difficulty": "Beginner to Advanced",
     "estimatedTime": "15m per structure",
-    "tags": ["zero-signup", "visualizer", "trees", "graphs", "avl", "segment-tree", "dsa"],
+    "tags": [
+      "zero-signup",
+      "visualizer",
+      "trees",
+      "graphs",
+      "avl",
+      "segment-tree",
+      "dsa"
+    ],
     "description": "Comprehensive animated visualizations for complex data structures including AVL trees, B-Trees, Segment Trees, Union-Find Disjoint Sets, Graph Max Flow, and Shortest Paths.",
     "whyItMatters": "The premier academic tool for visualizing tree rotations, balancing algorithms, and graph relaxations."
   },
@@ -915,11 +1398,18 @@
     "id": "drawdb-app",
     "title": "drawDB: Free In-Browser Database Diagram Editor & SQL Generator",
     "category": "zero-signup-tools",
-    "platform": "Open Source (38k+ ★)",
+    "platform": "Open Source (38k+ \u2605)",
     "url": "https://www.drawdb.app/",
     "difficulty": "All Levels",
     "estimatedTime": "10-30m per schema",
-    "tags": ["zero-signup", "system-design", "database", "erd", "sql", "lld"],
+    "tags": [
+      "zero-signup",
+      "system-design",
+      "database",
+      "erd",
+      "sql",
+      "lld"
+    ],
     "description": "Intuitive, zero-signup database schema designer. Build table relationships (1:1, 1:N, M:N), define primary/foreign keys, indexes, and export production-ready SQL DDL (PostgreSQL, MySQL, SQLite).",
     "whyItMatters": "Invaluable for Low-Level Design (LLD) and System Design interview rounds when architecting relational data models."
   },
@@ -931,7 +1421,17 @@
     "url": "https://pythontutor.com/",
     "difficulty": "All Levels",
     "estimatedTime": "5-15m per snippet",
-    "tags": ["zero-signup", "memory", "recursion", "call-stack", "pointers", "python", "javascript", "java", "cpp"],
+    "tags": [
+      "zero-signup",
+      "memory",
+      "recursion",
+      "call-stack",
+      "pointers",
+      "python",
+      "javascript",
+      "java",
+      "cpp"
+    ],
     "description": "Visualizes program state line-by-line across Python, Java, C, C++, and JavaScript. Shows stack frames, pointer references, heap objects, and variable mutation in real-time.",
     "whyItMatters": "The best tool for debugging complex recursive call stacks and linked list pointer modifications without an IDE."
   },
@@ -943,7 +1443,14 @@
     "url": "https://mermaid.live/",
     "difficulty": "All Levels",
     "estimatedTime": "5-15m",
-    "tags": ["zero-signup", "system-design", "diagrams", "markdown", "sequence-diagram", "flowchart"],
+    "tags": [
+      "zero-signup",
+      "system-design",
+      "diagrams",
+      "markdown",
+      "sequence-diagram",
+      "flowchart"
+    ],
     "description": "In-browser live editor that renders architecture flowcharts, sequence diagrams, state diagrams, and entity relationships from readable markdown text.",
     "whyItMatters": "Allows you to quickly create clean, professional system architecture flows and sequence diagrams using text."
   },
@@ -951,11 +1458,18 @@
     "id": "excalidraw-whiteboard",
     "title": "Excalidraw: Virtual Hand-Drawn Whiteboard for System Design",
     "category": "zero-signup-tools",
-    "platform": "Open Source (127k+ ★)",
+    "platform": "Open Source (127k+ \u2605)",
     "url": "https://excalidraw.com/",
     "difficulty": "All Levels",
     "estimatedTime": "Instant",
-    "tags": ["zero-signup", "system-design", "whiteboard", "sketch", "collaboration", "hld"],
+    "tags": [
+      "zero-signup",
+      "system-design",
+      "whiteboard",
+      "sketch",
+      "collaboration",
+      "hld"
+    ],
     "description": "Minimalist, zero-signup virtual whiteboard with hand-drawn aesthetic. Used widely across top tech companies for virtual system design rounds.",
     "whyItMatters": "The standard virtual whiteboard tool for live FAANG system design interviews."
   },
@@ -967,7 +1481,13 @@
     "url": "https://regex101.com/",
     "difficulty": "All Levels",
     "estimatedTime": "5m per pattern",
-    "tags": ["zero-signup", "regex", "string-parsing", "debugger", "utilities"],
+    "tags": [
+      "zero-signup",
+      "regex",
+      "string-parsing",
+      "debugger",
+      "utilities"
+    ],
     "description": "Real-time regular expression tester with syntax highlighting, capture group trees, match tables, and detailed natural language explanations of regex engine execution.",
     "whyItMatters": "Crucial for string parsing questions, input sanitization logic, and avoiding catastrophic backtracking."
   },
@@ -979,7 +1499,13 @@
     "url": "https://jsoncrack.com/",
     "difficulty": "All Levels",
     "estimatedTime": "Instant",
-    "tags": ["zero-signup", "json", "data-structures", "graph-visualization", "api"],
+    "tags": [
+      "zero-signup",
+      "json",
+      "data-structures",
+      "graph-visualization",
+      "api"
+    ],
     "description": "Transforms nested JSON objects and schema payloads into interactive visual node graphs in real-time.",
     "whyItMatters": "Simplifies understanding complex API contracts, graph response schemas, and nested tree structures."
   },
@@ -987,11 +1513,18 @@
     "id": "cyberchef-gchq",
     "title": "CyberChef: The Cyber Swiss Army Knife",
     "category": "zero-signup-tools",
-    "platform": "GCHQ / Open Source (35k+ ★)",
+    "platform": "GCHQ / Open Source (35k+ \u2605)",
     "url": "https://gchq.github.io/CyberChef/",
     "difficulty": "All Levels",
     "estimatedTime": "Instant",
-    "tags": ["zero-signup", "hashing", "encoding", "base64", "crypto", "data-transform"],
+    "tags": [
+      "zero-signup",
+      "hashing",
+      "encoding",
+      "base64",
+      "crypto",
+      "data-transform"
+    ],
     "description": "A browser-based workbench for encoding, decoding, encryption, compression, hashing (SHA, MD5, HMAC), parsing, and data manipulation recipes.",
     "whyItMatters": "Instant verification of hashing algorithms, token encodings, and network serialization logic."
   },
@@ -999,11 +1532,19 @@
     "id": "it-tools-tech",
     "title": "IT-Tools: In-Browser Developer Swiss Knife",
     "category": "zero-signup-tools",
-    "platform": "Open Source (25k+ ★)",
+    "platform": "Open Source (25k+ \u2605)",
     "url": "https://it-tools.tech/",
     "difficulty": "All Levels",
     "estimatedTime": "Instant",
-    "tags": ["zero-signup", "jwt", "uuid", "cron", "sql-format", "diff", "utilities"],
+    "tags": [
+      "zero-signup",
+      "jwt",
+      "uuid",
+      "cron",
+      "sql-format",
+      "diff",
+      "utilities"
+    ],
     "description": "Handy collection of developer utilities: JWT parser, UUID generator, SQL formatter, text diff checker, cron parser, and color converter with zero server communication.",
     "whyItMatters": "Client-side private sandbox for testing interview payload data without account walls."
   },
@@ -1011,11 +1552,18 @@
     "id": "hoppscotch-api-tester",
     "title": "Hoppscotch: Open-Source In-Browser API Platform",
     "category": "zero-signup-tools",
-    "platform": "Open Source (65k+ ★)",
+    "platform": "Open Source (65k+ \u2605)",
     "url": "https://hoppscotch.io/",
     "difficulty": "All Levels",
     "estimatedTime": "Instant",
-    "tags": ["zero-signup", "api", "rest", "graphql", "websocket", "testing"],
+    "tags": [
+      "zero-signup",
+      "api",
+      "rest",
+      "graphql",
+      "websocket",
+      "testing"
+    ],
     "description": "Lightweight, ultra-fast in-browser API testing alternative to Postman with REST, GraphQL, WebSocket, and SSE support without registration.",
     "whyItMatters": "Great for testing backend endpoints and mock APIs during full-stack coding rounds."
   },
@@ -1027,7 +1575,14 @@
     "url": "https://lite.datasette.io/",
     "difficulty": "All Levels",
     "estimatedTime": "Instant",
-    "tags": ["zero-signup", "sqlite", "sql", "wasm", "database", "analytics"],
+    "tags": [
+      "zero-signup",
+      "sqlite",
+      "sql",
+      "wasm",
+      "database",
+      "analytics"
+    ],
     "description": "Full serverless SQLite Python analytics application running completely inside your browser via WebAssembly (Pyodide).",
     "whyItMatters": "Allows zero-setup local testing of advanced SQL queries, window functions, and analytics aggregates."
   },
@@ -1039,7 +1594,13 @@
     "url": "https://crontab.guru/",
     "difficulty": "Beginner",
     "estimatedTime": "Instant",
-    "tags": ["zero-signup", "cron", "backend", "devops", "scheduling"],
+    "tags": [
+      "zero-signup",
+      "cron",
+      "backend",
+      "devops",
+      "scheduling"
+    ],
     "description": "Interactive cron expression generator that translates 5-part cron syntax into plain English with real-time next-run schedules.",
     "whyItMatters": "Frequent trivia and design component in backend scheduling and distributed task execution interviews."
   },
@@ -1047,11 +1608,18 @@
     "id": "ossu-computer-science",
     "title": "OSSU: Open Source Society University (Computer Science Curriculum)",
     "category": "interactive-learning",
-    "platform": "GitHub (185k+ ★)",
+    "platform": "GitHub (185k+ \u2605)",
     "url": "https://github.com/ossu/computer-science",
     "difficulty": "Beginner to Advanced",
     "estimatedTime": "Comprehensive Self-Paced",
-    "tags": ["interactive-learning", "cs-degree", "mit", "harvard", "algorithms", "systems"],
+    "tags": [
+      "interactive-learning",
+      "cs-degree",
+      "mit",
+      "harvard",
+      "algorithms",
+      "systems"
+    ],
     "description": "Complete curriculum for a self-taught Computer Science degree using open courses from top institutions (MIT, Harvard, Stanford). Covers Intro CS, Core Theory, Algorithms, OS, Networking, and Distributed Systems.",
     "whyItMatters": "The ultimate benchmark curriculum for non-CS candidates building rigorous computer science foundations."
   },
@@ -1059,11 +1627,19 @@
     "id": "roadmap-sh-interactive",
     "title": "Roadmap.sh: Community Developer Roadmaps & Skill Trees",
     "category": "interactive-learning",
-    "platform": "Roadmap.sh (310k+ ★)",
+    "platform": "Roadmap.sh (310k+ \u2605)",
     "url": "https://roadmap.sh/",
     "difficulty": "All Levels",
     "estimatedTime": "Self-Paced Exploration",
-    "tags": ["interactive-learning", "roadmap", "skill-tree", "system-design", "backend", "frontend", "devops"],
+    "tags": [
+      "interactive-learning",
+      "roadmap",
+      "skill-tree",
+      "system-design",
+      "backend",
+      "frontend",
+      "devops"
+    ],
     "description": "Interactive visual roadmaps, guides, and learning paths for Computer Science, Backend, Frontend, DevOps, System Design, and Software Architecture.",
     "whyItMatters": "Visual skill trees that help you identify technical blind spots before interview loops."
   },
@@ -1075,7 +1651,13 @@
     "url": "https://ciechanow.ski/",
     "difficulty": "Intermediate to Advanced",
     "estimatedTime": "30-45m per article",
-    "tags": ["interactive-learning", "visual-guide", "floating-point", "hardware", "cs-fundamentals"],
+    "tags": [
+      "interactive-learning",
+      "visual-guide",
+      "floating-point",
+      "hardware",
+      "cs-fundamentals"
+    ],
     "description": "Deeply interactive articles with 3D interactable widgets explaining Floating Point numbers, GPS, mechanical systems, sound synthesis, and computing fundamentals.",
     "whyItMatters": "Instills crystal-clear mental models for low-level memory representations and bitwise operations."
   },
@@ -1083,11 +1665,17 @@
     "id": "every-programmer-should-know",
     "title": "Every Programmer Should Know (Latency & Fundamentals Axioms)",
     "category": "interactive-learning",
-    "platform": "GitHub (82k+ ★)",
+    "platform": "GitHub (82k+ \u2605)",
     "url": "https://github.com/mtdvio/every-programmer-should-know",
     "difficulty": "Mid to Senior",
     "estimatedTime": "20m read",
-    "tags": ["interactive-learning", "latency", "system-design", "hardware", "distributed-systems"],
+    "tags": [
+      "interactive-learning",
+      "latency",
+      "system-design",
+      "hardware",
+      "distributed-systems"
+    ],
     "description": "Exhaustive collection of fundamental technical concepts: latency numbers every programmer should know (L1 vs RAM vs SSD vs WAN), memory hierarchies, concurrency axioms, and Unicode gotchas.",
     "whyItMatters": "The gold-standard cheat sheet for System Design back-of-the-envelope capacity planning."
   },
@@ -1099,7 +1687,14 @@
     "url": "https://sqlbolt.com/",
     "difficulty": "Beginner to Intermediate",
     "estimatedTime": "1-2 hours",
-    "tags": ["interactive-learning", "sql", "database", "queries", "joins", "aggregates"],
+    "tags": [
+      "interactive-learning",
+      "sql",
+      "database",
+      "queries",
+      "joins",
+      "aggregates"
+    ],
     "description": "Interactive step-by-step SQL tutorials with in-browser query execution covering SELECT, filtering, JOINs, aggregations, subqueries, and table mutations.",
     "whyItMatters": "Quick hands-on muscle memory refresher for SQL rounds."
   },
@@ -1107,11 +1702,17 @@
     "id": "learn-git-branching",
     "title": "Learn Git Branching: Visual Interactive Git Sandbox",
     "category": "interactive-learning",
-    "platform": "Open Source (31k+ ★)",
+    "platform": "Open Source (31k+ \u2605)",
     "url": "https://learngitbranching.js.org/",
     "difficulty": "Beginner to Advanced",
     "estimatedTime": "30-60m",
-    "tags": ["interactive-learning", "git", "version-control", "visual-sandbox", "branching"],
+    "tags": [
+      "interactive-learning",
+      "git",
+      "version-control",
+      "visual-sandbox",
+      "branching"
+    ],
     "description": "Visual, gamified Git sandbox teaching branches, merges, rebasing, cherry-picking, interactive rebasing, and HEAD pointer movements through animated challenges.",
     "whyItMatters": "Prepares you for practical engineering workflows and version control interview scenarios."
   },
@@ -1123,7 +1724,13 @@
     "url": "https://devdocs.io/",
     "difficulty": "All Levels",
     "estimatedTime": "Instant Lookup",
-    "tags": ["interactive-learning", "documentation", "api", "offline", "fast-lookup"],
+    "tags": [
+      "interactive-learning",
+      "documentation",
+      "api",
+      "offline",
+      "fast-lookup"
+    ],
     "description": "Fast, distraction-free unified documentation browser combining 100+ API docs (MDN, Python, Go, React, PostgreSQL, Docker) in a single searchable UI.",
     "whyItMatters": "Lightning-fast syntax and standard library lookup during live technical coding rounds."
   },
@@ -1135,7 +1742,14 @@
     "url": "https://brainstellar.com/puzzles",
     "difficulty": "Medium to Hard",
     "estimatedTime": "15-30m per puzzle",
-    "tags": ["interactive-learning", "puzzles", "quant", "probability", "logic", "brainteasers"],
+    "tags": [
+      "interactive-learning",
+      "puzzles",
+      "quant",
+      "probability",
+      "logic",
+      "brainteasers"
+    ],
     "description": "Curated collection of probability, discrete math, and algorithmic logic puzzles asked in top tech and quantitative finance interviews.",
     "whyItMatters": "Crucial for clearing puzzle and probability rounds at Google, quantitative trading firms, and hedge funds."
   },
@@ -1147,8 +1761,89 @@
     "url": "https://projecteuler.net/",
     "difficulty": "Advanced",
     "estimatedTime": "30-60m per problem",
-    "tags": ["interactive-learning", "math", "algorithms", "number-theory", "euler"],
+    "tags": [
+      "interactive-learning",
+      "math",
+      "algorithms",
+      "number-theory",
+      "euler"
+    ],
     "description": "Challenging mathematical and computational problems requiring efficient algorithmic insights, dynamic programming, and number theory to solve.",
     "whyItMatters": "Sharpens deep algorithmic problem solving and mathematical modeling under compute constraints."
+  },
+  {
+    "id": "shopify-flashlist-internals",
+    "title": "Shopify FlashList: Mechanics of View Recycling in React Native",
+    "category": "mobile",
+    "platform": "Shopify Engineering",
+    "url": "https://shopify.github.io/flash-list/docs/fundamentals/performant-components",
+    "difficulty": "Senior / SDE-2",
+    "estimatedTime": "30m read",
+    "tags": [
+      "mobile",
+      "react-native",
+      "virtualization",
+      "flashlist",
+      "performance"
+    ],
+    "description": "Comprehensive architectural breakdown of how FlashList recycles native UI components instead of constantly mounting and unmounting them like FlatList, avoiding GC spikes and blank scrolling windows.",
+    "whyItMatters": "Essential talking point when interviewers ask how to achieve 60/120 FPS on massive feeds with 10k+ rows."
+  },
+  {
+    "id": "android-anr-watchdogs-deepdive",
+    "title": "Android Vitals: Root Cause Analysis for ANRs & Choreographer Frame Drops",
+    "category": "mobile",
+    "platform": "Android Developers",
+    "url": "https://developer.android.com/topic/performance/vitals/anr",
+    "difficulty": "Senior / SDE-3",
+    "estimatedTime": "45m read",
+    "tags": [
+      "mobile",
+      "android",
+      "anr",
+      "choreographer",
+      "looper",
+      "observability"
+    ],
+    "description": "In-depth guide on Android Main-thread Looper message dispatch, how the 5-second input dispatch timeout triggers ANRs, and how Choreographer skipped frame callbacks indicate compositor pressure.",
+    "whyItMatters": "Provides the exact native low-level terminology needed when explaining in-app observability SDKs and background thread offloading."
+  },
+  {
+    "id": "apple-instruments-mobile-profiling",
+    "title": "iOS Instruments: Memory Allocations, Leaks & Time Profiler",
+    "category": "mobile",
+    "platform": "Apple Developer Documentation",
+    "url": "https://developer.apple.com/documentation/instruments",
+    "difficulty": "Senior",
+    "estimatedTime": "1h read",
+    "tags": [
+      "mobile",
+      "ios",
+      "instruments",
+      "memory-leaks",
+      "swift",
+      "cadisplaylink"
+    ],
+    "description": "Mastery guide for using Apple Instruments to inspect heap allocations, retain cycles in native Swift/Objective-C closures, and UI thread hitch ratios.",
+    "whyItMatters": "Differentiates senior candidates who can debug native memory bloat from junior developers who only use console.log."
+  },
+  {
+    "id": "offline-first-crdt-sync",
+    "title": "Offline-First Mobile Architecture: SQLite, WatermelonDB & Sync Protocols",
+    "category": "mobile",
+    "platform": "WatermelonDB / Architecture",
+    "url": "https://watermelondb.dev/docs/Architecture",
+    "difficulty": "Advanced",
+    "estimatedTime": "40m read",
+    "tags": [
+      "mobile",
+      "offline-first",
+      "sqlite",
+      "sync",
+      "crdt",
+      "architecture"
+    ],
+    "description": "Architectural blueprint for building apps that work seamlessly without internet connectivity, utilizing SQLite lazy-loading, push/pull delta sync endpoints, and conflict resolution.",
+    "whyItMatters": "Standard system design question for chat (WhatsApp), fintech (PhonePe offline QR), and field apps."
   }
 ]

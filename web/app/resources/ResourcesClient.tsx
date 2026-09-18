@@ -96,6 +96,29 @@ const INSTANT_SANDBOXES = [
 
 export default function ResourcesClient({ initialResources }: { initialResources: ResourceItem[] }) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [isSyncing, setIsSyncing] = useState<boolean>(false);
+  const [syncStatus, setSyncStatus] = useState<string | null>(null);
+
+  const handleSyncResources = async () => {
+    setIsSyncing(true);
+    setSyncStatus('📡 Harvesting latest engineering blogs & syncing content...');
+    try {
+      const res = await fetch('/api/sync', { method: 'POST' });
+      const data = await res.json();
+      if (data.success) {
+        setSyncStatus('✅ Knowledge base successfully synced & up-to-date with latest engineering blogs!');
+        setTimeout(() => setSyncStatus(null), 5000);
+      } else {
+        setSyncStatus(`⚠️ Sync alert: ${data.error || 'Server error'}`);
+        setTimeout(() => setSyncStatus(null), 6000);
+      }
+    } catch (err: any) {
+      setSyncStatus(`❌ Failed to sync: ${err.message}`);
+      setTimeout(() => setSyncStatus(null), 5000);
+    } finally {
+      setIsSyncing(false);
+    }
+  };
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [onlyBookmarked, setOnlyBookmarked] = useState<boolean>(false);
   const [randomBlog, setRandomBlog] = useState<ResourceItem | null>(null);
@@ -167,6 +190,16 @@ export default function ResourcesClient({ initialResources }: { initialResources
         {/* Search, Bookmark toggle & Random Blog Picker */}
         <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
           <button
+            onClick={handleSyncResources}
+            disabled={isSyncing}
+            className="flex items-center gap-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+            title="Harvest latest tech blogs and sync all resources"
+          >
+            <span className={isSyncing ? 'animate-spin' : ''}>⚡</span>
+            <span>{isSyncing ? 'Harvesting...' : 'Sync Resources'}</span>
+          </button>
+
+          <button
             onClick={handlePickRandomBlog}
             className="flex items-center gap-1.5 bg-gradient-to-r from-primary/20 to-purple-500/20 hover:from-primary/30 hover:to-purple-500/30 text-white border border-primary/30 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all hover:scale-105 active:scale-95"
             title="Pick a random engineering blog to read this week"
@@ -195,6 +228,19 @@ export default function ResourcesClient({ initialResources }: { initialResources
           </div>
         </div>
       </div>
+
+      {/* Sync Status Feedback Toast Banner */}
+      {syncStatus && (
+        <div className="p-3.5 rounded-2xl bg-gradient-to-r from-emerald-500/20 via-primary/20 to-transparent border border-emerald-500/30 text-emerald-300 text-xs font-semibold flex items-center justify-between shadow-lg animate-in fade-in duration-200">
+          <div className="flex items-center gap-2.5">
+            <span className="text-base">🚀</span>
+            <span>{syncStatus}</span>
+          </div>
+          <button onClick={() => setSyncStatus(null)} className="text-foreground/50 hover:text-foreground text-xs px-2 py-1 rounded hover:bg-white/5 font-mono">
+            ✕
+          </button>
+        </div>
+      )}
 
       {/* Instant Zero-Signup Sandboxes & Visualizers Shelf */}
       <div className="flex flex-col gap-3">

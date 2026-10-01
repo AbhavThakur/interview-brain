@@ -1,24 +1,32 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { 
-  onAuthStateChanged, 
-  User, 
-  signInWithPopup, 
-  GoogleAuthProvider, 
-  signOut 
-} from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { auth, db } from './firebase';
+import { useState, useEffect } from "react";
+import {
+  onAuthStateChanged,
+  User,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+} from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { auth, db } from "./firebase";
 
-export type ProblemStatus = 'todo' | 'attempted' | 'solved' | 'review';
+export type ProblemStatus = "todo" | "attempted" | "solved" | "review";
 
 export interface PlanMilestone {
   id: string;
   title: string;
   subtitle: string;
   estimatedMinutes: number;
-  category: 'lld' | 'hld' | 'coding' | 'system-design' | 'cheatsheet' | 'behavioral' | 'tools' | 'notebooklm';
+  category:
+    | "lld"
+    | "hld"
+    | "coding"
+    | "system-design"
+    | "cheatsheet"
+    | "behavioral"
+    | "tools"
+    | "notebooklm";
   deepLink: string;
   linkLabel: string;
   completed: boolean;
@@ -34,8 +42,8 @@ export interface CustomPlanData {
   createdAt: string;
   primaryFocus: string;
   focusTitle: string;
-  experienceLevel: 'beginner' | 'intermediate' | 'senior';
-  dailyTime: '15m' | '60m' | '120m';
+  experienceLevel: "beginner" | "intermediate" | "senior";
+  dailyTime: "15m" | "60m" | "120m";
   primaryWeakness: string;
   title: string;
   summary: string;
@@ -60,14 +68,14 @@ const DEFAULT_PROGRESS: UserProgressData = {
   codingStatus: {},
   bookmarkedResources: [],
   streakCount: 1,
-  lastActiveDate: new Date().toISOString().split('T')[0],
+  lastActiveDate: new Date().toISOString().split("T")[0],
   completedTasksToday: [],
   roadmapTasks: {},
-  activeTrack: 'sde2-fullstack',
-  targetInterviewDate: '',
-  customName: '',
-  targetCompany: 'Amazon',
-  customPlan: undefined
+  activeTrack: "sde2-fullstack",
+  targetInterviewDate: "",
+  customName: "",
+  targetCompany: "Amazon",
+  customPlan: undefined,
 };
 
 export function useProgress() {
@@ -78,16 +86,17 @@ export function useProgress() {
 
   // Hydrate local progress and calculate streak on client mount
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Marks client hydration before reading local storage.
     setMounted(true);
-    const today = new Date().toISOString().split('T')[0];
+    const today = new Date().toISOString().split("T")[0];
     try {
-      const local = localStorage.getItem('ib_user_progress');
+      const local = localStorage.getItem("ib_user_progress");
       let base = DEFAULT_PROGRESS;
       if (local) {
         base = { ...DEFAULT_PROGRESS, ...JSON.parse(local) };
       }
       if (!base.customPlan) {
-        const planLocal = localStorage.getItem('ib_user_custom_plan');
+        const planLocal = localStorage.getItem("ib_user_custom_plan");
         if (planLocal) {
           base.customPlan = JSON.parse(planLocal);
         }
@@ -95,7 +104,9 @@ export function useProgress() {
 
       let streak = base.streakCount;
       if (base.lastActiveDate !== today) {
-        const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+        const yesterday = new Date(Date.now() - 86400000)
+          .toISOString()
+          .split("T")[0];
         const isConsecutive = base.lastActiveDate === yesterday;
         streak = isConsecutive ? base.streakCount + 1 : 1;
       }
@@ -104,19 +115,21 @@ export function useProgress() {
         ...base,
         streakCount: streak,
         lastActiveDate: today,
-        completedTasksToday: base.lastActiveDate === today ? base.completedTasksToday : []
+        completedTasksToday:
+          base.lastActiveDate === today ? base.completedTasksToday : [],
       };
 
       setProgress(updated);
-      localStorage.setItem('ib_user_progress', JSON.stringify(updated));
+      localStorage.setItem("ib_user_progress", JSON.stringify(updated));
     } catch (e) {
-      console.error('Error hydrating progress:', e);
+      console.error("Error hydrating progress:", e);
     }
   }, []);
 
   // Firebase auth sync
   useEffect(() => {
     if (!auth) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Completes loading when Firebase is unavailable.
       setLoading(false);
       return;
     }
@@ -125,14 +138,23 @@ export function useProgress() {
       setUser(currentUser);
       if (currentUser && db) {
         try {
-          const docRef = doc(db, 'users', currentUser.uid, 'profile', 'progress');
+          const docRef = doc(
+            db,
+            "users",
+            currentUser.uid,
+            "profile",
+            "progress",
+          );
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             const data = docSnap.data() as UserProgressData;
-            setProgress(prev => {
+            setProgress((prev) => {
               const merged = { ...prev, ...data };
-              if (typeof window !== 'undefined') {
-                localStorage.setItem('ib_user_progress', JSON.stringify(merged));
+              if (typeof window !== "undefined") {
+                localStorage.setItem(
+                  "ib_user_progress",
+                  JSON.stringify(merged),
+                );
               }
               return merged;
             });
@@ -141,7 +163,7 @@ export function useProgress() {
             await setDoc(docRef, progress, { merge: true });
           }
         } catch (err) {
-          console.error('Error fetching progress from Firestore:', err);
+          console.error("Error fetching progress from Firestore:", err);
         }
       }
       setLoading(false);
@@ -151,22 +173,23 @@ export function useProgress() {
   }, []);
 
   const saveProgress = async (
-    updater: UserProgressData | ((prev: UserProgressData) => UserProgressData)
+    updater: UserProgressData | ((prev: UserProgressData) => UserProgressData),
   ) => {
-    setProgress(prev => {
-      const nextProgress = typeof updater === 'function' ? updater(prev) : updater;
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('ib_user_progress', JSON.stringify(nextProgress));
+    setProgress((prev) => {
+      const nextProgress =
+        typeof updater === "function" ? updater(prev) : updater;
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ib_user_progress", JSON.stringify(nextProgress));
       }
 
       if (user && db) {
         try {
-          const docRef = doc(db, 'users', user.uid, 'profile', 'progress');
-          setDoc(docRef, nextProgress, { merge: true }).catch(err => {
-            console.error('Error saving progress to Firestore:', err);
+          const docRef = doc(db, "users", user.uid, "profile", "progress");
+          setDoc(docRef, nextProgress, { merge: true }).catch((err) => {
+            console.error("Error saving progress to Firestore:", err);
           });
         } catch (err) {
-          console.error('Error saving progress to Firestore:', err);
+          console.error("Error saving progress to Firestore:", err);
         }
       }
 
@@ -175,86 +198,86 @@ export function useProgress() {
   };
 
   const setProblemStatus = (problemId: string, status: ProblemStatus) => {
-    saveProgress(prev => ({
+    saveProgress((prev) => ({
       ...prev,
       codingStatus: {
         ...prev.codingStatus,
-        [problemId]: status
-      }
+        [problemId]: status,
+      },
     }));
   };
 
   const toggleBookmark = (resourceId: string) => {
-    saveProgress(prev => {
+    saveProgress((prev) => {
       const exists = prev.bookmarkedResources.includes(resourceId);
-      const nextBookmarks = exists 
-        ? prev.bookmarkedResources.filter(id => id !== resourceId)
+      const nextBookmarks = exists
+        ? prev.bookmarkedResources.filter((id) => id !== resourceId)
         : [...prev.bookmarkedResources, resourceId];
 
       return {
         ...prev,
-        bookmarkedResources: nextBookmarks
+        bookmarkedResources: nextBookmarks,
       };
     });
   };
 
   const toggleDailyTask = (taskId: string) => {
-    saveProgress(prev => {
+    saveProgress((prev) => {
       const exists = prev.completedTasksToday.includes(taskId);
       const nextTasks = exists
-        ? prev.completedTasksToday.filter(id => id !== taskId)
+        ? prev.completedTasksToday.filter((id) => id !== taskId)
         : [...prev.completedTasksToday, taskId];
 
       return {
         ...prev,
-        completedTasksToday: nextTasks
+        completedTasksToday: nextTasks,
       };
     });
   };
 
   const toggleRoadmapTask = (taskId: string) => {
-    saveProgress(prev => ({
+    saveProgress((prev) => ({
       ...prev,
       roadmapTasks: {
         ...prev.roadmapTasks,
-        [taskId]: !prev.roadmapTasks[taskId]
-      }
+        [taskId]: !prev.roadmapTasks[taskId],
+      },
     }));
   };
 
   const setActiveTrack = (trackId: string) => {
-    saveProgress(prev => ({
+    saveProgress((prev) => ({
       ...prev,
-      activeTrack: trackId
+      activeTrack: trackId,
     }));
   };
 
   const setTargetInterviewDate = (date: string) => {
-    saveProgress(prev => ({
+    saveProgress((prev) => ({
       ...prev,
-      targetInterviewDate: date
+      targetInterviewDate: date,
     }));
   };
 
   const saveCustomPlan = (plan: CustomPlanData, activeTrackId?: string) => {
-    saveProgress(prev => ({
+    saveProgress((prev) => ({
       ...prev,
       customPlan: plan,
-      ...(activeTrackId ? { activeTrack: activeTrackId } : {})
+      ...(activeTrackId ? { activeTrack: activeTrackId } : {}),
     }));
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       try {
-        localStorage.setItem('ib_user_custom_plan', JSON.stringify(plan));
+        localStorage.setItem("ib_user_custom_plan", JSON.stringify(plan));
       } catch (e) {
-        console.error('Error saving custom plan to localStorage:', e);
+        console.error("Error saving custom plan to localStorage:", e);
       }
     }
   };
 
   const togglePlanMilestone = (milestoneId: string) => {
-    saveProgress(prev => {
+    saveProgress((prev) => {
       if (!prev.customPlan) return prev;
-      const nextMilestones = prev.customPlan.milestones.map(m => {
+      const nextMilestones = prev.customPlan.milestones.map((m) => {
         if (m.id === milestoneId) {
           return { ...m, completed: !m.completed };
         }
@@ -263,34 +286,37 @@ export function useProgress() {
 
       const updatedPlan: CustomPlanData = {
         ...prev.customPlan,
-        milestones: nextMilestones
+        milestones: nextMilestones,
       };
 
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         try {
-          localStorage.setItem('ib_user_custom_plan', JSON.stringify(updatedPlan));
+          localStorage.setItem(
+            "ib_user_custom_plan",
+            JSON.stringify(updatedPlan),
+          );
         } catch (e) {
-          console.error('Error saving custom plan to localStorage:', e);
+          console.error("Error saving custom plan to localStorage:", e);
         }
       }
 
       return {
         ...prev,
-        customPlan: updatedPlan
+        customPlan: updatedPlan,
       };
     });
   };
 
   const resetCustomPlan = () => {
-    saveProgress(prev => ({
+    saveProgress((prev) => ({
       ...prev,
-      customPlan: undefined
+      customPlan: undefined,
     }));
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       try {
-        localStorage.removeItem('ib_user_custom_plan');
+        localStorage.removeItem("ib_user_custom_plan");
       } catch (e) {
-        console.error('Error clearing custom plan from localStorage:', e);
+        console.error("Error clearing custom plan from localStorage:", e);
       }
     }
   };
@@ -301,7 +327,7 @@ export function useProgress() {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
     } catch (err) {
-      console.error('Login error:', err);
+      console.error("Login error:", err);
     }
   };
 
@@ -310,7 +336,7 @@ export function useProgress() {
     try {
       await signOut(auth);
     } catch (err) {
-      console.error('Logout error:', err);
+      console.error("Logout error:", err);
     }
   };
 
@@ -329,6 +355,6 @@ export function useProgress() {
     togglePlanMilestone,
     resetCustomPlan,
     loginWithGoogle,
-    logout
+    logout,
   };
 }

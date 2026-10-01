@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { useProgress } from '@/lib/useProgress';
-import { CAREER_TRACKS } from '@/lib/roadmapData';
-import { CodingProblem, MarkdownDocument } from '@/lib/markdown';
-import PlanWizardModal from './PlanWizardModal';
-import LearningPathModal from './LearningPathModal';
+import { useState } from "react";
+import Link from "next/link";
+import { useProgress } from "@/lib/useProgress";
+import { CAREER_TRACKS } from "@/lib/roadmapData";
+import { CodingProblem, MarkdownDocument } from "@/lib/markdown";
+import PlanWizardModal from "./PlanWizardModal";
+import LearningPathModal from "./LearningPathModal";
 
 interface CommandCenterWidgetProps {
   todayProblem?: CodingProblem;
@@ -17,11 +17,13 @@ interface CommandCenterWidgetProps {
 export default function CommandCenterWidget({
   todayProblem,
   todayTopic,
-  dueCardsCount
+  dueCardsCount,
 }: CommandCenterWidgetProps) {
   const { progress, toggleDailyTask, mounted } = useProgress();
   const [wizardOpen, setWizardOpen] = useState(false);
-  const [activeTimeBudget, setActiveTimeBudget] = useState<'15m' | '30m' | '60m'>('30m');
+  const [activeTimeBudget, setActiveTimeBudget] = useState<
+    "15m" | "30m" | "60m"
+  >("30m");
 
   if (!mounted) {
     return (
@@ -30,24 +32,31 @@ export default function CommandCenterWidget({
   }
 
   // Active track determination
-  const activeTrack = CAREER_TRACKS.find(t => t.id === (progress.activeTrack || 'sde2-fullstack')) || CAREER_TRACKS[0];
-  const allTasks = activeTrack.phases.flatMap(p => p.tasks);
-  const completedTasks = allTasks.filter(t => !!progress.roadmapTasks[t.id]);
-  const progressPercent = allTasks.length > 0 ? Math.round((completedTasks.length / allTasks.length) * 100) : 0;
-  const nextRoadmapTask = allTasks.find(t => !progress.roadmapTasks[t.id]);
+  const activeTrack =
+    CAREER_TRACKS.find(
+      (t) => t.id === (progress.activeTrack || "sde2-fullstack"),
+    ) || CAREER_TRACKS[0];
+  const allTasks = activeTrack.phases.flatMap((p) => p.tasks);
+  const completedTasks = allTasks.filter((t) => !!progress.roadmapTasks[t.id]);
+  const progressPercent =
+    allTasks.length > 0
+      ? Math.round((completedTasks.length / allTasks.length) * 100)
+      : 0;
+  const nextRoadmapTask = allTasks.find((t) => !progress.roadmapTasks[t.id]);
 
   // Daily task completions
-  const isProblemDone = progress.completedTasksToday.includes('daily-problem');
-  const isConceptDone = progress.completedTasksToday.includes('daily-concept');
-  const isQuizDone = progress.completedTasksToday.includes('daily-quiz');
+  const isProblemDone = progress.completedTasksToday.includes("daily-problem");
+  const isConceptDone = progress.completedTasksToday.includes("daily-concept");
+  const isQuizDone = progress.completedTasksToday.includes("daily-quiz");
 
-  const dailyDoneCount = [isProblemDone, isConceptDone, isQuizDone].filter(Boolean).length;
+  const dailyDoneCount = [isProblemDone, isConceptDone, isQuizDone].filter(
+    Boolean,
+  ).length;
   const dailyPercent = Math.round((dailyDoneCount / 3) * 100);
 
   return (
     <>
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/10 via-white/[0.02] to-black border border-primary/25 p-5 sm:p-7 shadow-2xl backdrop-blur-xl">
-        
         {/* Subtle Ambient Top-Right Glow */}
         <div className="absolute top-0 right-0 w-80 h-80 bg-primary/15 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
 
@@ -67,14 +76,15 @@ export default function CommandCenterWidget({
                 </span>
               </div>
               <p className="text-xs text-foreground/60 mt-0.5">
-                {completedTasks.length} of {allTasks.length} milestones completed ({progressPercent}%)
+                {completedTasks.length} of {allTasks.length} milestones
+                completed ({progressPercent}%)
               </p>
             </div>
           </div>
 
           {/* Actions & Streak */}
           <div className="flex items-center gap-2.5 self-start md:self-center flex-wrap">
-            <div 
+            <div
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-bold"
               title={`${progress.streakCount} day study streak!`}
             >
@@ -104,7 +114,7 @@ export default function CommandCenterWidget({
             <div className="flex items-center gap-2">
               <span className="text-sm">🎯</span>
               <h3 className="text-sm sm:text-base font-bold text-foreground">
-                Today's Recommended Focus
+                Today&apos;s Recommended Focus
               </h3>
               <span className="text-[11px] font-mono text-foreground/50">
                 ({dailyDoneCount}/3 Done)
@@ -113,17 +123,21 @@ export default function CommandCenterWidget({
 
             {/* Time Dial Pills */}
             <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/5">
-              {(['15m', '30m', '60m'] as const).map(time => (
+              {(["15m", "30m", "60m"] as const).map((time) => (
                 <button
                   key={time}
                   onClick={() => setActiveTimeBudget(time)}
                   className={`text-[11px] font-bold px-2.5 py-1 rounded-lg transition-all ${
                     activeTimeBudget === time
-                      ? 'bg-primary text-white shadow-sm'
-                      : 'text-foreground/50 hover:text-foreground'
+                      ? "bg-primary text-white shadow-sm"
+                      : "text-foreground/50 hover:text-foreground"
                   }`}
                 >
-                  {time === '15m' ? '⚡ 15m' : time === '30m' ? '🎯 30m' : '🚀 60m'}
+                  {time === "15m"
+                    ? "⚡ 15m"
+                    : time === "30m"
+                      ? "🎯 30m"
+                      : "🚀 60m"}
                 </button>
               ))}
             </div>
@@ -131,13 +145,14 @@ export default function CommandCenterWidget({
 
           {/* 3 Tasks Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
-            
             {/* Task 1: Coding Problem */}
-            <div className={`p-4 rounded-2xl border transition-all flex flex-col justify-between gap-3 ${
-              isProblemDone 
-                ? 'bg-green-500/[0.04] border-green-500/20' 
-                : 'bg-white/[0.03] border-white/10 hover:border-primary/40'
-            }`}>
+            <div
+              className={`p-4 rounded-2xl border transition-all flex flex-col justify-between gap-3 ${
+                isProblemDone
+                  ? "bg-green-500/[0.04] border-green-500/20"
+                  : "bg-white/[0.03] border-white/10 hover:border-primary/40"
+              }`}
+            >
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="text-base">💻</span>
@@ -146,30 +161,31 @@ export default function CommandCenterWidget({
                   </span>
                 </div>
                 <button
-                  onClick={() => toggleDailyTask('daily-problem')}
+                  onClick={() => toggleDailyTask("daily-problem")}
                   className={`w-5 h-5 rounded-md flex items-center justify-center text-xs transition-all ${
                     isProblemDone
-                      ? 'bg-green-500 text-black font-bold'
-                      : 'border border-white/20 hover:border-white/40'
+                      ? "bg-green-500 text-black font-bold"
+                      : "border border-white/20 hover:border-white/40"
                   }`}
-                  title={isProblemDone ? 'Mark as incomplete' : 'Mark as done'}
+                  title={isProblemDone ? "Mark as incomplete" : "Mark as done"}
                 >
-                  {isProblemDone ? '✓' : ''}
+                  {isProblemDone ? "✓" : ""}
                 </button>
               </div>
 
               <div>
                 <h4 className="text-sm font-bold text-foreground line-clamp-1">
-                  {todayProblem?.title || 'Two Sum & Hash Maps'}
+                  {todayProblem?.title || "Two Sum & Hash Maps"}
                 </h4>
                 <p className="text-xs text-foreground/60 mt-0.5 line-clamp-2">
-                  {todayProblem?.pattern || 'Array & Hashing'} · {todayProblem?.difficulty || 'Easy'} · ~15 mins
+                  {todayProblem?.pattern || "Array & Hashing"} ·{" "}
+                  {todayProblem?.difficulty || "Easy"} · ~15 mins
                 </p>
               </div>
 
               <div className="pt-1 flex items-center justify-between border-t border-white/5 text-xs">
                 <Link
-                  href={`/coding#${todayProblem?.id || 'two-sum'}`}
+                  href={`/coding#${todayProblem?.id || "two-sum"}`}
                   className="font-semibold text-primary hover:underline"
                 >
                   Solve Problem &rarr;
@@ -188,11 +204,13 @@ export default function CommandCenterWidget({
             </div>
 
             {/* Task 2: Architecture / System Design */}
-            <div className={`p-4 rounded-2xl border transition-all flex flex-col justify-between gap-3 ${
-              isConceptDone 
-                ? 'bg-green-500/[0.04] border-green-500/20' 
-                : 'bg-white/[0.03] border-white/10 hover:border-primary/40'
-            }`}>
+            <div
+              className={`p-4 rounded-2xl border transition-all flex flex-col justify-between gap-3 ${
+                isConceptDone
+                  ? "bg-green-500/[0.04] border-green-500/20"
+                  : "bg-white/[0.03] border-white/10 hover:border-primary/40"
+              }`}
+            >
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="text-base">📐</span>
@@ -201,21 +219,22 @@ export default function CommandCenterWidget({
                   </span>
                 </div>
                 <button
-                  onClick={() => toggleDailyTask('daily-concept')}
+                  onClick={() => toggleDailyTask("daily-concept")}
                   className={`w-5 h-5 rounded-md flex items-center justify-center text-xs transition-all ${
                     isConceptDone
-                      ? 'bg-green-500 text-black font-bold'
-                      : 'border border-white/20 hover:border-white/40'
+                      ? "bg-green-500 text-black font-bold"
+                      : "border border-white/20 hover:border-white/40"
                   }`}
-                  title={isConceptDone ? 'Mark as incomplete' : 'Mark as done'}
+                  title={isConceptDone ? "Mark as incomplete" : "Mark as done"}
                 >
-                  {isConceptDone ? '✓' : ''}
+                  {isConceptDone ? "✓" : ""}
                 </button>
               </div>
 
               <div>
                 <h4 className="text-sm font-bold text-foreground line-clamp-1">
-                  {todayTopic?.title || 'In-App Observability & ANR Monitoring SDK'}
+                  {todayTopic?.title ||
+                    "In-App Observability & ANR Monitoring SDK"}
                 </h4>
                 <p className="text-xs text-foreground/60 mt-0.5 line-clamp-2">
                   CADisplayLink, Choreographer & batched telemetry · ~20 mins
@@ -229,16 +248,20 @@ export default function CommandCenterWidget({
                 >
                   Read Blueprint &rarr;
                 </Link>
-                <span className="text-foreground/40 text-[11px]">Architecture</span>
+                <span className="text-foreground/40 text-[11px]">
+                  Architecture
+                </span>
               </div>
             </div>
 
             {/* Task 3: Active Recall / Behavioral */}
-            <div className={`p-4 rounded-2xl border transition-all flex flex-col justify-between gap-3 ${
-              isQuizDone 
-                ? 'bg-green-500/[0.04] border-green-500/20' 
-                : 'bg-white/[0.03] border-white/10 hover:border-primary/40'
-            }`}>
+            <div
+              className={`p-4 rounded-2xl border transition-all flex flex-col justify-between gap-3 ${
+                isQuizDone
+                  ? "bg-green-500/[0.04] border-green-500/20"
+                  : "bg-white/[0.03] border-white/10 hover:border-primary/40"
+              }`}
+            >
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="text-base">⚡</span>
@@ -247,15 +270,15 @@ export default function CommandCenterWidget({
                   </span>
                 </div>
                 <button
-                  onClick={() => toggleDailyTask('daily-quiz')}
+                  onClick={() => toggleDailyTask("daily-quiz")}
                   className={`w-5 h-5 rounded-md flex items-center justify-center text-xs transition-all ${
                     isQuizDone
-                      ? 'bg-green-500 text-black font-bold'
-                      : 'border border-white/20 hover:border-white/40'
+                      ? "bg-green-500 text-black font-bold"
+                      : "border border-white/20 hover:border-white/40"
                   }`}
-                  title={isQuizDone ? 'Mark as incomplete' : 'Mark as done'}
+                  title={isQuizDone ? "Mark as incomplete" : "Mark as done"}
                 >
-                  {isQuizDone ? '✓' : ''}
+                  {isQuizDone ? "✓" : ""}
                 </button>
               </div>
 
@@ -264,7 +287,8 @@ export default function CommandCenterWidget({
                   Flashcard Drill &amp; STAR Story
                 </h4>
                 <p className="text-xs text-foreground/60 mt-0.5 line-clamp-2">
-                  Spaced repetition drill ({dueCardsCount || 10} cards due) · ~5-10 mins
+                  Spaced repetition drill ({dueCardsCount || 10} cards due) ·
+                  ~5-10 mins
                 </p>
               </div>
 
@@ -283,7 +307,6 @@ export default function CommandCenterWidget({
                 </Link>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -292,7 +315,8 @@ export default function CommandCenterWidget({
           <div className="flex items-center gap-2">
             <span className="text-sm">🎙️</span>
             <span>
-              Commute listening: Generate 15-min audio overview podcasts from your notes with NotebookLM.
+              Commute listening: Generate 15-min audio overview podcasts from
+              your notes with NotebookLM.
             </span>
           </div>
           <Link
@@ -303,10 +327,12 @@ export default function CommandCenterWidget({
             <span>&rarr;</span>
           </Link>
         </div>
-
       </div>
 
-      <PlanWizardModal isOpen={wizardOpen} onClose={() => setWizardOpen(false)} />
+      <PlanWizardModal
+        isOpen={wizardOpen}
+        onClose={() => setWizardOpen(false)}
+      />
     </>
   );
 }

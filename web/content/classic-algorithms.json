@@ -1,0 +1,918 @@
+[
+  {
+    "id": "lru-cache",
+    "title": "LRU Cache (Least Recently Used)",
+    "category": "Data Structures",
+    "difficulty": "Medium",
+    "readmePath": "src/data-structures/lru-cache/README.md",
+    "timeComplexity": "O(1) get & put",
+    "spaceComplexity": "O(capacity)",
+    "entryFunction": "LRUCache",
+    "code": "class LRUCache {\n  constructor(capacity) {\n    this.capacity = capacity;\n    this.cache = new Map();\n  }\n\n  get(key) {\n    if (!this.cache.has(key)) return -1;\n    const val = this.cache.get(key);\n    this.cache.delete(key);\n    this.cache.set(key, val);\n    return val;\n  }\n\n  put(key, value) {\n    if (this.cache.has(key)) {\n      this.cache.delete(key);\n    }\n    this.cache.set(key, value);\n    if (this.cache.size > this.capacity) {\n      const oldestKey = this.cache.keys().next().value;\n      this.cache.delete(oldestKey);\n    }\n  }\n}",
+    "starterCode": "/**\n * @param {number} capacity\n */\nclass LRUCache {\n  constructor(capacity) {\n    // Initialize capacity and storage\n  }\n\n  /** \n   * @param {number} key\n   * @return {number}\n   */\n  get(key) {\n    // Return value or -1 if not found\n  }\n\n  /** \n   * @param {number} key \n   * @param {number} value\n   * @return {void}\n   */\n  put(key, value) {\n    // Update or insert key-value pair, evicting LRU item if capacity exceeded\n  }\n}",
+    "testCases": [
+      {
+        "input": "(function() {\n  const lru = new LRUCache(2);\n  lru.put(1, 1);\n  lru.put(2, 2);\n  const r1 = lru.get(1); // returns 1\n  lru.put(3, 3); // evicts key 2\n  const r2 = lru.get(2); // returns -1\n  lru.put(4, 4); // evicts key 1\n  const r3 = lru.get(1); // returns -1\n  const r4 = lru.get(3); // returns 3\n  const r5 = lru.get(4); // returns 4\n  return [r1, r2, r3, r4, r5];\n})()",
+        "expectedOutput": "[1, -1, -1, 3, 4]",
+        "description": "Basic Put, Get & LRU Eviction"
+      }
+    ],
+    "readme": "# Least Recently Used (LRU) Cache\n\n\n\nA **Least Recently Used (LRU) Cache** organizes items in order of use, allowing you to quickly identify which item hasn't been used for the longest amount of time.\n\nPicture a clothes rack, where clothes are always hung up on one side. To find the least-recently used item, look at the item on the other end of the rack.\n\n## The problem statement\n\nImplement the LRUCache class:\n\n- `LRUCache(int capacity)` Initialize the LRU cache with **positive** size `capacity`.\n- `int get(int key)` Return the value of the `key` if the `key` exists, otherwise return `undefined`.\n- `void set(int key, int value)` Update the value of the `key` if the `key` exists. Otherwise, add the `key-value` pair to the cache. If the number of keys exceeds the `capacity` from this operation, **evict** the least recently used key.\n\nThe functions `get()` and `set()` must each run in `O(1)` average time complexity.\n\n## Implementation\n\n### Version 1: Doubly Linked List + Hash Map\n\nSee the `LRUCache` implementation example in [LRUCache.js](./LRUCache.js). The solution uses a `HashMap` for fast `O(1)` (in average) cache items access, and a `DoublyLinkedList` for fast `O(1)` (in average) cache items promotions and eviction (to keep the maximum allowed cache capacity).\n\n\n\n_Made with [okso.app](https://okso.app)_\n\nYou may also find more test-case examples of how the LRU Cache works in [LRUCache.test.js](./__test__/LRUCache.test.js) file.\n\n### Version 2: Ordered Map\n\nThe first implementation that uses doubly linked list is good for learning purposes and for better understanding of how the average `O(1)` time complexity is achievable while doing `set()` and `get()`.\n\nHowever, the simpler approach might be to use a JavaScript [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) object. The `Map` object holds key-value pairs and **remembers the original insertion order** of the keys. We can use this fact in order to keep the recently-used items in the \"end\" of the map by removing and re-adding items. The item at the beginning of the `Map` is the first one to be evicted if cache capacity overflows. The order of the items may checked by using the `IterableIterator` like `map.keys()`.\n\nSee the `LRUCacheOnMap` implementation example in [LRUCacheOnMap.js](./LRUCacheOnMap.js).\n\nYou may also find more test-case examples of how the LRU Cache works in [LRUCacheOnMap.test.js](./__test__/LRUCacheOnMap.test.js) file.\n\n## Complexities\n\n|          | Average |\n| -------- | ------- |\n| Space    | `O(n)`  |\n| Get item | `O(1)`  |\n| Set item | `O(1)`  |\n\n## References\n\n- [LRU Cache on LeetCode](https://leetcode.com/problems/lru-cache/solutions/244744/lru-cache/)\n- [LRU Cache on InterviewCake](https://www.interviewcake.com/concept/java/lru-cache)\n- [LRU Cache on Wiki](https://en.wikipedia.org/wiki/Cache_replacement_policies)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "trie",
+    "title": "Trie (Prefix Tree)",
+    "category": "Data Structures",
+    "difficulty": "Medium",
+    "readmePath": "src/data-structures/trie/README.md",
+    "timeComplexity": "O(k) where k is word length",
+    "spaceComplexity": "O(total characters)",
+    "entryFunction": "Trie",
+    "code": "class TrieNode {\n  constructor() {\n    this.children = {};\n    this.isEndOfWord = false;\n  }\n}\n\nclass Trie {\n  constructor() {\n    this.root = new TrieNode();\n  }\n\n  insert(word) {\n    let curr = this.root;\n    for (const char of word) {\n      if (!curr.children[char]) {\n        curr.children[char] = new TrieNode();\n      }\n      curr = curr.children[char];\n    }\n    curr.isEndOfWord = true;\n  }\n\n  search(word) {\n    let curr = this.root;\n    for (const char of word) {\n      if (!curr.children[char]) return false;\n      curr = curr.children[char];\n    }\n    return curr.isEndOfWord;\n  }\n\n  startsWith(prefix) {\n    let curr = this.root;\n    for (const char of prefix) {\n      if (!curr.children[char]) return false;\n      curr = curr.children[char];\n    }\n    return true;\n  }\n}",
+    "starterCode": "class Trie {\n  constructor() {\n    // Initialize root node\n  }\n\n  insert(word) {\n    // Insert word into trie\n  }\n\n  search(word) {\n    // Return true if word is in trie\n  }\n\n  startsWith(prefix) {\n    // Return true if any word starts with prefix\n  }\n}",
+    "testCases": [
+      {
+        "input": "(function() {\n  const trie = new Trie();\n  trie.insert(\"apple\");\n  const s1 = trie.search(\"apple\");   // true\n  const s2 = trie.search(\"app\");     // false\n  const s3 = trie.startsWith(\"app\"); // true\n  trie.insert(\"app\");\n  const s4 = trie.search(\"app\");     // true\n  return [s1, s2, s3, s4];\n})()",
+        "expectedOutput": "[true, false, true, true]",
+        "description": "Insert, Search and StartsWith"
+      }
+    ],
+    "readme": "# Trie\n\n\n\nIn computer science, a **trie**, also called digital tree and sometimes\nradix tree or prefix tree (as they can be searched by prefixes),\nis a kind of search tree—an ordered tree data structure that is\nused to store a dynamic set or associative array where the keys\nare usually strings. Unlike a binary search tree, no node in the\ntree stores the key associated with that node; instead, its\nposition in the tree defines the key with which it is associated.\nAll the descendants of a node have a common prefix of the string\nassociated with that node, and the root is associated with the\nempty string. Values are not necessarily associated with every\nnode. Rather, values tend only to be associated with leaves,\nand with some inner nodes that correspond to keys of interest.\nFor the space-optimized presentation of prefix tree, see compact\nprefix tree.\n\n\n\n*Made with [okso.app](https://okso.app)*\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Trie)\n- [YouTube](https://www.youtube.com/watch?v=zIjfhVPRZCg&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8&index=7&t=0s)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "min-heap",
+    "title": "Min Binary Heap",
+    "category": "Data Structures",
+    "difficulty": "Medium",
+    "readmePath": "src/data-structures/heap/README.md",
+    "timeComplexity": "O(log n) insert/poll, O(1) peek",
+    "spaceComplexity": "O(n)",
+    "entryFunction": "MinHeap",
+    "code": "class MinHeap {\n  constructor() {\n    this.heap = [];\n  }\n\n  peek() {\n    return this.heap.length > 0 ? this.heap[0] : null;\n  }\n\n  poll() {\n    if (this.heap.length === 0) return null;\n    if (this.heap.length === 1) return this.heap.pop();\n    const item = this.heap[0];\n    this.heap[0] = this.heap.pop();\n    this.heapifyDown();\n    return item;\n  }\n\n  add(item) {\n    this.heap.push(item);\n    this.heapifyUp();\n  }\n\n  heapifyUp() {\n    let index = this.heap.length - 1;\n    while (index > 0) {\n      const parentIndex = Math.floor((index - 1) / 2);\n      if (this.heap[parentIndex] <= this.heap[index]) break;\n      [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]];\n      index = parentIndex;\n    }\n  }\n\n  heapifyDown() {\n    let index = 0;\n    while (index * 2 + 1 < this.heap.length) {\n      let smallerChildIndex = index * 2 + 1;\n      const rightChildIndex = index * 2 + 2;\n      if (rightChildIndex < this.heap.length && this.heap[rightChildIndex] < this.heap[smallerChildIndex]) {\n        smallerChildIndex = rightChildIndex;\n      }\n      if (this.heap[index] <= this.heap[smallerChildIndex]) break;\n      [this.heap[index], this.heap[smallerChildIndex]] = [this.heap[smallerChildIndex], this.heap[index]];\n      index = smallerChildIndex;\n    }\n  }\n}",
+    "starterCode": "class MinHeap {\n  constructor() {\n    this.heap = [];\n  }\n\n  peek() {\n    // Return root without removing\n  }\n\n  poll() {\n    // Remove and return root\n  }\n\n  add(item) {\n    // Add item and maintain heap invariant\n  }\n}",
+    "testCases": [
+      {
+        "input": "(function() {\n  const h = new MinHeap();\n  [5, 3, 10, 1, 4].forEach(n => h.add(n));\n  const p1 = h.peek(); // 1\n  const sorted = [];\n  while (h.peek() !== null) {\n    sorted.push(h.poll());\n  }\n  return { min: p1, sorted };\n})()",
+        "expectedOutput": "{\"min\": 1, \"sorted\": [1, 3, 4, 5, 10]}",
+        "description": "Add items and extract in ascending order"
+      }
+    ],
+    "readme": "# Heap (data-structure)\n\n\n\nIn computer science, a **heap** is a specialized tree-based\ndata structure that satisfies the heap property described\nbelow.\n\nIn a *min heap*, if `P` is a parent node of `C`, then the\nkey (the value) of `P` is less than or equal to the\nkey of `C`.\n\n\n\n*Made with [okso.app](https://okso.app)*\n\nIn a *max heap*, the key of `P` is greater than or equal\nto the key of `C`\n\n\n\n\n\nThe node at the \"top\" of the heap with no parents is\ncalled the root node.\n\n## Time Complexities\n\nHere are time complexities of various heap data structures. Function names assume a max-heap.\n\n| Operation | find-max | delete-max | insert| increase-key| meld |\n| --------- | -------- | ---------- | ----- | ----------- | ---- |\n| [Binary](https://en.wikipedia.org/wiki/Binary_heap) | `Θ(1)` | `Θ(log n)` | `O(log n)` | `O(log n)` | `Θ(n)` |\n| [Leftist](https://en.wikipedia.org/wiki/Leftist_tree) | `Θ(1)` | `Θ(log n)` | `Θ(log n)` | `O(log n)` | `Θ(log n)` |\n| [Binomial](https://en.wikipedia.org/wiki/Binomial_heap) | `Θ(1)` | `Θ(log n)` | `Θ(1)` | `O(log n)` | `O(log n)` |\n| [Fibonacci](https://en.wikipedia.org/wiki/Fibonacci_heap) | `Θ(1)` | `Θ(log n)` | `Θ(1)` | `Θ(1)` | `Θ(1)` |\n| [Pairing](https://en.wikipedia.org/wiki/Pairing_heap) | `Θ(1)` | `Θ(log n)` | `Θ(1)` | `o(log n)` | `Θ(1)` |\n| [Brodal](https://en.wikipedia.org/wiki/Brodal_queue) | `Θ(1)` | `Θ(log n)` | `Θ(1)` | `Θ(1)` | `Θ(1)` |\n| [Rank-pairing](https://en.wikipedia.org/w/index.php?title=Rank-pairing_heap&action=edit&redlink=1) | `Θ(1)` | `Θ(log n)` | `Θ(1)` | `Θ(1)` | `Θ(1)` |\n| [Strict Fibonacci](https://en.wikipedia.org/wiki/Fibonacci_heap) | `Θ(1)` | `Θ(log n)` | `Θ(1)` | `Θ(1)` | `Θ(1)` |\n| [2-3 heap](https://en.wikipedia.org/wiki/2%E2%80%933_heap) | `O(log n)` | `O(log n)` | `O(log n)` | `Θ(1)` | `?` |\n\nWhere:\n- **find-max (or find-min):** find a maximum item of a max-heap, or a minimum item of a min-heap, respectively (a.k.a. *peek*)\n- **delete-max (or delete-min):** removing the root node of a max heap (or min heap), respectively\n- **insert:** adding a new key to the heap (a.k.a., *push*)\n- **increase-key or decrease-key:** updating a key within a max- or min-heap, respectively\n- **meld:** joining two heaps to form a valid new heap containing all the elements of both, destroying the original heaps.\n\n> In this repository, the [MaxHeap.js](./MaxHeap.js) and [MinHeap.js](./MinHeap.js) are examples of the **Binary** heap.\n\n## Implementation\n\n- [MaxHeap.js](./MaxHeap.js) and [MinHeap.js](./MinHeap.js)\n- [MaxHeapAdhoc.js](./MaxHeapAdhoc.js) and [MinHeapAdhoc.js](./MinHeapAdhoc.js) - The minimalistic (ad hoc) version of a MinHeap/MaxHeap data structure that doesn't have external dependencies and that is easy to copy-paste and use during the coding interview if allowed by the interviewer (since many data structures in JS are missing).\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Heap_(data_structure))\n- [YouTube](https://www.youtube.com/watch?v=t0Cq6tVNRBA&index=5&t=0s&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "linked-list",
+    "title": "Singly Linked List",
+    "category": "Data Structures",
+    "difficulty": "Easy",
+    "readmePath": "src/data-structures/linked-list/README.md",
+    "timeComplexity": "O(1) prepend, O(n) find/delete",
+    "spaceComplexity": "O(n)",
+    "entryFunction": "LinkedList",
+    "code": "class LinkedListNode {\n  constructor(value, next = null) {\n    this.value = value;\n    this.next = next;\n  }\n}\n\nclass LinkedList {\n  constructor() {\n    this.head = null;\n    this.tail = null;\n  }\n\n  prepend(value) {\n    const newNode = new LinkedListNode(value, this.head);\n    this.head = newNode;\n    if (!this.tail) this.tail = newNode;\n    return this;\n  }\n\n  append(value) {\n    const newNode = new LinkedListNode(value);\n    if (!this.head) {\n      this.head = newNode;\n      this.tail = newNode;\n      return this;\n    }\n    this.tail.next = newNode;\n    this.tail = newNode;\n    return this;\n  }\n\n  delete(value) {\n    if (!this.head) return null;\n    let deletedNode = null;\n    while (this.head && this.head.value === value) {\n      deletedNode = this.head;\n      this.head = this.head.next;\n    }\n    let curr = this.head;\n    if (curr !== null) {\n      while (curr.next) {\n        if (curr.next.value === value) {\n          deletedNode = curr.next;\n          curr.next = curr.next.next;\n        } else {\n          curr = curr.next;\n        }\n      }\n    }\n    if (this.tail && this.tail.value === value) {\n      this.tail = curr;\n    }\n    return deletedNode;\n  }\n\n  toArray() {\n    const nodes = [];\n    let curr = this.head;\n    while (curr) {\n      nodes.push(curr.value);\n      curr = curr.next;\n    }\n    return nodes;\n  }\n}",
+    "starterCode": "class LinkedList {\n  constructor() {\n    this.head = null;\n    this.tail = null;\n  }\n\n  prepend(value) {}\n  append(value) {}\n  delete(value) {}\n  toArray() {}\n}",
+    "testCases": [
+      {
+        "input": "(function() {\n  const list = new LinkedList();\n  list.append(1).append(2).append(3);\n  list.prepend(0);\n  list.delete(2);\n  return list.toArray();\n})()",
+        "expectedOutput": "[0, 1, 3]",
+        "description": "Append, prepend and delete"
+      }
+    ],
+    "readme": "# Linked List\n\n\n\nIn computer science, a **linked list** is a linear collection\nof data elements, in which linear order is not given by\ntheir physical placement in memory. Instead, each\nelement points to the next. It is a data structure\nconsisting of a group of nodes which together represent\na sequence. Under the simplest form, each node is\ncomposed of data and a reference (in other words,\na link) to the next node in the sequence. This structure\nallows for efficient insertion or removal of elements\nfrom any position in the sequence during iteration.\nMore complex variants add additional links, allowing\nefficient insertion or removal from arbitrary element\nreferences. A drawback of linked lists is that access\ntime is linear (and difficult to pipeline). Faster\naccess, such as random access, is not feasible. Arrays\nhave better cache locality as compared to linked lists.\n\n\n\n*Made with [okso.app](https://okso.app)*\n\n## Pseudocode for Basic Operations\n\n### Insert\n\n```text\nAdd(value)\n  Pre: value is the value to add to the list\n  Post: value has been placed at the tail of the list\n  n ← node(value)\n  if head = ø\n    head ← n\n    tail ← n\n  else\n    tail.next ← n\n    tail ← n\n  end if\nend Add\n```\n\n```text\nPrepend(value)\n Pre: value is the value to add to the list\n Post: value has been placed at the head of the list\n n ← node(value)\n n.next ← head\n head ← n\n if tail = ø\n   tail ← n\n end\nend Prepend\n```\n\n### Search\n\n```text\nContains(head, value)\n  Pre: head is the head node in the list\n       value is the value to search for\n  Post: the item is either in the linked list, true; otherwise false\n  n ← head\n  while n != ø and n.value != value\n    n ← n.next\n  end while\n  if n = ø\n    return false\n  end if\n  return true\nend Contains\n```\n\n### Delete\n\n```text\nRemove(head, value)\n  Pre: head is the head node in the list\n       value is the value to remove from the list\n  Post: value is removed from the list, true, otherwise false\n  if head = ø\n    return false\n  end if\n  n ← head\n  if n.value = value\n    if head = tail\n      head ← ø\n      tail ← ø\n    else\n      head ← head.next\n    end if\n    return true\n  end if\n  while n.next != ø and n.next.value != value\n    n ← n.next\n  end while\n  if n.next != ø\n    if n.next = tail\n      tail ← n\n      tail.next = null\n    else\n      n.next ← n.next.next\n    end if\n    return true\n  end if\n  return false\nend Remove\n```\n\n### Traverse\n\n```text\nTraverse(head)\n  Pre: head is the head node in the list\n  Post: the items in the list have been traversed\n  n ← head\n  while n != ø\n    yield n.value\n    n ← n.next\n  end while\nend Traverse\n```\n\n### Traverse in Reverse\n\n```text\nReverseTraversal(head, tail)\n  Pre: head and tail belong to the same list\n  Post: the items in the list have been traversed in reverse order\n  if tail != ø\n    curr ← tail\n    while curr != head\n      prev ← head\n      while prev.next != curr\n        prev ← prev.next\n      end while\n      yield curr.value\n      curr ← prev\n    end while\n   yield curr.value\n  end if\nend ReverseTraversal\n```\n\n## Complexities\n\n### Time Complexity\n\n| Access    | Search    | Insertion | Deletion  |\n| :-------: | :-------: | :-------: | :-------: |\n| O(n)      | O(n)      | O(1)      | O(n)      |\n\n### Space Complexity\n\nO(n)\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Linked_list)\n- [YouTube](https://www.youtube.com/watch?v=njTh_OwMljA&index=2&t=1s&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "queue",
+    "title": "Queue (FIFO)",
+    "category": "Data Structures",
+    "difficulty": "Easy",
+    "readmePath": "src/data-structures/queue/README.md",
+    "timeComplexity": "O(1) enqueue & dequeue",
+    "spaceComplexity": "O(n)",
+    "entryFunction": "Queue",
+    "code": "class Queue {\n  constructor() {\n    this.elements = {};\n    this.head = 0;\n    this.tail = 0;\n  }\n\n  enqueue(element) {\n    this.elements[this.tail] = element;\n    this.tail++;\n  }\n\n  dequeue() {\n    if (this.isEmpty()) return null;\n    const item = this.elements[this.head];\n    delete this.elements[this.head];\n    this.head++;\n    return item;\n  }\n\n  peek() {\n    return this.isEmpty() ? null : this.elements[this.head];\n  }\n\n  isEmpty() {\n    return this.tail - this.head === 0;\n  }\n\n  size() {\n    return this.tail - this.head;\n  }\n}",
+    "starterCode": "class Queue {\n  constructor() {\n    // Setup FIFO queue\n  }\n\n  enqueue(item) {}\n  dequeue() {}\n  peek() {}\n  isEmpty() {}\n}",
+    "testCases": [
+      {
+        "input": "(function() {\n  const q = new Queue();\n  q.enqueue('a');\n  q.enqueue('b');\n  q.enqueue('c');\n  const d1 = q.dequeue();\n  const p1 = q.peek();\n  const d2 = q.dequeue();\n  return [d1, p1, d2, q.isEmpty()];\n})()",
+        "expectedOutput": "[\"a\", \"b\", \"b\", false]",
+        "description": "Enqueue, dequeue and peek"
+      }
+    ],
+    "readme": "# Queue\n\n\n\nIn computer science, a **queue** is a particular kind of abstract data\ntype or collection in which the entities in the collection are\nkept in order and the principle (or only) operations on the\ncollection are the addition of entities to the rear terminal\nposition, known as enqueue, and removal of entities from the\nfront terminal position, known as dequeue. This makes the queue\na First-In-First-Out (FIFO) data structure. In a FIFO data\nstructure, the first element added to the queue will be the\nfirst one to be removed. This is equivalent to the requirement\nthat once a new element is added, all elements that were added\nbefore have to be removed before the new element can be removed.\nOften a peek or front operation is also entered, returning the\nvalue of the front element without dequeuing it. A queue is an\nexample of a linear data structure, or more abstractly a\nsequential collection.\n\nRepresentation of a FIFO (first in, first out) queue\n\n\n\n*Made with [okso.app](https://okso.app)*\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Queue_(abstract_data_type))\n- [YouTube](https://www.youtube.com/watch?v=wjI1WNcIntg&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8&index=3&)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "stack",
+    "title": "Stack (LIFO)",
+    "category": "Data Structures",
+    "difficulty": "Easy",
+    "readmePath": "src/data-structures/stack/README.md",
+    "timeComplexity": "O(1) push & pop",
+    "spaceComplexity": "O(n)",
+    "entryFunction": "Stack",
+    "code": "class Stack {\n  constructor() {\n    this.items = [];\n  }\n\n  push(value) {\n    this.items.push(value);\n  }\n\n  pop() {\n    return this.items.length > 0 ? this.items.pop() : null;\n  }\n\n  peek() {\n    return this.items.length > 0 ? this.items[this.items.length - 1] : null;\n  }\n\n  isEmpty() {\n    return this.items.length === 0;\n  }\n\n  toArray() {\n    return [...this.items].reverse();\n  }\n}",
+    "starterCode": "class Stack {\n  constructor() {\n    this.items = [];\n  }\n  push(val) {}\n  pop() {}\n  peek() {}\n  isEmpty() {}\n}",
+    "testCases": [
+      {
+        "input": "(function() {\n  const s = new Stack();\n  s.push(10);\n  s.push(20);\n  s.push(30);\n  const top = s.peek();\n  const p1 = s.pop();\n  return [top, p1, s.peek()];\n})()",
+        "expectedOutput": "[30, 30, 20]",
+        "description": "Push, pop and peek LIFO order"
+      }
+    ],
+    "readme": "# Stack\n\n\n\nIn computer science, a **stack** is an abstract data type that serves\nas a collection of elements, with two principal operations:\n\n* **push**, which adds an element to the collection, and\n* **pop**, which removes the most recently added element that was not yet removed.\n\nThe order in which elements come off a stack gives rise to its\nalternative name, LIFO (last in, first out). Additionally, a\npeek operation may give access to the top without modifying\nthe stack. The name \"stack\" for this type of structure comes\nfrom the analogy to a set of physical items stacked on top of\neach other, which makes it easy to take an item off the top\nof the stack, while getting to an item deeper in the stack\nmay require taking off multiple other items first.\n\nSimple representation of a stack runtime with push and pop operations.\n\n\n\n*Made with [okso.app](https://okso.app)*\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Stack_(abstract_data_type))\n- [YouTube](https://www.youtube.com/watch?v=wjI1WNcIntg&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8&index=3&)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "hash-table",
+    "title": "Hash Table (with Chaining)",
+    "category": "Data Structures",
+    "difficulty": "Medium",
+    "readmePath": "src/data-structures/hash-table/README.md",
+    "timeComplexity": "O(1) average get/set/delete",
+    "spaceComplexity": "O(n)",
+    "entryFunction": "HashTable",
+    "code": "class HashTable {\n  constructor(size = 32) {\n    this.buckets = new Array(size).fill(null).map(() => []);\n  }\n\n  hash(key) {\n    let hashVal = 0;\n    for (let i = 0; i < key.length; i++) {\n      hashVal = (hashVal << 5) - hashVal + key.charCodeAt(i);\n      hashVal |= 0;\n    }\n    return Math.abs(hashVal) % this.buckets.length;\n  }\n\n  set(key, value) {\n    const bucket = this.buckets[this.hash(key)];\n    const existing = bucket.find(entry => entry.key === key);\n    if (existing) {\n      existing.value = value;\n    } else {\n      bucket.push({ key, value });\n    }\n  }\n\n  get(key) {\n    const bucket = this.buckets[this.hash(key)];\n    const entry = bucket.find(e => e.key === key);\n    return entry ? entry.value : undefined;\n  }\n\n  delete(key) {\n    const bucket = this.buckets[this.hash(key)];\n    const index = bucket.findIndex(e => e.key === key);\n    if (index !== -1) {\n      return bucket.splice(index, 1)[0].value;\n    }\n    return null;\n  }\n\n  has(key) {\n    return this.get(key) !== undefined;\n  }\n}",
+    "starterCode": "class HashTable {\n  constructor(size = 32) {\n    // Initialize hash table buckets\n  }\n\n  hash(key) {}\n  set(key, value) {}\n  get(key) {}\n  delete(key) {}\n  has(key) {}\n}",
+    "testCases": [
+      {
+        "input": "(function() {\n  const ht = new HashTable(16);\n  ht.set('name', 'Alice');\n  ht.set('role', 'Engineer');\n  const v1 = ht.get('name');\n  ht.delete('name');\n  const v2 = ht.has('name');\n  const v3 = ht.get('role');\n  return [v1, v2, v3];\n})()",
+        "expectedOutput": "[\"Alice\", false, \"Engineer\"]",
+        "description": "Set, get, delete and collision resolution"
+      }
+    ],
+    "readme": "# Hash Table\n\n\n\nIn computing, a **hash table** (hash map) is a data\nstructure which implements an _associative array_\nabstract data type, a structure that can _map keys\nto values_. A hash table uses a _hash function_ to\ncompute an index into an array of buckets or slots,\nfrom which the desired value can be found\n\nIdeally, the hash function will assign each key to a\nunique bucket, but most hash table designs employ an\nimperfect hash function, which might cause hash\ncollisions where the hash function generates the same\nindex for more than one key. Such collisions must be\naccommodated in some way.\n\n\n\nHash collision resolved by separate chaining.\n\n\n\n_Made with [okso.app](https://okso.app)_\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Hash_table)\n- [YouTube](https://www.youtube.com/watch?v=shs0KM3wKv8&index=4&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "binary-search-tree",
+    "title": "Binary Search Tree (BST)",
+    "category": "Data Structures",
+    "difficulty": "Medium",
+    "readmePath": "src/data-structures/tree/README.md",
+    "timeComplexity": "O(log n) average insert/search, O(n) worst",
+    "spaceComplexity": "O(n)",
+    "entryFunction": "BinarySearchTree",
+    "code": "class TreeNode {\n  constructor(value) {\n    this.value = value;\n    this.left = null;\n    this.right = null;\n  }\n}\n\nclass BinarySearchTree {\n  constructor() {\n    this.root = null;\n  }\n\n  insert(value) {\n    const newNode = new TreeNode(value);\n    if (!this.root) {\n      this.root = newNode;\n      return this;\n    }\n    let curr = this.root;\n    while (true) {\n      if (value < curr.value) {\n        if (!curr.left) {\n          curr.left = newNode;\n          return this;\n        }\n        curr = curr.left;\n      } else {\n        if (!curr.right) {\n          curr.right = newNode;\n          return this;\n        }\n        curr = curr.right;\n      }\n    }\n  }\n\n  contains(value) {\n    let curr = this.root;\n    while (curr) {\n      if (value === curr.value) return true;\n      curr = value < curr.value ? curr.left : curr.right;\n    }\n    return false;\n  }\n\n  inOrderTraversal() {\n    const result = [];\n    function traverse(node) {\n      if (!node) return;\n      traverse(node.left);\n      result.push(node.value);\n      traverse(node.right);\n    }\n    traverse(this.root);\n    return result;\n  }\n}",
+    "starterCode": "class BinarySearchTree {\n  constructor() {\n    this.root = null;\n  }\n  insert(val) {}\n  contains(val) {}\n  inOrderTraversal() {}\n}",
+    "testCases": [
+      {
+        "input": "(function() {\n  const bst = new BinarySearchTree();\n  [10, 5, 15, 2, 7, 12, 20].forEach(v => bst.insert(v));\n  const c1 = bst.contains(7);\n  const c2 = bst.contains(99);\n  const sorted = bst.inOrderTraversal();\n  return { c1, c2, sorted };\n})()",
+        "expectedOutput": "{\"c1\": true, \"c2\": false, \"sorted\": [2, 5, 7, 10, 12, 15, 20]}",
+        "description": "Insert, contains, and in-order traversal"
+      }
+    ],
+    "readme": "# Tree\n\n\n\nIn computer science, a **tree** is a widely used abstract data\ntype (ADT) — or data structure implementing this ADT—that\nsimulates a hierarchical tree structure, with a root value\nand subtrees of children with a parent node, represented as\na set of linked nodes.\n\nA tree data structure can be defined recursively (locally)\nas a collection of nodes (starting at a root node), where\neach node is a data structure consisting of a value,\ntogether with a list of references to nodes (the \"children\"),\nwith the constraints that no reference is duplicated, and none\npoints to the root.\n\nA simple unordered tree; in this diagram, the node labeled 3 has\ntwo children, labeled 2 and 6, and one parent, labeled 2. The\nroot node, at the top, has no parent.\n\n\n\n*Made with [okso.app](https://okso.app)*\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Tree_(data_structure))\n- [YouTube](https://www.youtube.com/watch?v=oSWTXtMglKE&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8&index=8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "disjoint-set",
+    "title": "Disjoint Set (Union-Find)",
+    "category": "Data Structures",
+    "difficulty": "Medium",
+    "readmePath": "src/data-structures/disjoint-set/README.md",
+    "timeComplexity": "O(α(n)) nearly O(1) amortized",
+    "spaceComplexity": "O(n)",
+    "entryFunction": "DisjointSet",
+    "code": "class DisjointSet {\n  constructor(size) {\n    this.parent = Array.from({ length: size }, (_, i) => i);\n    this.rank = new Array(size).fill(0);\n  }\n\n  find(i) {\n    if (this.parent[i] === i) return i;\n    this.parent[i] = this.find(this.parent[i]); // Path compression\n    return this.parent[i];\n  }\n\n  union(i, j) {\n    const rootI = this.find(i);\n    const rootJ = this.find(j);\n    if (rootI !== rootJ) {\n      if (this.rank[rootI] < this.rank[rootJ]) {\n        this.parent[rootI] = rootJ;\n      } else if (this.rank[rootI] > this.rank[rootJ]) {\n        this.parent[rootJ] = rootI;\n      } else {\n        this.parent[rootJ] = rootI;\n        this.rank[rootI]++;\n      }\n      return true;\n    }\n    return false;\n  }\n\n  connected(i, j) {\n    return this.find(i) === this.find(j);\n  }\n}",
+    "starterCode": "class DisjointSet {\n  constructor(size) {}\n  find(i) {}\n  union(i, j) {}\n  connected(i, j) {}\n}",
+    "testCases": [
+      {
+        "input": "(function() {\n  const ds = new DisjointSet(6);\n  ds.union(0, 1);\n  ds.union(1, 2);\n  ds.union(3, 4);\n  return [ds.connected(0, 2), ds.connected(0, 3), ds.connected(3, 4)];\n})()",
+        "expectedOutput": "[true, false, true]",
+        "description": "Union operations with path compression"
+      }
+    ],
+    "readme": "# Disjoint Set\n\n\n\nAfter some operations of _Union_, some sets are grouped together.\n\n## Implementation\n\n- [DisjointSet.js](./DisjointSet.js)\n- [DisjointSetAdhoc.js](./DisjointSetAdhoc.js) - The minimalistic (ad hoc) version of a DisjointSet (or a UnionFind) data structure that doesn't have external dependencies and that is easy to copy-paste and use during the coding interview if allowed by the interviewer (since many data structures in JS are missing).\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Disjoint-set_data_structure)\n- [By Abdul Bari on YouTube](https://www.youtube.com/watch?v=wU6udHRIkcc&index=14&t=0s&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "graph",
+    "title": "Graph (Adjacency List)",
+    "category": "Data Structures",
+    "difficulty": "Medium",
+    "readmePath": "src/data-structures/graph/README.md",
+    "timeComplexity": "O(V + E) traversal",
+    "spaceComplexity": "O(V + E)",
+    "entryFunction": "Graph",
+    "code": "class Graph {\n  constructor(isDirected = false) {\n    this.isDirected = isDirected;\n    this.adjacencyList = new Map();\n  }\n\n  addVertex(v) {\n    if (!this.adjacencyList.has(v)) {\n      this.adjacencyList.set(v, []);\n    }\n  }\n\n  addEdge(v1, v2) {\n    this.addVertex(v1);\n    this.addVertex(v2);\n    this.adjacencyList.get(v1).push(v2);\n    if (!this.isDirected) {\n      this.adjacencyList.get(v2).push(v1);\n    }\n  }\n\n  getNeighbors(v) {\n    return this.adjacencyList.get(v) || [];\n  }\n}",
+    "starterCode": "class Graph {\n  constructor(isDirected = false) {\n    this.adjacencyList = new Map();\n  }\n  addVertex(v) {}\n  addEdge(v1, v2) {}\n  getNeighbors(v) {}\n}",
+    "testCases": [
+      {
+        "input": "(function() {\n  const g = new Graph();\n  g.addEdge('A', 'B');\n  g.addEdge('A', 'C');\n  return g.getNeighbors('A');\n})()",
+        "expectedOutput": "[\"B\", \"C\"]",
+        "description": "Undirected graph vertex and edge addition"
+      }
+    ],
+    "readme": "# Graph\n\n\n\nIn computer science, a **graph** is an abstract data type\nthat is meant to implement the undirected graph and\ndirected graph concepts from mathematics, specifically\nthe field of graph theory\n\nA graph data structure consists of a finite (and possibly\nmutable) set of vertices or nodes or points, together\nwith a set of unordered pairs of these vertices for an\nundirected graph or a set of ordered pairs for a\ndirected graph. These pairs are known as edges, arcs,\nor lines for an undirected graph and as arrows,\ndirected edges, directed arcs, or directed lines\nfor a directed graph. The vertices may be part of\nthe graph structure, or may be external entities\nrepresented by integer indices or references.\n\n\n\n*Made with [okso.app](https://okso.app)*\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Graph_(abstract_data_type))\n- [Introduction to Graphs on YouTube](https://www.youtube.com/watch?v=gXgEDyodOJU&index=9&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)\n- [Graphs representation on YouTube](https://www.youtube.com/watch?v=k1wraWzqtvQ&index=10&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "merge-sort",
+    "title": "Merge Sort",
+    "category": "Sorting",
+    "difficulty": "Medium",
+    "readmePath": "src/algorithms/sorting/merge-sort/README.md",
+    "timeComplexity": "O(n log n) across all cases",
+    "spaceComplexity": "O(n)",
+    "entryFunction": "mergeSort",
+    "code": "function mergeSort(arr) {\n  if (arr.length <= 1) return arr;\n  const mid = Math.floor(arr.length / 2);\n  const left = mergeSort(arr.slice(0, mid));\n  const right = mergeSort(arr.slice(mid));\n  return merge(left, right);\n}\n\nfunction merge(left, right) {\n  const result = [];\n  let i = 0, j = 0;\n  while (i < left.length && j < right.length) {\n    if (left[i] <= right[j]) {\n      result.push(left[i++]);\n    } else {\n      result.push(right[j++]);\n    }\n  }\n  return result.concat(left.slice(i)).concat(right.slice(j));\n}",
+    "starterCode": "/**\n * @param {number[]} arr\n * @return {number[]}\n */\nfunction mergeSort(arr) {\n  // Implement divide-and-conquer merge sort\n}",
+    "testCases": [
+      {
+        "input": "[5, 2, 9, 1, 5, 6]",
+        "expectedOutput": "[1, 2, 5, 5, 6, 9]",
+        "description": "Unsorted array with duplicates"
+      },
+      {
+        "input": "[]",
+        "expectedOutput": "[]",
+        "description": "Empty array"
+      },
+      {
+        "input": "[1]",
+        "expectedOutput": "[1]",
+        "description": "Single element"
+      }
+    ],
+    "readme": "# Merge Sort\n\n\n\nIn computer science, merge sort (also commonly spelled\nmergesort) is an efficient, general-purpose,\ncomparison-based sorting algorithm. Most implementations\nproduce a stable sort, which means that the implementation\npreserves the input order of equal elements in the sorted\noutput. Mergesort is a divide and conquer algorithm that\nwas invented by John von Neumann in 1945.\n\nAn example of merge sort. First divide the list into\nthe smallest unit (1 element), then compare each\nelement with the adjacent list to sort and merge the\ntwo adjacent lists. Finally all the elements are sorted\nand merged.\n\n![Merge Sort](https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif)\n\nA recursive merge sort algorithm used to sort an array of 7\ninteger values. These are the steps a human would take to\nemulate merge sort (top-down).\n\n![Merge Sort](https://upload.wikimedia.org/wikipedia/commons/e/e6/Merge_sort_algorithm_diagram.svg)\n\n## Complexity\n\n| Name                  | Best            | Average             | Worst               | Memory    | Stable    | Comments  |\n| --------------------- | :-------------: | :-----------------: | :-----------------: | :-------: | :-------: | :-------- |\n| **Merge sort**        | n&nbsp;log(n)   | n&nbsp;log(n)       | n&nbsp;log(n)       | n         | Yes       |           |\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Merge_sort)\n- [YouTube](https://www.youtube.com/watch?v=KF2j-9iSf4Q&index=27&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "quick-sort",
+    "title": "Quicksort",
+    "category": "Sorting",
+    "difficulty": "Medium",
+    "readmePath": "src/algorithms/sorting/quick-sort/README.md",
+    "timeComplexity": "O(n log n) average, O(n²) worst",
+    "spaceComplexity": "O(log n) auxiliary",
+    "entryFunction": "quickSort",
+    "code": "function quickSort(arr) {\n  if (arr.length <= 1) return arr;\n  const pivot = arr[arr.length - 1];\n  const left = [];\n  const right = [];\n  for (let i = 0; i < arr.length - 1; i++) {\n    if (arr[i] <= pivot) {\n      left.push(arr[i]);\n    } else {\n      right.push(arr[i]);\n    }\n  }\n  return [...quickSort(left), pivot, ...quickSort(right)];\n}",
+    "starterCode": "/**\n * @param {number[]} arr\n * @return {number[]}\n */\nfunction quickSort(arr) {\n  // Implement quicksort with pivot partitioning\n}",
+    "testCases": [
+      {
+        "input": "[38, 27, 43, 3, 9, 82, 10]",
+        "expectedOutput": "[3, 9, 10, 27, 38, 43, 82]",
+        "description": "General array"
+      },
+      {
+        "input": "[-5, -10, 0, 5, 2]",
+        "expectedOutput": "[-10, -5, 0, 2, 5]",
+        "description": "Array with negative numbers"
+      }
+    ],
+    "readme": "# Quicksort\n\n\n\nQuicksort is a divide and conquer algorithm.\nQuicksort first divides a large array into two smaller \nsub-arrays: the low elements and the high elements.\nQuicksort can then recursively sort the sub-arrays\n\nThe steps are:\n\n1. Pick an element, called a pivot, from the array.\n2. Partitioning: reorder the array so that all elements with \nvalues less than the pivot come before the pivot, while all \nelements with values greater than the pivot come after it \n(equal values can go either way). After this partitioning, \nthe pivot is in its final position. This is called the \npartition operation.\n3. Recursively apply the above steps to the sub-array of \nelements with smaller values and separately to the \nsub-array of elements with greater values.\n\nAnimated visualization of the quicksort algorithm.\nThe horizontal lines are pivot values.\n\n![Quicksort](https://upload.wikimedia.org/wikipedia/commons/6/6a/Sorting_quicksort_anim.gif)\n\n## Complexity\n\n| Name                  | Best            | Average             | Worst               | Memory    | Stable    | Comments  |\n| --------------------- | :-------------: | :-----------------: | :-----------------: | :-------: | :-------: | :-------- |\n| **Quick sort**        | n&nbsp;log(n)   | n&nbsp;log(n)       | n<sup>2</sup>       | log(n)    | No        |  Quicksort is usually done in-place with O(log(n)) stack space |\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Quicksort)\n- [YouTube](https://www.youtube.com/watch?v=SLauY6PpjW4&index=28&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "heap-sort",
+    "title": "Heap Sort",
+    "category": "Sorting",
+    "difficulty": "Medium",
+    "readmePath": "src/algorithms/sorting/heap-sort/README.md",
+    "timeComplexity": "O(n log n) in-place",
+    "spaceComplexity": "O(1)",
+    "entryFunction": "heapSort",
+    "code": "function heapSort(arr) {\n  const a = [...arr];\n  const n = a.length;\n\n  function heapify(len, i) {\n    let largest = i;\n    const left = 2 * i + 1;\n    const right = 2 * i + 2;\n    if (left < len && a[left] > a[largest]) largest = left;\n    if (right < len && a[right] > a[largest]) largest = right;\n    if (largest !== i) {\n      [a[i], a[largest]] = [a[largest], a[i]];\n      heapify(len, largest);\n    }\n  }\n\n  for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {\n    heapify(n, i);\n  }\n\n  for (let i = n - 1; i > 0; i--) {\n    [a[0], a[i]] = [a[i], a[0]];\n    heapify(i, 0);\n  }\n\n  return a;\n}",
+    "starterCode": "function heapSort(arr) {\n  // Build max heap and extract elements\n}",
+    "testCases": [
+      {
+        "input": "[12, 11, 13, 5, 6, 7]",
+        "expectedOutput": "[5, 6, 7, 11, 12, 13]",
+        "description": "Heap sort test"
+      }
+    ],
+    "readme": "# Heap Sort\n\n\n\nHeapsort is a comparison-based sorting algorithm.\nHeapsort can be thought of as an improved selection\nsort: like that algorithm, it divides its input into\na sorted and an unsorted region, and it iteratively\nshrinks the unsorted region by extracting the largest\nelement and moving that to the sorted region. The \nimprovement consists of the use of a heap data structure\nrather than a linear-time search to find the maximum.\n\n![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/1/1b/Sorting_heapsort_anim.gif)\n\n![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/4/4d/Heapsort-example.gif)\n\n## Complexity\n\n| Name                  | Best            | Average             | Worst               | Memory    | Stable    | Comments  |\n| --------------------- | :-------------: | :-----------------: | :-----------------: | :-------: | :-------: | :-------- |\n| **Heap sort**         | n&nbsp;log(n)   | n&nbsp;log(n)       | n&nbsp;log(n)       | 1         | No        |           |\n\n## References\n\n[Wikipedia](https://en.wikipedia.org/wiki/Heapsort)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "bubble-sort",
+    "title": "Bubble Sort",
+    "category": "Sorting",
+    "difficulty": "Easy",
+    "readmePath": "src/algorithms/sorting/bubble-sort/README.md",
+    "timeComplexity": "O(n) best, O(n²) worst",
+    "spaceComplexity": "O(1)",
+    "entryFunction": "bubbleSort",
+    "code": "function bubbleSort(arr) {\n  const a = [...arr];\n  let swapped;\n  for (let i = 0; i < a.length; i++) {\n    swapped = false;\n    for (let j = 0; j < a.length - i - 1; j++) {\n      if (a[j] > a[j + 1]) {\n        [a[j], a[j + 1]] = [a[j + 1], a[j]];\n        swapped = true;\n      }\n    }\n    if (!swapped) break;\n  }\n  return a;\n}",
+    "starterCode": "function bubbleSort(arr) {\n  // Implement optimized bubble sort with swap flag\n}",
+    "testCases": [
+      {
+        "input": "[64, 34, 25, 12, 22, 11, 90]",
+        "expectedOutput": "[11, 12, 22, 25, 34, 64, 90]",
+        "description": "Bubble sort"
+      }
+    ],
+    "readme": "# Bubble Sort\n\n\n\nBubble sort, sometimes referred to as sinking sort, is a\nsimple sorting algorithm that repeatedly steps through\nthe list to be sorted, compares each pair of adjacent\nitems and swaps them if they are in the wrong order\n(ascending or descending arrangement). The pass through\nthe list is repeated until no swaps are needed, which\nindicates that the list is sorted.\n\n![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/c/c8/Bubble-sort-example-300px.gif)\n\n## Complexity\n\n| Name                  | Best            | Average             | Worst               | Memory    | Stable    | Comments  |\n| --------------------- | :-------------: | :-----------------: | :-----------------: | :-------: | :-------: | :-------- |\n| **Bubble sort**       | n               | n<sup>2</sup>       | n<sup>2</sup>       | 1         | Yes       |           |\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Bubble_sort)\n- [YouTube](https://www.youtube.com/watch?v=6Gv8vg0kcHc&index=27&t=0s&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "insertion-sort",
+    "title": "Insertion Sort",
+    "category": "Sorting",
+    "difficulty": "Easy",
+    "readmePath": "src/algorithms/sorting/insertion-sort/README.md",
+    "timeComplexity": "O(n) best, O(n²) average",
+    "spaceComplexity": "O(1)",
+    "entryFunction": "insertionSort",
+    "code": "function insertionSort(arr) {\n  const a = [...arr];\n  for (let i = 1; i < a.length; i++) {\n    let key = a[i];\n    let j = i - 1;\n    while (j >= 0 && a[j] > key) {\n      a[j + 1] = a[j];\n      j = j - 1;\n    }\n    a[j + 1] = key;\n  }\n  return a;\n}",
+    "starterCode": "function insertionSort(arr) {\n  // Implement insertion sort\n}",
+    "testCases": [
+      {
+        "input": "[4, 3, 2, 10, 12, 1, 5, 6]",
+        "expectedOutput": "[1, 2, 3, 4, 5, 6, 10, 12]",
+        "description": "Insertion sort test"
+      }
+    ],
+    "readme": "# Insertion Sort\n\n\n\nInsertion sort is a simple sorting algorithm that builds \nthe final sorted array (or list) one item at a time. \nIt is much less efficient on large lists than more \nadvanced algorithms such as quicksort, heapsort, or merge \nsort.\n\n![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/4/42/Insertion_sort.gif)\n\n![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif)\n\n## Complexity\n\n| Name                  | Best            | Average             | Worst               | Memory    | Stable    | Comments  |\n| --------------------- | :-------------: | :-----------------: | :-----------------: | :-------: | :-------: | :-------- |\n| **Insertion sort**    | n               | n<sup>2</sup>       | n<sup>2</sup>       | 1         | Yes       |           |\n\n## References\n\n[Wikipedia](https://en.wikipedia.org/wiki/Insertion_sort)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "binary-search",
+    "title": "Binary Search",
+    "category": "Search",
+    "difficulty": "Easy",
+    "readmePath": "src/algorithms/search/binary-search/README.md",
+    "timeComplexity": "O(log n)",
+    "spaceComplexity": "O(1)",
+    "entryFunction": "binarySearch",
+    "code": "function binarySearch(sortedArray, seekElement) {\n  let left = 0;\n  let right = sortedArray.length - 1;\n  while (left <= right) {\n    const mid = Math.floor((left + right) / 2);\n    if (sortedArray[mid] === seekElement) {\n      return mid;\n    }\n    if (sortedArray[mid] < seekElement) {\n      left = mid + 1;\n    } else {\n      right = mid - 1;\n    }\n  }\n  return -1;\n}",
+    "starterCode": "function binarySearch(sortedArray, seekElement) {\n  // Return index of seekElement or -1 if not found\n}",
+    "testCases": [
+      {
+        "input": "[1, 3, 5, 7, 9, 11], 7",
+        "expectedOutput": "3",
+        "description": "Target present"
+      },
+      {
+        "input": "[1, 3, 5, 7, 9, 11], 4",
+        "expectedOutput": "-1",
+        "description": "Target absent"
+      }
+    ],
+    "readme": "# Binary Search\n\n\n\nIn computer science, binary search, also known as half-interval\nsearch, logarithmic search, or binary chop, is a search algorithm\nthat finds the position of a target value within a sorted\narray. Binary search compares the target value to the middle\nelement of the array; if they are unequal, the half in which\nthe target cannot lie is eliminated and the search continues\non the remaining half until it is successful. If the search\nends with the remaining half being empty, the target is not\nin the array.\n\n![Binary Search](https://upload.wikimedia.org/wikipedia/commons/8/83/Binary_Search_Depiction.svg)\n\n## Complexity\n\n**Time Complexity**: `O(log(n))` - since we split search area by two for every\nnext iteration.\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Binary_search_algorithm)\n- [YouTube](https://www.youtube.com/watch?v=P3YID7liBug&index=29&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "breadth-first-search",
+    "title": "Breadth-First Search (BFS)",
+    "category": "Graph",
+    "difficulty": "Medium",
+    "readmePath": "src/algorithms/graph/breadth-first-search/README.md",
+    "timeComplexity": "O(V + E)",
+    "spaceComplexity": "O(V)",
+    "entryFunction": "bfs",
+    "code": "function bfs(graph, startNode) {\n  const visited = new Set();\n  const queue = [startNode];\n  const order = [];\n  visited.add(startNode);\n\n  while (queue.length > 0) {\n    const node = queue.shift();\n    order.push(node);\n    const neighbors = graph[node] || [];\n    for (const neighbor of neighbors) {\n      if (!visited.has(neighbor)) {\n        visited.add(neighbor);\n        queue.push(neighbor);\n      }\n    }\n  }\n  return order;\n}",
+    "starterCode": "function bfs(graph, startNode) {\n  // Return array of visited nodes in BFS level order\n}",
+    "testCases": [
+      {
+        "input": "{ 'A': ['B', 'C'], 'B': ['D', 'E'], 'C': ['F'], 'D': [], 'E': [], 'F': [] }, 'A'",
+        "expectedOutput": "[\"A\", \"B\", \"C\", \"D\", \"E\", \"F\"]",
+        "description": "Level order traversal"
+      }
+    ],
+    "readme": "# Breadth-First Search (BFS)\n\nBreadth-first search (BFS) is an algorithm for traversing, \nsearching tree, or graph data structures. It starts at\nthe tree root (or some arbitrary node of a graph, sometimes \nreferred to as a 'search key') and explores the neighbor\nnodes first, before moving to the next level neighbors.\n\n![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/5/5d/Breadth-First-Search-Algorithm.gif)\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search)\n- [Tree Traversals (Inorder, Preorder and Postorder)](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)\n- [BFS vs DFS](https://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/)\n- [BFS Visualization](https://www.cs.usfca.edu/~galles/visualization/BFS.html)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "depth-first-search",
+    "title": "Depth-First Search (DFS)",
+    "category": "Graph",
+    "difficulty": "Medium",
+    "readmePath": "src/algorithms/graph/depth-first-search/README.md",
+    "timeComplexity": "O(V + E)",
+    "spaceComplexity": "O(V)",
+    "entryFunction": "dfs",
+    "code": "function dfs(graph, startNode) {\n  const visited = new Set();\n  const order = [];\n\n  function traverse(node) {\n    if (!node || visited.has(node)) return;\n    visited.add(node);\n    order.push(node);\n    const neighbors = graph[node] || [];\n    for (const neighbor of neighbors) {\n      if (!visited.has(neighbor)) {\n        traverse(neighbor);\n      }\n    }\n  }\n\n  traverse(startNode);\n  return order;\n}",
+    "starterCode": "function dfs(graph, startNode) {\n  // Return array of visited nodes in DFS preorder\n}",
+    "testCases": [
+      {
+        "input": "{ 'A': ['B', 'C'], 'B': ['D'], 'C': ['E'], 'D': [], 'E': [] }, 'A'",
+        "expectedOutput": "[\"A\", \"B\", \"D\", \"C\", \"E\"]",
+        "description": "Depth first order"
+      }
+    ],
+    "readme": "# Depth-First Search (DFS)\n\nDepth-first search (DFS) is an algorithm for traversing or \nsearching tree or graph data structures. One starts at \nthe root (selecting some arbitrary node as the root in \nthe case of a graph) and explores as far as possible \nalong each branch before backtracking.\n\n![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif)\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Depth-first_search)\n- [Tree Traversals (Inorder, Preorder and Postorder)](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)\n- [BFS vs DFS](https://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/)\n- [DFS Visualization](https://www.cs.usfca.edu/~galles/visualization/DFS.html)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "dijkstra",
+    "title": "Dijkstra's Shortest Path",
+    "category": "Graph",
+    "difficulty": "Hard",
+    "readmePath": "src/algorithms/graph/dijkstra/README.md",
+    "timeComplexity": "O(E + V log V)",
+    "spaceComplexity": "O(V)",
+    "entryFunction": "dijkstra",
+    "code": "function dijkstra(graph, startNode) {\n  const distances = {};\n  const visited = new Set();\n  const nodes = Object.keys(graph);\n\n  for (const node of nodes) {\n    distances[node] = Infinity;\n  }\n  distances[startNode] = 0;\n\n  while (visited.size < nodes.length) {\n    let minNode = null;\n    let minDistance = Infinity;\n\n    for (const node of nodes) {\n      if (!visited.has(node) && distances[node] < minDistance) {\n        minDistance = distances[node];\n        minNode = node;\n      }\n    }\n\n    if (minNode === null) break;\n    visited.add(minNode);\n\n    const neighbors = graph[minNode] || {};\n    for (const [neighbor, weight] of Object.entries(neighbors)) {\n      const newDist = distances[minNode] + weight;\n      if (newDist < distances[neighbor]) {\n        distances[neighbor] = newDist;\n      }\n    }\n  }\n\n  return distances;\n}",
+    "starterCode": "function dijkstra(graph, startNode) {\n  // Return map of shortest distances from startNode\n}",
+    "testCases": [
+      {
+        "input": "{ 'A': { 'B': 4, 'C': 2 }, 'B': { 'C': 1, 'D': 5 }, 'C': { 'D': 8, 'E': 10 }, 'D': { 'E': 2 }, 'E': {} }, 'A'",
+        "expectedOutput": "{\"A\": 0, \"B\": 4, \"C\": 2, \"D\": 9, \"E\": 11}",
+        "description": "Single source shortest path"
+      }
+    ],
+    "readme": "# Dijkstra's Algorithm\n\n\n\nDijkstra's algorithm is an algorithm for finding the shortest\npaths between nodes in a graph, which may represent, for example,\nroad networks.\n\nThe algorithm exists in many variants; Dijkstra's original variant\nfound the shortest path between two nodes, but a more common\nvariant fixes a single node as the \"source\" node and finds\nshortest paths from the source to all other nodes in the graph,\nproducing a shortest-path tree.\n\n![Dijkstra](https://upload.wikimedia.org/wikipedia/commons/5/57/Dijkstra_Animation.gif)\n\nDijkstra's algorithm to find the shortest path between `a` and `b`.\nIt picks the unvisited vertex with the lowest distance,\ncalculates the distance through it to each unvisited neighbor,\nand updates the neighbor's distance if smaller. Mark visited\n(set to red) when done with neighbors.\n\n## Practical applications of Dijkstra's algorithm\n\n- GPS / navigation systems\n- Public transit and airline route optimization\n- Internet routing (OSPF, IS-IS protocols)\n- Network traffic & latency optimization\n- Game pathfinding (shortest path on maps)\n- Logistics & delivery route optimization\n- Supply chain & transportation network design\n\n## Step-by-step Dijkstra's algorithm example\n\nLet's say we have a weighted graph of nodes, where each edge has a distance parameter between nodes. Let's say the distance from node `A` and node `B` is `7 meters` (or just `7m` for brevity), and so on.\n\nThe algorithm uses [Priority Queue](../../../data-structures/priority-queue/) to always pull the next unvisited vertex that has the smallest distance from the origin node.\n\nThe start node, by definition, has a distance of `0m` from itself. So we start from it, the only node in the priority queue.\n\nThe rest of the nodes will be added to the priority queue later during the graph traversal (while visiting the neighbors).\n\n\n\nEach neighbor of the pulled (from the queue) node is being traversed to calculate the distance to it from the origin. For example, the distance from `A` to `B` is `0m + 7m = 7m`, and so on.\n\nEvery time we visit a not-yet-seen neighbor, we add it to the priority queue, where the priority is the distance to the neighbor node from the origin node.\n\nThe node `B` is being added to the min priority queue to be traversed later.\n\n\n\nVisiting the next neighbor `C` of the node `A`. The distance from the origin node `A` to `C` is `0m + 9m = 9m`.\n\nThe node `C` is being added to the min priority queue to be traversed later.\n\n\n\nSame for the node `F`. The current distance to `F` from the origin node `A` is `0m + 14m = 14m`.\n\nThe node `F` is being added to the min priority queue to be traversed later.\n\n\n\nOnce all the neighbors of the current node were checked, the current node was added to the `visited` set. We don't want to visit such nodes once again during the upcoming traverses.\n\nNow, let's pull out the next node from the priority queue that is closest to the origin (has a shorter distance). We start visiting its neighbors as well.\n\n\n\nIf the node that we're visiting (in this case, the node `C`) is already in the queue, it means we already calculated the distance to it before, but from another node/path (`A → C`). If the current distance to it (from the current neighbor node `A → B → C`) is shorter than the one that was calculated before, we update the distance (in the priority queue) to the shortest one, since we're searching for the shortest paths. If the distance from the current neighbor is actually longer than the one that was already calculated, we leave it like this without updating the `C` node distance in the queue.\n\nWhile visiting the node `C` via `B` (the path `A → B → C`), we see that the distance to it would be `7m + 10m = 17m`. This is actually longer than the already recorded distance of `9m` for the path `A → C`. In such cases, we just ignore the longest distance and don't update the priority (the minimum found distance at the moment from the origin node).\n\n\n\nVisiting another neighbor of `B`, which is `D`. The distance to `D` equals `7m + 15m = 22m`. Since we didn't visit `D` yet and it is not in the min priority queue, let's just add it to the queue with a priority (distance) of `22m`.\n\n\n\nAt this point, all of the neighbors of `B` were traversed, so we add `B` to the `visited` set. Next, we pull the node that is closest to the origin node from the priority queue.\n\n\n\nTraversing the unvisited neighbors of the node `C`. The distance to node `F` via `C` (the path `A → C → F`) is `9m + 2m = 11m`. This is actually shorter than the previously recorded path `A → F` of `14m` length. In such cases, we update the distance to `F` to `11m` and update its priority in the queue from `14m` to `11m`. We've just found a shorter path to `F`.\n\n\n\nThe same goes for `D`. We've just found a shorter path to `D`, where `A → C → D` is shorter than `A → B → D`. Updating the distance from `22m` to `20m`.\n\n\n\nAll neighbors of `C` were traversed, so we may add `C` to the `visited` set. Pulling the next closest node from the queue, which is `F`.\n\n\n\nRecording the distance to `E` as `11m + 9m = 20m`.\n\n\n\nAdding the node `F` to the `visited` set, and pulling the next closest node `D` from the queue.\n\n\n\nDistance to `E` via `D` is `20m + 6m = 26m`. This is longer than the already calculated distance to `E` from `F`, which is `20m`. We can discard the longer distance.\n\n\n\nNode `D` is visited now.\n\n\n\nNode `E` is visited now as well. We've finished the graph traversal.\n\n\n\nNow we know the shortest distances to each node from the start node `A`.\n\nIn practice, during the distance calculations, we also record the `previousVertices` for each node to be able to show the exact sequence of nodes that form the shortest path.\n\nFor example, the shorter path from `A` to `E` is `A → C → F → E`.\n\n## Implementation example\n\n- [dijkstra.js](./dijkstra.js)\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)\n- [On YouTube by Nathaniel Fan](https://www.youtube.com/watch?v=gdmfOwyQlcI&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)\n- [On YouTube by Tushar Roy](https://www.youtube.com/watch?v=lAXZGERcDf4&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "topological-sorting",
+    "title": "Topological Sort (Kahn Algorithm)",
+    "category": "Graph",
+    "difficulty": "Medium",
+    "readmePath": "src/algorithms/graph/topological-sorting/README.md",
+    "timeComplexity": "O(V + E)",
+    "spaceComplexity": "O(V)",
+    "entryFunction": "topologicalSort",
+    "code": "function topologicalSort(numCourses, prerequisites) {\n  const inDegree = new Array(numCourses).fill(0);\n  const adj = Array.from({ length: numCourses }, () => []);\n\n  for (const [dest, src] of prerequisites) {\n    adj[src].push(dest);\n    inDegree[dest]++;\n  }\n\n  const queue = [];\n  for (let i = 0; i < numCourses; i++) {\n    if (inDegree[i] === 0) queue.push(i);\n  }\n\n  const order = [];\n  while (queue.length > 0) {\n    const node = queue.shift();\n    order.push(node);\n    for (const next of adj[node]) {\n      inDegree[next]--;\n      if (inDegree[next] === 0) queue.push(next);\n    }\n  }\n\n  return order.length === numCourses ? order : [];\n}",
+    "starterCode": "function topologicalSort(numCourses, prerequisites) {\n  // Return valid linear ordering or [] if cycle detected\n}",
+    "testCases": [
+      {
+        "input": "4, [[1, 0], [2, 0], [3, 1], [3, 2]]",
+        "expectedOutput": "[0, 1, 2, 3]",
+        "description": "DAG ordering"
+      },
+      {
+        "input": "2, [[1, 0], [0, 1]]",
+        "expectedOutput": "[]",
+        "description": "Cycle detection"
+      }
+    ],
+    "readme": "# Topological Sorting\n\nIn the field of computer science, a topological sort or \ntopological ordering of a directed graph is a linear ordering \nof its vertices such that for every directed edge `uv` from \nvertex `u` to vertex `v`, `u` comes before `v` in the ordering.\n\nFor instance, the vertices of the graph may represent tasks to \nbe performed, and the edges may represent constraints that one \ntask must be performed before another; in this application, a \ntopological ordering is just a valid sequence for the tasks.\n\nA topological ordering is possible if and only if the graph has\nno directed cycles, that is, if it is a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph) \n(DAG). Any DAG has at least one topological ordering, and algorithms are \nknown for constructing a topological ordering of any DAG in linear time.\n\n![Directed Acyclic Graph](https://upload.wikimedia.org/wikipedia/commons/c/c6/Topological_Ordering.svg)\n\nA topological ordering of a directed acyclic graph: every edge goes from \nearlier in the ordering (upper left) to later in the ordering (lower right). \nA directed graph is acyclic if and only if it has a topological ordering.\n\n## Example\n\n![Topologic Sorting](https://upload.wikimedia.org/wikipedia/commons/0/03/Directed_acyclic_graph_2.svg)\n\nThe graph shown above has many valid topological sorts, including:\n\n- `5, 7, 3, 11, 8, 2, 9, 10` (visual left-to-right, top-to-bottom)\n- `3, 5, 7, 8, 11, 2, 9, 10` (smallest-numbered available vertex first)\n- `5, 7, 3, 8, 11, 10, 9, 2` (fewest edges first)\n- `7, 5, 11, 3, 10, 8, 9, 2` (largest-numbered available vertex first)\n- `5, 7, 11, 2, 3, 8, 9, 10` (attempting top-to-bottom, left-to-right)\n- `3, 7, 8, 5, 11, 10, 2, 9` (arbitrary)\n\n## Application\n\nThe canonical application of topological sorting is in \n**scheduling a sequence of jobs** or tasks based on their dependencies. The jobs \nare represented by vertices, and there is an edge from `x` to `y` if \njob `x` must be completed before job `y` can be started (for \nexample, when washing clothes, the washing machine must finish \nbefore we put the clothes in the dryer). Then, a topological sort \ngives an order in which to perform the jobs.\n\nOther application is **dependency resolution**. Each vertex is a package\nand each edge is a dependency of package `a` on package 'b'. Then topological\nsorting will provide a sequence of installing dependencies in a way that every\nnext dependency has its dependent packages to be installed in prior.\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting)\n- [Topological Sorting on YouTube by Tushar Roy](https://www.youtube.com/watch?v=ddTC4Zovtbc&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "knapsack-problem",
+    "title": "0/1 Knapsack Problem",
+    "category": "Dynamic Programming",
+    "difficulty": "Medium",
+    "readmePath": "src/algorithms/sets/knapsack-problem/README.md",
+    "timeComplexity": "O(n * W)",
+    "spaceComplexity": "O(n * W)",
+    "entryFunction": "knapsack",
+    "code": "function knapsack(weights, values, capacity) {\n  const n = weights.length;\n  const dp = Array.from({ length: n + 1 }, () => new Array(capacity + 1).fill(0));\n\n  for (let i = 1; i <= n; i++) {\n    const w = weights[i - 1];\n    const v = values[i - 1];\n    for (let c = 0; c <= capacity; c++) {\n      if (w <= c) {\n        dp[i][c] = Math.max(dp[i - 1][c], dp[i - 1][c - w] + v);\n      } else {\n        dp[i][c] = dp[i - 1][c];\n      }\n    }\n  }\n\n  return dp[n][capacity];\n}",
+    "starterCode": "function knapsack(weights, values, capacity) {\n  // Return max value that can be put in knapsack of capacity W\n}",
+    "testCases": [
+      {
+        "input": "[1, 2, 3], [10, 15, 40], 4",
+        "expectedOutput": "55",
+        "description": "Weights [1,2,3], values [10,15,40], capacity 4 -> items 1 & 3"
+      }
+    ],
+    "readme": "# Knapsack Problem\n\nThe knapsack problem or rucksack problem is a problem in \ncombinatorial optimization: Given a set of items, each with \na weight and a value, determine the number of each item to \ninclude in a collection so that the total weight is less \nthan or equal to a given limit and the total value is as \nlarge as possible.\n\nIt derives its name from the problem faced by someone who is \nconstrained by a fixed-size knapsack and must fill it with the \nmost valuable items.\n\nExample of a one-dimensional (constraint) knapsack problem: \nwhich boxes should be chosen to maximize the amount of money \nwhile still keeping the overall weight under or equal to 15 kg?\n\n![knapsack problem](https://upload.wikimedia.org/wikipedia/commons/f/fd/Knapsack.svg)\n\n## Definition\n\n### 0/1 knapsack problem\n\nThe most common problem being solved is the **0/1 knapsack problem**, \nwhich restricts the number `xi` of copies of each kind of item to zero or one.\n\nGiven a set of n items numbered from `1` up to `n`, each with a \nweight `wi` and a value `vi`, along with a maximum weight \ncapacity `W`,\n\nmaximize ![0/1 knapsack](https://wikimedia.org/api/rest_v1/media/math/render/svg/85620037d368d2136fb3361702df6a489416931b)\n\nsubject to ![0/1 knapsack](https://wikimedia.org/api/rest_v1/media/math/render/svg/dd6e7c9bca4397980976ea6d19237500ce3b8176)\nand ![0/1 knapsack](https://wikimedia.org/api/rest_v1/media/math/render/svg/07dda71da2a630762c7b21b51ea54f86f422f951)\n\nHere `xi` represents the number of instances of item `i` to \ninclude in the knapsack. Informally, the problem is to maximize \nthe sum of the values of the items in the knapsack so that the \nsum of the weights is less than or equal to the knapsack's \ncapacity.\n\n### Bounded knapsack problem (BKP)\n\nThe **bounded knapsack problem (BKP)** removes the restriction \nthat there is only one of each item, but restricts the number \n`xi` of copies of each kind of item to a maximum non-negative \ninteger value `c`:\n\nmaximize ![bounded knapsack](https://wikimedia.org/api/rest_v1/media/math/render/svg/85620037d368d2136fb3361702df6a489416931b)\n\nsubject to ![bounded knapsack](https://wikimedia.org/api/rest_v1/media/math/render/svg/dd6e7c9bca4397980976ea6d19237500ce3b8176)\nand ![bounded knapsack](https://wikimedia.org/api/rest_v1/media/math/render/svg/6c8c5ac4f8247b3b8e01e89de76a1df0ea969821)\n\n### Unbounded knapsack problem (UKP)\n\nThe **unbounded knapsack problem (UKP)** places no upper bound \non the number of copies of each kind of item and can be \nformulated as above except for that the only restriction \non `xi` is that it is a non-negative integer.\n\nmaximize ![unbounded knapsack](https://wikimedia.org/api/rest_v1/media/math/render/svg/85620037d368d2136fb3361702df6a489416931b)\n\nsubject to ![unbounded knapsack](https://wikimedia.org/api/rest_v1/media/math/render/svg/dd6e7c9bca4397980976ea6d19237500ce3b8176) \nand ![unbounded knapsack](https://wikimedia.org/api/rest_v1/media/math/render/svg/90a99710f61d5dea19e49ae5b31164d2b56b07e3)\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Knapsack_problem)\n- [0/1 Knapsack Problem on YouTube](https://www.youtube.com/watch?v=8LusJS5-AGo&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "longest-common-subsequence",
+    "title": "Longest Common Subsequence (LCS)",
+    "category": "Dynamic Programming",
+    "difficulty": "Medium",
+    "readmePath": "src/algorithms/sets/longest-common-subsequence/README.md",
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(m * n)",
+    "entryFunction": "lcs",
+    "code": "function lcs(text1, text2) {\n  const m = text1.length;\n  const n = text2.length;\n  const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));\n\n  for (let i = 1; i <= m; i++) {\n    for (let j = 1; j <= n; j++) {\n      if (text1[i - 1] === text2[j - 1]) {\n        dp[i][j] = dp[i - 1][j - 1] + 1;\n      } else {\n        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);\n      }\n    }\n  }\n\n  return dp[m][n];\n}",
+    "starterCode": "function lcs(text1, text2) {\n  // Return length of longest common subsequence\n}",
+    "testCases": [
+      {
+        "input": "\"abcde\", \"ace\"",
+        "expectedOutput": "3",
+        "description": "Common subsequence is \"ace\""
+      },
+      {
+        "input": "\"abc\", \"def\"",
+        "expectedOutput": "0",
+        "description": "No common subsequence"
+      }
+    ],
+    "readme": "# Longest common subsequence problem\n\nThe longest common subsequence (LCS) problem is the problem of finding \nthe longest subsequence common to all sequences in a set of sequences \n(often just two sequences). It differs from the longest common substring\nproblem: unlike substrings, subsequences are not required to occupy \nconsecutive positions within the original sequences. \n\n## Application\n\nThe longest common subsequence problem is a classic computer science \nproblem, the basis of data comparison programs such as the diff utility, \nand has applications in bioinformatics. It is also widely used by \nrevision control systems such as Git for reconciling multiple changes \nmade to a revision-controlled collection of files.\n\n## Example\n\n- LCS for input Sequences `ABCDGH` and `AEDFHR` is `ADH` of length 3.\n- LCS for input Sequences `AGGTAB` and `GXTXAYB` is `GTAB` of length 4.\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Longest_common_subsequence_problem)\n- [YouTube](https://www.youtube.com/watch?v=NnD96abizww&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "levenshtein-distance",
+    "title": "Levenshtein Edit Distance",
+    "category": "Dynamic Programming",
+    "difficulty": "Medium",
+    "readmePath": "src/algorithms/string/levenshtein-distance/README.md",
+    "timeComplexity": "O(m * n)",
+    "spaceComplexity": "O(m * n)",
+    "entryFunction": "levenshteinDistance",
+    "code": "function levenshteinDistance(a, b) {\n  const m = a.length;\n  const n = b.length;\n  const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));\n\n  for (let i = 0; i <= m; i++) dp[i][0] = i;\n  for (let j = 0; j <= n; j++) dp[0][j] = j;\n\n  for (let i = 1; i <= m; i++) {\n    for (let j = 1; j <= n; j++) {\n      if (a[i - 1] === b[j - 1]) {\n        dp[i][j] = dp[i - 1][j - 1];\n      } else {\n        dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);\n      }\n    }\n  }\n\n  return dp[m][n];\n}",
+    "starterCode": "function levenshteinDistance(a, b) {\n  // Return minimum number of single-character edits (insertions, deletions, substitutions)\n}",
+    "testCases": [
+      {
+        "input": "\"kitten\", \"sitting\"",
+        "expectedOutput": "3",
+        "description": "Edit distance from kitten to sitting"
+      },
+      {
+        "input": "\"\", \"abc\"",
+        "expectedOutput": "3",
+        "description": "Empty to string"
+      }
+    ],
+    "readme": "# Levenshtein Distance\n\nThe Levenshtein distance is a string metric for measuring the \ndifference between two sequences. Informally, the Levenshtein \ndistance between two words is the minimum number of \nsingle-character edits (insertions, deletions or substitutions) \nrequired to change one word into the other.\n\n## Definition\n\nMathematically, the Levenshtein distance between two strings\n`a` and `b` (of length `|a|` and `|b|` respectively) is given by\n![Levenshtein](https://wikimedia.org/api/rest_v1/media/math/render/svg/4cf357d8f2135035207088d2c7b890fb4b64e410)\nwhere\n\n![Levenshtein](https://wikimedia.org/api/rest_v1/media/math/render/svg/f0a48ecfc9852c042382fdc33c19e11a16948e85)\n\nwhere \n![Levenshtein](https://wikimedia.org/api/rest_v1/media/math/render/svg/52512ede08444b13838c570ba4a3fc71d54dbce9)\nis the indicator function equal to `0` when\n![Levenshtein](https://wikimedia.org/api/rest_v1/media/math/render/svg/231fda9ee578f0328c5ca28088d01928bb0aaaec)\nand equal to 1 otherwise, and\n![Levenshtein](https://wikimedia.org/api/rest_v1/media/math/render/svg/bdc0315678caad28648aafedb6ebafb16bd1655c)\nis the distance between the first `i` characters of `a` and the first \n`j` characters of `b`.\n\nNote that the first element in the minimum corresponds to \ndeletion (from `a` to `b`), the second to insertion and \nthe third to match or mismatch, depending on whether the \nrespective symbols are the same.\n\n## Example\n\nFor example, the Levenshtein distance between `kitten` and \n`sitting` is `3`, since the following three edits change one \ninto the other, and there is no way to do it with fewer than \nthree edits:\n\n1. **k**itten → **s**itten (substitution of \"s\" for \"k\")\n2. sitt**e**n → sitt**i**n (substitution of \"i\" for \"e\")\n3. sittin → sittin**g** (insertion of \"g\" at the end).\n\n## Applications\n\nThis has a wide range of applications, for instance, spell checkers, correction \nsystems for optical character recognition, fuzzy string searching, and software \nto assist natural language translation based on translation memory.\n\n## Dynamic Programming Approach Explanation\n\nLet’s take a simple example of finding minimum edit distance between \nstrings `ME` and `MY`. Intuitively you already know that minimum edit distance \nhere is `1` operation, which is replacing `E` with `Y`. But \nlet’s try to formalize it in a form of the algorithm in order to be able to \ndo more complex examples like transforming `Saturday` into `Sunday`.\n\nTo apply the mathematical formula mentioned above to `ME → MY` transformation \nwe need to know minimum edit distances of `ME → M`, `M → MY` and `M → M` transformations\nin prior. Then we will need to pick the minimum one and add _one_ operation to \ntransform last letters `E → Y`. So minimum edit distance of `ME → MY` transformation \nis being calculated based on three previously possible transformations.\n\nTo explain this further let’s draw the following matrix:\n\n![Levenshtein Matrix](https://cdn-images-1.medium.com/max/1600/1*aTunSUoy0BJyYBVn4tWGrA.png)\n\n- Cell `(0:1)` contains red number 1. It means that we need 1 operation to \ntransform `M` to an empty string. And it is by deleting `M`. This is why this number is red.\n- Cell `(0:2)` contains red number 2. It means that we need 2 operations \nto transform `ME` to an empty string. And it is by deleting `E` and `M`.\n- Cell `(1:0)` contains green number 1. It means that we need 1 operation \nto transform an empty string to `M`. And it is by inserting `M`. This is why this number is green.\n- Cell `(2:0)` contains green number 2. It means that we need 2 operations \nto transform an empty string to `MY`. And it is by inserting `Y` and  `M`.\n- Cell `(1:1)` contains number 0. It means that it costs nothing \nto transform `M` into `M`.\n- Cell `(1:2)` contains red number 1. It means that we need 1 operation \nto transform `ME` to `M`. And it is by deleting `E`.\n- And so on...\n\nThis looks easy for such small matrix as ours (it is only `3x3`). But here you\nmay find basic concepts that may be applied to calculate all those numbers for\nbigger matrices (let’s say a `9x7` matrix for `Saturday → Sunday` transformation).\n\nAccording to the formula you only need three adjacent cells `(i-1:j)`, `(i-1:j-1)`, and `(i:j-1)` to\ncalculate the number for current cell `(i:j)`. All we need to do is to find the \nminimum of those three cells and then add `1` in case if we have different \nletters in `i`'s row and `j`'s column.\n\nYou may clearly see the recursive nature of the problem.\n\n![Levenshtein Matrix](https://cdn-images-1.medium.com/max/1600/1*w8UB4DSvBnAK6mBXRGQDjw.png)\n\nLet's draw a decision graph for this problem.\n\n![Minimum Edit Distance Decision Graph](https://cdn-images-1.medium.com/max/1600/1*8jD0qvr5B9PwRFM_9z7q9A.png)\n\nYou may see a number of overlapping sub-problems on the picture that are marked \nwith red. Also there is no way to reduce the number of operations and make it \nless than a minimum of those three adjacent cells from the formula. \n\nAlso you may notice that each cell number in the matrix is being calculated \nbased on previous ones. Thus the tabulation technique (filling the cache in \nbottom-up direction) is being applied here.\n\nApplying this principle further we may solve more complicated cases like \nwith `Saturday → Sunday` transformation.\n\n![Levenshtein distance](https://cdn-images-1.medium.com/max/2600/1*497gMaFErzJpCXG7kS_7dw.png)\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Levenshtein_distance)\n- [YouTube](https://www.youtube.com/watch?v=We3YDTzNXEk&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)\n- [ITNext](https://itnext.io/dynamic-programming-vs-divide-and-conquer-2fea680becbe)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "knuth-morris-pratt",
+    "title": "Knuth-Morris-Pratt (KMP) Pattern Search",
+    "category": "String",
+    "difficulty": "Medium",
+    "readmePath": "src/algorithms/string/knuth-morris-pratt/README.md",
+    "timeComplexity": "O(n + m)",
+    "spaceComplexity": "O(m)",
+    "entryFunction": "kmp",
+    "code": "function kmp(text, pattern) {\n  if (pattern.length === 0) return 0;\n  const lps = new Array(pattern.length).fill(0);\n  let prevLPS = 0;\n  let i = 1;\n\n  while (i < pattern.length) {\n    if (pattern[i] === pattern[prevLPS]) {\n      lps[i] = prevLPS + 1;\n      prevLPS++;\n      i++;\n    } else if (prevLPS === 0) {\n      lps[i] = 0;\n      i++;\n    } else {\n      prevLPS = lps[prevLPS - 1];\n    }\n  }\n\n  let textIdx = 0;\n  let patIdx = 0;\n  while (textIdx < text.length) {\n    if (text[textIdx] === pattern[patIdx]) {\n      textIdx++;\n      patIdx++;\n    } else if (patIdx === 0) {\n      textIdx++;\n    } else {\n      patIdx = lps[patIdx - 1];\n    }\n\n    if (patIdx === pattern.length) {\n      return textIdx - pattern.length;\n    }\n  }\n\n  return -1;\n}",
+    "starterCode": "function kmp(text, pattern) {\n  // Return first index of pattern in text using KMP, or -1\n}",
+    "testCases": [
+      {
+        "input": "\"hello world\", \"world\"",
+        "expectedOutput": "6",
+        "description": "Substring match"
+      },
+      {
+        "input": "\"ababcabcabababd\", \"ababd\"",
+        "expectedOutput": "10",
+        "description": "LPS shift match"
+      }
+    ],
+    "readme": "# Knuth–Morris–Pratt Algorithm\n\nThe Knuth–Morris–Pratt string searching algorithm (or \nKMP algorithm) searches for occurrences of a \"word\" `W` \nwithin a main \"text string\" `T` by employing the \nobservation that when a mismatch occurs, the word itself \nembodies sufficient information to determine where the \nnext match could begin, thus bypassing re-examination \nof previously matched characters.\n\n## Complexity\n\n- **Time:** `O(|W| + |T|)` (much faster comparing to trivial `O(|W| * |T|)`)\n- **Space:** `O(|W|)`\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm)\n- [YouTube](https://www.youtube.com/watch?v=GTJr8OvyEVQ&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "fibonacci",
+    "title": "Fibonacci (DP / Memoization)",
+    "category": "Math",
+    "difficulty": "Easy",
+    "readmePath": "src/algorithms/math/fibonacci/README.md",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1) with two variables",
+    "entryFunction": "fibonacci",
+    "code": "function fibonacci(n) {\n  if (n <= 0) return 0;\n  if (n === 1) return 1;\n  let prev = 0;\n  let curr = 1;\n  for (let i = 2; i <= n; i++) {\n    const next = prev + curr;\n    prev = curr;\n    curr = next;\n  }\n  return curr;\n}",
+    "starterCode": "function fibonacci(n) {\n  // Return the n-th Fibonacci number in O(n) time and O(1) space\n}",
+    "testCases": [
+      {
+        "input": "0",
+        "expectedOutput": "0",
+        "description": "fib(0)"
+      },
+      {
+        "input": "1",
+        "expectedOutput": "1",
+        "description": "fib(1)"
+      },
+      {
+        "input": "10",
+        "expectedOutput": "55",
+        "description": "fib(10)"
+      }
+    ],
+    "readme": "# Fibonacci Number\n\n\n\nIn mathematics, the Fibonacci numbers are the numbers in the following\ninteger sequence, called the Fibonacci sequence, and characterized by\nthe fact that every number after the first two is the sum of the two\npreceding ones:\n\n`0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...`\n\nA tiling with squares whose side lengths are successive Fibonacci numbers\n\n![Fibonacci](https://upload.wikimedia.org/wikipedia/commons/d/db/34%2A21-FibonacciBlocks.png)\n\nThe Fibonacci spiral: an approximation of the golden spiral created by drawing circular arcs connecting the opposite corners of squares in the Fibonacci tiling;[4] this one uses squares of sizes 1, 1, 2, 3, 5, 8, 13 and 21.\n\n![Fibonacci Spiral](https://upload.wikimedia.org/wikipedia/commons/2/2e/FibonacciSpiral.svg)\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_number)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "sieve-of-eratosthenes",
+    "title": "Sieve of Eratosthenes",
+    "category": "Math",
+    "difficulty": "Medium",
+    "readmePath": "src/algorithms/math/sieve-of-eratosthenes/README.md",
+    "timeComplexity": "O(n log log n)",
+    "spaceComplexity": "O(n)",
+    "entryFunction": "sieveOfEratosthenes",
+    "code": "function sieveOfEratosthenes(maxNumber) {\n  const isPrime = new Array(maxNumber + 1).fill(true);\n  isPrime[0] = false;\n  isPrime[1] = false;\n\n  for (let number = 2; number * number <= maxNumber; number++) {\n    if (isPrime[number]) {\n      for (let multiple = number * number; multiple <= maxNumber; multiple += number) {\n        isPrime[multiple] = false;\n      }\n    }\n  }\n\n  const primes = [];\n  for (let number = 2; number <= maxNumber; number++) {\n    if (isPrime[number]) primes.push(number);\n  }\n  return primes;\n}",
+    "starterCode": "function sieveOfEratosthenes(maxNumber) {\n  // Return array of prime numbers up to maxNumber\n}",
+    "testCases": [
+      {
+        "input": "10",
+        "expectedOutput": "[2, 3, 5, 7]",
+        "description": "Primes up to 10"
+      },
+      {
+        "input": "30",
+        "expectedOutput": "[2, 3, 5, 7, 11, 13, 17, 19, 23, 29]",
+        "description": "Primes up to 30"
+      }
+    ],
+    "readme": "# Sieve of Eratosthenes\n\nThe Sieve of Eratosthenes is an algorithm for finding all prime numbers up to some limit `n`.\n\nIt is attributed to Eratosthenes of Cyrene, an ancient Greek mathematician.\n\n## How it works\n\n1. Create a boolean array of `n + 1` positions (to represent the numbers `0` through `n`)\n2. Set positions `0` and `1` to `false`, and the rest to `true`\n3. Start at position `p = 2` (the first prime number)\n4. Mark as `false` all the multiples of `p` (that is, positions `2 * p`, `3 * p`, `4 * p`... until you reach the end of the array)\n5. Find the first position greater than `p` that is `true` in the array. If there is no such position, stop. Otherwise, let `p` equal this new number (which is the next prime), and repeat from step 4\n\nWhen the algorithm terminates, the numbers remaining `true` in the array are all \nthe primes below `n`.\n\nAn improvement of this algorithm is, in step 4, start marking multiples \nof `p` from `p * p`, and not from `2 * p`. The reason why this works is because, \nat that point, smaller multiples of `p` will have already been marked `false`.\n\n## Example\n\n![Sieve](https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif)\n\n## Complexity\n\nThe algorithm has a complexity of `O(n log(log n))`.\n\n## References\n\n- [Wikipedia](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)",
+    "author": "Oleksii Trekhleb (javascript-algorithms - MIT)"
+  },
+  {
+    "id": "polyfill-debounce",
+    "title": "Debounce with Leading & Trailing Options",
+    "category": "JavaScript Polyfills",
+    "difficulty": "Medium",
+    "timeComplexity": "O(1) execution per trigger",
+    "spaceComplexity": "O(1) closure state",
+    "entryFunction": "debounce",
+    "author": "Interview Brain (Frontend Engineering Arsenal)",
+    "readme": "# Debounce Implementation\n\n### Overview\nA **debounced function** delays invoking the target callback until after `wait` milliseconds have elapsed since the last time the debounced function was invoked.\n\n### Common Use Cases\n- Search autocomplete input (waiting for candidate to pause typing before firing API request)\n- Window resize or scroll recalculations\n- Auto-saving draft text in form inputs\n\n### Edge Cases to Handle\n1. **Trailing vs Leading:** Some implementations require an immediate invocation on the leading edge.\n2. **Context & Arguments:** Preserving `this` and passing all arguments to the original function.\n3. **Cancel & Flush:** Methods to cancel scheduled execution or immediately flush it.",
+    "starterCode": "/**\n * @param {Function} fn\n * @param {number} wait\n * @param {boolean} [immediate=false]\n * @return {Function}\n */\nfunction debounce(fn, wait, immediate = false) {\n  // Your implementation here\n}",
+    "code": "function debounce(fn, wait, immediate = false) {\n  let timerId = null;\n\n  function debounced(...args) {\n    const context = this;\n    const callNow = immediate && !timerId;\n\n    if (timerId) {\n      clearTimeout(timerId);\n    }\n\n    timerId = setTimeout(() => {\n      timerId = null;\n      if (!immediate) {\n        fn.apply(context, args);\n      }\n    }, wait);\n\n    if (callNow) {\n      fn.apply(context, args);\n    }\n  }\n\n  debounced.cancel = function() {\n    if (timerId) {\n      clearTimeout(timerId);\n      timerId = null;\n    }\n  };\n\n  return debounced;\n}",
+    "testCases": [
+      {
+        "id": "tc-1",
+        "input": "(() => {\n  let count = 0;\n  const inc = () => { count++; };\n  const debounced = debounce(inc, 100);\n  debounced();\n  debounced();\n  debounced();\n  return count; // Synchronous check before timeout\n})()",
+        "expectedOutput": "0",
+        "description": "Does not execute immediately when immediate=false"
+      },
+      {
+        "id": "tc-2",
+        "input": "(() => {\n  let count = 0;\n  const inc = () => { count++; };\n  const debounced = debounce(inc, 100, true);\n  debounced();\n  debounced();\n  debounced();\n  return count; // Immediate leading edge execution\n})()",
+        "expectedOutput": "1",
+        "description": "Executes immediately once on leading edge when immediate=true"
+      }
+    ]
+  },
+  {
+    "id": "polyfill-throttle",
+    "title": "Throttle (Rate Limiter)",
+    "category": "JavaScript Polyfills",
+    "difficulty": "Medium",
+    "timeComplexity": "O(1) execution per check",
+    "spaceComplexity": "O(1) closure state",
+    "entryFunction": "throttle",
+    "author": "Interview Brain (Frontend Engineering Arsenal)",
+    "readme": "# Throttle Implementation\n\n### Overview\nA **throttled function** ensures that the underlying function is called at most once per specified duration (`limit` milliseconds).\n\n### Difference from Debounce\n- **Debounce:** \"Wait until things calm down before running.\"\n- **Throttle:** \"Run at a regular cadence, no matter how many times triggered.\"\n\n### Common Use Cases\n- Continuous scroll position tracking (e.g. infinite scroll loading trigger)\n- Mouse movement / drag-and-drop coordinate handlers\n- Rate-limiting button clicks to prevent double-submissions",
+    "starterCode": "/**\n * @param {Function} fn\n * @param {number} limit\n * @return {Function}\n */\nfunction throttle(fn, limit) {\n  // Your implementation here\n}",
+    "code": "function throttle(fn, limit) {\n  let inThrottle = false;\n\n  return function(...args) {\n    const context = this;\n\n    if (!inThrottle) {\n      fn.apply(context, args);\n      inThrottle = true;\n\n      setTimeout(() => {\n        inThrottle = false;\n      }, limit);\n    }\n  };\n}",
+    "testCases": [
+      {
+        "id": "tc-1",
+        "input": "(() => {\n  let count = 0;\n  const throttled = throttle(() => { count++; }, 100);\n  throttled();\n  throttled();\n  throttled();\n  return count;\n})()",
+        "expectedOutput": "1",
+        "description": "Executes first call immediately and ignores subsequent calls within window"
+      }
+    ]
+  },
+  {
+    "id": "polyfill-promise-all",
+    "title": "Promise.all Polyfill",
+    "category": "JavaScript Polyfills",
+    "difficulty": "Medium",
+    "timeComplexity": "O(N) where N is number of promises",
+    "spaceComplexity": "O(N) result array",
+    "entryFunction": "promiseAll",
+    "author": "Interview Brain (Frontend Engineering Arsenal)",
+    "readme": "# Promise.all Polyfill\n\n### Overview\n`Promise.all` takes an iterable of promises and returns a single Promise that:\n1. Resolves when **all** input promises have resolved, returning an array of resolved values in the original input order.\n2. Rejects immediately upon the **first** rejected promise with that rejection reason (fail-fast).\n\n### Key Implementation Details\n- Handle empty arrays immediately: `if (promises.length === 0) resolve([])`.\n- Wrap non-promise values using `Promise.resolve(item)`.\n- Do NOT push into an array blindly; assign to `results[index]` so asynchronous completion preserves input indices!",
+    "starterCode": "/**\n * @param {Array<Promise|any>} promises\n * @return {Promise<Array<any>>}\n */\nfunction promiseAll(promises) {\n  // Your implementation here\n}",
+    "code": "function promiseAll(promises) {\n  return new Promise((resolve, reject) => {\n    if (!Array.isArray(promises)) {\n      return reject(new TypeError('Argument must be an array'));\n    }\n\n    const n = promises.length;\n    if (n === 0) {\n      return resolve([]);\n    }\n\n    const results = new Array(n);\n    let completed = 0;\n\n    promises.forEach((p, index) => {\n      Promise.resolve(p).then(\n        val => {\n          results[index] = val;\n          completed++;\n          if (completed === n) {\n            resolve(results);\n          }\n        },\n        err => {\n          reject(err);\n        }\n      );\n    });\n  });\n}",
+    "testCases": [
+      {
+        "id": "tc-1",
+        "input": "[Promise.resolve(10), Promise.resolve(20), 30]",
+        "expectedOutput": "[10, 20, 30]",
+        "description": "Resolves all promises and non-promise values in correct order"
+      },
+      {
+        "id": "tc-2",
+        "input": "[]",
+        "expectedOutput": "[]",
+        "description": "Empty array resolves immediately with empty array"
+      }
+    ]
+  },
+  {
+    "id": "polyfill-promise-allsettled",
+    "title": "Promise.allSettled Polyfill",
+    "category": "JavaScript Polyfills",
+    "difficulty": "Medium",
+    "timeComplexity": "O(N)",
+    "spaceComplexity": "O(N)",
+    "entryFunction": "promiseAllSettled",
+    "author": "Interview Brain (Frontend Engineering Arsenal)",
+    "readme": "# Promise.allSettled Polyfill\n\n### Overview\n`Promise.allSettled()` returns a promise that fulfills after all given promises have either fulfilled or rejected, with an array of objects that each describe the outcome of each promise.\n\n### Outcome Objects:\n- Fulfilled: `{ status: 'fulfilled', value: <result> }`\n- Rejected: `{ status: 'rejected', reason: <error> }`",
+    "starterCode": "/**\n * @param {Array<Promise|any>} promises\n * @return {Promise<Array<{status: string, value?: any, reason?: any}>>}\n */\nfunction promiseAllSettled(promises) {\n  // Your implementation here\n}",
+    "code": "function promiseAllSettled(promises) {\n  return new Promise((resolve) => {\n    if (!Array.isArray(promises) || promises.length === 0) {\n      return resolve([]);\n    }\n\n    const results = new Array(promises.length);\n    let settledCount = 0;\n\n    promises.forEach((p, i) => {\n      Promise.resolve(p)\n        .then(value => {\n          results[i] = { status: 'fulfilled', value };\n        })\n        .catch(reason => {\n          results[i] = { status: 'rejected', reason };\n        })\n        .finally(() => {\n          settledCount++;\n          if (settledCount === promises.length) {\n            resolve(results);\n          }\n        });\n    });\n  });\n}",
+    "testCases": [
+      {
+        "id": "tc-1",
+        "input": "[Promise.resolve(42), Promise.reject('error_msg')]",
+        "expectedOutput": "[{\"status\":\"fulfilled\",\"value\":42},{\"status\":\"rejected\",\"reason\":\"error_msg\"}]",
+        "description": "Returns array of both fulfilled and rejected outcomes"
+      }
+    ]
+  },
+  {
+    "id": "polyfill-deep-clone",
+    "title": "Deep Clone (with Circular Reference Handling)",
+    "category": "JavaScript Polyfills",
+    "difficulty": "Hard",
+    "timeComplexity": "O(N) where N is number of nodes/properties",
+    "spaceComplexity": "O(N) for recursion stack & hash map",
+    "entryFunction": "deepClone",
+    "author": "Interview Brain (Frontend Engineering Arsenal)",
+    "readme": "# Deep Clone with Circular References\n\n### Overview\nCreating an exact deep duplicate of an arbitrary JavaScript object without keeping references to nested properties.\n\n### Key Corner Cases\n1. **Primitives & Null:** Return directly.\n2. **Special Types:** `Date`, `RegExp` must create new instances (`new Date(obj)`, `new RegExp(obj)`).\n3. **Circular References:** An object referencing itself (`a.self = a`) will cause infinite recursion without a cache. Use a `WeakMap` to track visited objects.\n4. **Arrays vs Plain Objects:** Preserve prototype array nature.",
+    "starterCode": "/**\n * @param {any} value\n * @param {WeakMap} [visited]\n * @return {any}\n */\nfunction deepClone(value, visited = new WeakMap()) {\n  // Your implementation here\n}",
+    "code": "function deepClone(value, visited = new WeakMap()) {\n  if (value === null || typeof value !== 'object') {\n    return value;\n  }\n\n  if (value instanceof Date) {\n    return new Date(value.getTime());\n  }\n\n  if (value instanceof RegExp) {\n    return new RegExp(value.source, value.flags);\n  }\n\n  if (visited.has(value)) {\n    return visited.get(value);\n  }\n\n  const result = Array.isArray(value) ? [] : {};\n  visited.set(value, result);\n\n  for (const key of Object.keys(value)) {\n    result[key] = deepClone(value[key], visited);\n  }\n\n  return result;\n}",
+    "testCases": [
+      {
+        "id": "tc-1",
+        "input": "(() => {\n  const original = { a: 1, b: { c: [2, 3] } };\n  const cloned = deepClone(original);\n  cloned.b.c.push(4);\n  return { originalLen: original.b.c.length, clonedLen: cloned.b.c.length, matches: cloned.a === original.a };\n})()",
+        "expectedOutput": "{\"originalLen\":2,\"clonedLen\":3,\"matches\":true}",
+        "description": "Deeply clones nested arrays and objects without mutating original"
+      },
+      {
+        "id": "tc-2",
+        "input": "(() => {\n  const obj = { name: 'root' };\n  obj.self = obj;\n  const cloned = deepClone(obj);\n  return { hasSelf: cloned.self === cloned, notOriginal: cloned.self !== obj };\n})()",
+        "expectedOutput": "{\"hasSelf\":true,\"notOriginal\":true}",
+        "description": "Correctly preserves circular references without stack overflow"
+      }
+    ]
+  },
+  {
+    "id": "polyfill-deep-equal",
+    "title": "Deep Equal (Structural Equality)",
+    "category": "JavaScript Polyfills",
+    "difficulty": "Medium",
+    "timeComplexity": "O(N)",
+    "spaceComplexity": "O(D) call stack depth",
+    "entryFunction": "deepEqual",
+    "author": "Interview Brain (Frontend Engineering Arsenal)",
+    "readme": "# Deep Equality Comparator\n\n### Overview\nRecursively tests whether two values are structurally equivalent.\nCommonly tested in interview rounds to evaluate understanding of JavaScript types, object keys, and NaN comparisons.",
+    "starterCode": "/**\n * @param {any} a\n * @param {any} b\n * @return {boolean}\n */\nfunction deepEqual(a, b) {\n  // Your implementation here\n}",
+    "code": "function deepEqual(a, b) {\n  if (a === b) return true;\n\n  if (typeof a === 'number' && typeof b === 'number' && isNaN(a) && isNaN(b)) {\n    return true;\n  }\n\n  if (typeof a !== 'object' || a === null || typeof b !== 'object' || b === null) {\n    return false;\n  }\n\n  if (Array.isArray(a) !== Array.isArray(b)) {\n    return false;\n  }\n\n  const keysA = Object.keys(a);\n  const keysB = Object.keys(b);\n\n  if (keysA.length !== keysB.length) {\n    return false;\n  }\n\n  for (const key of keysA) {\n    if (!Object.prototype.hasOwnProperty.call(b, key)) return false;\n    if (!deepEqual(a[key], b[key])) return false;\n  }\n\n  return true;\n}",
+    "testCases": [
+      {
+        "id": "tc-1",
+        "input": "{ a: [1, 2, { b: 3 }], c: 'hello' }, { a: [1, 2, { b: 3 }], c: 'hello' }",
+        "expectedOutput": "true",
+        "description": "Nested matching objects and arrays return true"
+      },
+      {
+        "id": "tc-2",
+        "input": "{ a: 1, b: 2 }, { a: 1, b: 3 }",
+        "expectedOutput": "false",
+        "description": "Mismatched values return false"
+      }
+    ]
+  },
+  {
+    "id": "polyfill-event-emitter",
+    "title": "Event Emitter (Pub/Sub Pattern)",
+    "category": "JavaScript Polyfills",
+    "difficulty": "Medium",
+    "timeComplexity": "O(1) subscribe, O(K) emit where K is listener count",
+    "spaceComplexity": "O(N * K) listener registry",
+    "entryFunction": "EventEmitter",
+    "author": "Interview Brain (Frontend Engineering Arsenal)",
+    "readme": "# Custom EventEmitter Implementation\n\n### Overview\nImplements the classic publish-subscribe messaging pattern in JavaScript.\nFeatures `.on(eventName, listener)`, `.off(eventName, listener)`, `.emit(eventName, ...args)`, and `.once(eventName, listener)`.",
+    "starterCode": "class EventEmitter {\n  constructor() {\n    // Your storage here\n  }\n\n  on(event, listener) {}\n  off(event, listener) {}\n  emit(event, ...args) {}\n  once(event, listener) {}\n}",
+    "code": "class EventEmitter {\n  constructor() {\n    this.events = new Map();\n  }\n\n  on(event, listener) {\n    if (!this.events.has(event)) {\n      this.events.set(event, []);\n    }\n    this.events.get(event).push(listener);\n    return this;\n  }\n\n  off(event, listener) {\n    if (!this.events.has(event)) return this;\n    const filtered = this.events.get(event).filter(l => l !== listener && l._original !== listener);\n    if (filtered.length === 0) {\n      this.events.delete(event);\n    } else {\n      this.events.set(event, filtered);\n    }\n    return this;\n  }\n\n  emit(event, ...args) {\n    if (!this.events.has(event)) return false;\n    const listeners = [...this.events.get(event)];\n    for (const listener of listeners) {\n      listener.apply(this, args);\n    }\n    return true;\n  }\n\n  once(event, listener) {\n    const wrapper = (...args) => {\n      this.off(event, wrapper);\n      listener.apply(this, args);\n    };\n    wrapper._original = listener;\n    this.on(event, wrapper);\n    return this;\n  }\n}",
+    "testCases": [
+      {
+        "id": "tc-1",
+        "input": "(() => {\n  const ee = new EventEmitter();\n  let total = 0;\n  const add = (n) => { total += n; };\n  ee.on('add', add);\n  ee.emit('add', 5);\n  ee.emit('add', 10);\n  ee.off('add', add);\n  ee.emit('add', 20);\n  return total;\n})()",
+        "expectedOutput": "15",
+        "description": "Correctly attaches listener, receives events, and unsubscribes with off"
+      },
+      {
+        "id": "tc-2",
+        "input": "(() => {\n  const ee = new EventEmitter();\n  let count = 0;\n  ee.once('click', () => { count++; });\n  ee.emit('click');\n  ee.emit('click');\n  ee.emit('click');\n  return count;\n})()",
+        "expectedOutput": "1",
+        "description": "once() listener runs exactly once then unsubscribes automatically"
+      }
+    ]
+  },
+  {
+    "id": "polyfill-curry",
+    "title": "Currying Function (Auto-Curry)",
+    "category": "JavaScript Polyfills",
+    "difficulty": "Medium",
+    "timeComplexity": "O(1) per partial call",
+    "spaceComplexity": "O(A) accumulated arguments",
+    "entryFunction": "curry",
+    "author": "Interview Brain (Frontend Engineering Arsenal)",
+    "readme": "# Auto-Currying Function\n\n### Overview\nTransforms a function taking multiple arguments `f(a, b, c)` into a sequence of functions that each take one or more arguments until all expected parameters (`fn.length`) are supplied: `f(a)(b)(c)` or `f(a, b)(c)`.",
+    "starterCode": "/**\n * @param {Function} fn\n * @return {Function}\n */\nfunction curry(fn) {\n  // Your implementation here\n}",
+    "code": "function curry(fn) {\n  return function curried(...args) {\n    if (args.length >= fn.length) {\n      return fn.apply(this, args);\n    }\n    return function(...nextArgs) {\n      return curried.apply(this, args.concat(nextArgs));\n    };\n  };\n}",
+    "testCases": [
+      {
+        "id": "tc-1",
+        "input": "(() => {\n  const sum = (a, b, c) => a + b + c;\n  const curriedSum = curry(sum);\n  return [\n    curriedSum(1)(2)(3),\n    curriedSum(1, 2)(3),\n    curriedSum(1)(2, 3)\n  ];\n})()",
+        "expectedOutput": "[6, 6, 6]",
+        "description": "Supports single-argument chain and grouped arguments"
+      }
+    ]
+  },
+  {
+    "id": "polyfill-pipe-compose",
+    "title": "Pipe & Compose Functions",
+    "category": "JavaScript Polyfills",
+    "difficulty": "Easy",
+    "timeComplexity": "O(K) where K is number of functions",
+    "spaceComplexity": "O(1)",
+    "entryFunction": "pipe",
+    "author": "Interview Brain (Frontend Engineering Arsenal)",
+    "readme": "# Pipe and Compose\n\n### Overview\n- **Pipe:** Executes functions left-to-right: `pipe(f, g, h)(x) === h(g(f(x)))`.\n- **Compose:** Executes functions right-to-left: `compose(f, g, h)(x) === f(g(h(x)))`.",
+    "starterCode": "/**\n * @param  {...Function} fns\n * @return {Function}\n */\nfunction pipe(...fns) {\n  // Your implementation here\n}",
+    "code": "function pipe(...fns) {\n  return function(initialValue) {\n    return fns.reduce((acc, fn) => fn(acc), initialValue);\n  };\n}\n\nfunction compose(...fns) {\n  return function(initialValue) {\n    return fns.reduceRight((acc, fn) => fn(acc), initialValue);\n  };\n}",
+    "testCases": [
+      {
+        "id": "tc-1",
+        "input": "(() => {\n  const add2 = x => x + 2;\n  const mult3 = x => x * 3;\n  const subtract1 = x => x - 1;\n  const piped = pipe(add2, mult3, subtract1);\n  return piped(4); // (4 + 2) * 3 - 1 = 17\n})()",
+        "expectedOutput": "17",
+        "description": "Executes transformation pipeline left to right"
+      }
+    ]
+  },
+  {
+    "id": "polyfill-array-flat",
+    "title": "Array.prototype.flat Polyfill",
+    "category": "JavaScript Polyfills",
+    "difficulty": "Easy",
+    "timeComplexity": "O(N) total elements",
+    "spaceComplexity": "O(D) call stack depth",
+    "entryFunction": "flattenArray",
+    "author": "Interview Brain (Frontend Engineering Arsenal)",
+    "readme": "# Array Flattening with Depth Limit\n\n### Overview\nFlattens nested array structures up to specified `depth` (default `1`).",
+    "starterCode": "/**\n * @param {Array<any>} arr\n * @param {number} [depth=1]\n * @return {Array<any>}\n */\nfunction flattenArray(arr, depth = 1) {\n  // Your implementation here\n}",
+    "code": "function flattenArray(arr, depth = 1) {\n  const result = [];\n\n  for (const item of arr) {\n    if (Array.isArray(item) && depth > 0) {\n      result.push(...flattenArray(item, depth - 1));\n    } else {\n      result.push(item);\n    }\n  }\n\n  return result;\n}",
+    "testCases": [
+      {
+        "id": "tc-1",
+        "input": "[1, [2, [3, [4, 5]]]], 2",
+        "expectedOutput": "[1, 2, 3, [4, 5]]",
+        "description": "Flattens up to depth 2"
+      },
+      {
+        "id": "tc-2",
+        "input": "[1, 2, [3, 4]]",
+        "expectedOutput": "[1, 2, 3, 4]",
+        "description": "Default depth 1 flattens top-level nested array"
+      }
+    ]
+  },
+  {
+    "id": "polyfill-array-reduce",
+    "title": "Array.prototype.reduce Polyfill",
+    "category": "JavaScript Polyfills",
+    "difficulty": "Medium",
+    "timeComplexity": "O(N)",
+    "spaceComplexity": "O(1)",
+    "entryFunction": "myReduce",
+    "author": "Interview Brain (Frontend Engineering Arsenal)",
+    "readme": "# Array.prototype.reduce Polyfill\n\n### Overview\nExecutes a user-supplied \"reducer\" callback on each element of the array, passing in the return value from the calculation on the preceding element.\n\n### Edge Cases\n- Handling `undefined` or missing initial value.\n- Throwing a `TypeError` if array is empty and no initial value is provided.",
+    "starterCode": "/**\n * @param {Array<any>} arr\n * @param {Function} callback\n * @param {any} [initialValue]\n * @return {any}\n */\nfunction myReduce(arr, callback, initialValue) {\n  // Your implementation here\n}",
+    "code": "function myReduce(arr, callback, initialValue) {\n  if (!Array.isArray(arr)) {\n    throw new TypeError('First argument must be an array');\n  }\n\n  const hasInitial = arguments.length > 2;\n  if (arr.length === 0 && !hasInitial) {\n    throw new TypeError('Reduce of empty array with no initial value');\n  }\n\n  let accumulator = hasInitial ? initialValue : arr[0];\n  const startIndex = hasInitial ? 0 : 1;\n\n  for (let i = startIndex; i < arr.length; i++) {\n    accumulator = callback(accumulator, arr[i], i, arr);\n  }\n\n  return accumulator;\n}",
+    "testCases": [
+      {
+        "id": "tc-1",
+        "input": "[1, 2, 3, 4], (acc, x) => acc + x, 10",
+        "expectedOutput": "20",
+        "description": "Reduces array with initial value"
+      },
+      {
+        "id": "tc-2",
+        "input": "[1, 2, 3, 4], (acc, x) => acc * x",
+        "expectedOutput": "24",
+        "description": "Reduces array without initial value using first element"
+      }
+    ]
+  },
+  {
+    "id": "polyfill-function-bind",
+    "title": "Function.prototype.bind Polyfill",
+    "category": "JavaScript Polyfills",
+    "difficulty": "Medium",
+    "timeComplexity": "O(1)",
+    "spaceComplexity": "O(A) bound arguments",
+    "entryFunction": "myBind",
+    "author": "Interview Brain (Frontend Engineering Arsenal)",
+    "readme": "# Function.prototype.bind Polyfill\n\n### Overview\nCreates a new function that, when called, has its `this` keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.",
+    "starterCode": "/**\n * @param {Function} fn\n * @param {any} context\n * @param {...any} boundArgs\n * @return {Function}\n */\nfunction myBind(fn, context, ...boundArgs) {\n  // Your implementation here\n}",
+    "code": "function myBind(fn, context, ...boundArgs) {\n  if (typeof fn !== 'function') {\n    throw new TypeError('Bound target must be callable');\n  }\n\n  return function boundFn(...callArgs) {\n    const isNew = this instanceof boundFn;\n    return fn.apply(isNew ? this : context, [...boundArgs, ...callArgs]);\n  };\n}",
+    "testCases": [
+      {
+        "id": "tc-1",
+        "input": "(() => {\n  function greet(greeting, punctuation) {\n    return greeting + ', ' + this.name + punctuation;\n  }\n  const bound = myBind(greet, { name: 'Alice' }, 'Hello');\n  return bound('!');\n})()",
+        "expectedOutput": "\"Hello, Alice!\"",
+        "description": "Binds this context and prepends partial arguments"
+      }
+    ]
+  },
+  {
+    "id": "polyfill-memoize",
+    "title": "Memoize (Function Result Caching)",
+    "category": "JavaScript Polyfills",
+    "difficulty": "Easy",
+    "timeComplexity": "O(1) on cache hit",
+    "spaceComplexity": "O(N) cache entries",
+    "entryFunction": "memoize",
+    "author": "Interview Brain (Frontend Engineering Arsenal)",
+    "readme": "# Memoize Utility\n\n### Overview\nCaches the results of pure function calls to avoid redundant expensive recalculations with identical arguments.",
+    "starterCode": "/**\n * @param {Function} fn\n * @param {Function} [resolver]\n * @return {Function}\n */\nfunction memoize(fn, resolver) {\n  // Your implementation here\n}",
+    "code": "function memoize(fn, resolver) {\n  const cache = new Map();\n\n  return function(...args) {\n    const key = resolver ? resolver.apply(this, args) : JSON.stringify(args);\n    if (cache.has(key)) {\n      return cache.get(key);\n    }\n    const result = fn.apply(this, args);\n    cache.set(key, result);\n    return result;\n  };\n}",
+    "testCases": [
+      {
+        "id": "tc-1",
+        "input": "(() => {\n  let calls = 0;\n  const square = (n) => { calls++; return n * n; };\n  const memoized = memoize(square);\n  const a = memoized(5);\n  const b = memoized(5);\n  const c = memoized(5);\n  return { a, b, c, calls };\n})()",
+        "expectedOutput": "{\"a\":25,\"b\":25,\"c\":25,\"calls\":1}",
+        "description": "Returns cached value on repeated calls without invoking underlying function"
+      }
+    ]
+  }
+]

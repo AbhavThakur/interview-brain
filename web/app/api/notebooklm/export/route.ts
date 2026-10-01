@@ -9,6 +9,9 @@ import {
 } from '@/lib/markdown';
 import { GRIND_75_PROBLEMS } from '@/lib/grind75Data';
 import { TOP_30_BEHAVIORAL_QUESTIONS, REVERSE_INTERVIEW_QUESTIONS } from '@/lib/behavioralData';
+import { getAllLeetCodeSolutions } from '@/lib/leetcodeSolutions';
+import { getAllJavaScriptQuestions } from '@/lib/javascriptQuestions';
+import { getAllClassicAlgorithms } from '@/lib/classicAlgorithms';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -137,6 +140,81 @@ export async function GET(req: NextRequest) {
     content += `- **Task (15% time ~ 30-45s):** Define explicit problem, deadline, or architectural risk assigned to you.\n`;
     content += `- **Action (50% time ~ 1.5-2m):** What YOU personally did: technical choices, tradeoffs, code written, stakeholder persuasion.\n`;
     content += `- **Result (20% time ~ 45s):** Quantified metrics using Google X-Y-Z formula: "Accomplished [X], as measured by [Y], by doing [Z]".\n`;
+
+  } else if (pack === 'leetcode-solutions') {
+    filename = 'interview-brain-leetcode-500-solutions.md';
+    const solutions = getAllLeetCodeSolutions();
+
+    content = `# ⚡ Interview Brain: 500+ LeetCode JavaScript Solutions Grounding Binder\n\n`;
+    content += `> Generated for Google NotebookLM Grounded AI Code Reviews, Complexity Grilling & Audio Podcasts.\n`;
+    content += `> Total Solved Problems: ${solutions.length} | Source: BaffinLee/leetcode-javascript (MIT License)\n\n`;
+    content += `---\n\n`;
+
+    solutions.forEach(s => {
+      content += `## LeetCode #${s.id}: ${s.title} (${s.difficulty})\n`;
+      if (s.topics.length > 0) content += `**Topics:** ${s.topics.join(', ')}\n`;
+      if (s.timeComplexity || s.spaceComplexity) {
+        content += `**Complexity:** Time: ${s.timeComplexity || 'O(n)'} | Space: ${s.spaceComplexity || 'O(1)'}\n`;
+      }
+      if (s.problemText) {
+        content += `\n### Problem Statement\n${s.problemText}\n`;
+      }
+      if (s.solutionCode) {
+        content += `\n### JavaScript Solution\n\`\`\`javascript\n${s.solutionCode}\n\`\`\`\n`;
+      }
+      content += `\n---\n\n`;
+    });
+
+  } else if (pack === 'javascript-tricky-questions') {
+    filename = 'interview-brain-lydia-hallie-155-js-questions.md';
+    const jsQuestions = getAllJavaScriptQuestions();
+
+    content = `# 🎯 Interview Brain: 155 Tricky JavaScript Questions & Deep Explanations Grounding Binder\n\n`;
+    content += `> Generated for Google NotebookLM Grounded Socratic Drills, Quirks Grilling & Commute Audio Podcasts.\n`;
+    content += `> Total Questions: ${jsQuestions.length} | Source: Lydia Hallie (https://github.com/lydiahallie/javascript-questions) (MIT License)\n\n`;
+    content += `---\n\n`;
+
+    jsQuestions.forEach(q => {
+      content += `## Question #${q.id}: ${q.title} [${q.difficulty}]\n`;
+      if (q.tags.length > 0) content += `**Topics:** ${q.tags.join(', ')}\n\n`;
+      if (q.code) {
+        content += `\`\`\`javascript\n${q.code}\n\`\`\`\n\n`;
+      }
+      content += `### Multiple Choice Options:\n`;
+      q.options.forEach(opt => {
+        content += `- **${opt.key}:** ${opt.text}\n`;
+      });
+      content += `\n### Correct Answer: ${q.answer}\n\n`;
+      content += `### Conceptual Explanation:\n${q.explanation}\n\n`;
+      content += `---\n\n`;
+    });
+
+  } else if (pack === 'classic-algorithms') {
+    filename = 'interview-brain-trekhleb-classic-algorithms.md';
+    const algos = getAllClassicAlgorithms();
+
+    content = `# 🏛️ Interview Brain: Classic CS Algorithms & Data Structures Grounding Binder\n\n`;
+    content += `> Generated for Google NotebookLM Grounded Computer Science & Algorithm Study.\n`;
+    content += `> Total Implementations: ${algos.length} | Source: Oleksii Trekhleb (https://github.com/trekhleb/javascript-algorithms) (MIT License)\n\n`;
+    content += `---\n\n`;
+
+    algos.forEach(a => {
+      content += `## ${a.title} [${a.category} - ${a.difficulty}]\n`;
+      content += `**Time Complexity:** ${a.timeComplexity} | **Space Complexity:** ${a.spaceComplexity}\n`;
+      content += `**Entry Function/Class:** \`${a.entryFunction}\`\n\n`;
+      if (a.readme) {
+        content += `### Conceptual Overview & Architecture:\n${a.readme}\n\n`;
+      }
+      content += `### Standalone Implementation:\n\`\`\`javascript\n${a.code}\n\`\`\`\n\n`;
+      if (a.testCases && a.testCases.length > 0) {
+        content += `### Built-in Test Cases:\n`;
+        a.testCases.forEach((tc, idx) => {
+          content += `- **Test ${idx + 1}:** \`${tc.input}\` ➔ Expected: \`${tc.expectedOutput}\`${tc.description ? ` (${tc.description})` : ''}\n`;
+        });
+        content += `\n`;
+      }
+      content += `---\n\n`;
+    });
 
   } else {
     // Master Unified Pack

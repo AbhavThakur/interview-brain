@@ -1,7 +1,13 @@
 export interface NotebookLMPrompt {
   id: string;
   title: string;
-  category: 'audio' | 'system-design' | 'behavioral' | 'dsa' | 'warmup' | 'reverse';
+  category:
+    | "audio"
+    | "system-design"
+    | "behavioral"
+    | "dsa"
+    | "warmup"
+    | "reverse";
   badge: string;
   emoji: string;
   description: string;
@@ -23,79 +29,141 @@ export interface SourcePack {
 
 export const SOURCE_PACKS: SourcePack[] = [
   {
-    id: 'pack-system-design',
-    title: 'System Design & Distributed Architecture Pack',
-    emoji: '📐',
-    badge: '11 Blueprints + Primer',
-    description: 'Complete HLD framework, Distributed Systems handbook, URL shortener, Twitter feed, Web crawler, GoF design patterns, machine coding blueprints, mobile virtualization, and real-time chat architecture.',
-    targetUse: 'Perfect for 45-min System Design mock interviews, tradeoff grilling, and commute Audio Podcasts.',
-    fileCount: '11 Architecture Blueprints',
-    downloadParam: 'system-design',
+    id: "pack-system-design",
+    title: "System Design & Distributed Architecture Pack",
+    emoji: "📐",
+    badge: "11 Blueprints + Primer",
+    description:
+      "Complete HLD framework, Distributed Systems handbook, URL shortener, Twitter feed, Web crawler, GoF design patterns, machine coding blueprints, mobile virtualization, and real-time chat architecture.",
+    targetUse:
+      "Perfect for 45-min System Design mock interviews, tradeoff grilling, and commute Audio Podcasts.",
+    fileCount: "11 Architecture Blueprints",
+    downloadParam: "system-design",
     highlights: [
-      'The 4-Step HLD Interview Framework with 45-min time allocation',
-      'Distributed Systems Handbook (CAP/PACELC, Caching, Sharding, Consistency)',
-      'TinyURL, Twitter Timeline, and Distributed Web Crawler deep dives',
-      'GoF Design Patterns (Strategy, Observer, Factory, Decorator) with TypeScript'
-    ]
+      "The 4-Step HLD Interview Framework with 45-min time allocation",
+      "Distributed Systems Handbook (CAP/PACELC, Caching, Sharding, Consistency)",
+      "TinyURL, Twitter Timeline, and Distributed Web Crawler deep dives",
+      "GoF Design Patterns (Strategy, Observer, Factory, Decorator) with TypeScript",
+    ],
   },
   {
-    id: 'pack-grind75',
-    title: 'Grind 75 & Defensive Corner Cases Pack',
-    emoji: '🧠',
-    badge: '75 Problems + 6 Checklists',
-    description: 'All 75 high-frequency LeetCode algorithmic problems categorized by pattern with time estimates, Ah-Ha mental models, plus the full Corner Cases & Defensive Checklist across Arrays, Linked Lists, Trees, Graphs, DP, and Intervals.',
-    targetUse: 'Ideal for Socratic DSA code review, time/space complexity quizzing, and identifying subtle bug injections.',
-    fileCount: '75 Problems + Defensive Matrix',
-    downloadParam: 'grind75',
+    id: "pack-grind75",
+    title: "Grind 75 & Defensive Corner Cases Pack",
+    emoji: "🧠",
+    badge: "75 Problems + 6 Checklists",
+    description:
+      "All 75 high-frequency LeetCode algorithmic problems categorized by pattern with time estimates, Ah-Ha mental models, plus the full Corner Cases & Defensive Checklist across Arrays, Linked Lists, Trees, Graphs, DP, and Intervals.",
+    targetUse:
+      "Ideal for Socratic DSA code review, time/space complexity quizzing, and identifying subtle bug injections.",
+    fileCount: "75 Problems + Defensive Matrix",
+    downloadParam: "grind75",
     highlights: [
-      '75 Curated problems mapped across Blind 75 and NeetCode patterns',
-      'Ah-Ha Insights: The single core intuition needed to solve each problem',
-      'Complete Algorithmic Corner Cases matrix (Integer overflow, cycle detection, skewed trees)',
-      'Subarray / window keyword to optimal algorithm mapping'
-    ]
+      "75 Curated problems mapped across Blind 75 and NeetCode patterns",
+      "Ah-Ha Insights: The single core intuition needed to solve each problem",
+      "Complete Algorithmic Corner Cases matrix (Integer overflow, cycle detection, skewed trees)",
+      "Subarray / window keyword to optimal algorithm mapping",
+    ],
   },
   {
-    id: 'pack-behavioral',
-    title: 'STAR Stories, FAANG Questions & Reverse Interview Pack',
-    emoji: '⭐',
-    badge: 'Top 30 Questions + STAR Rubric',
-    description: 'Your personal project STAR stories, FAANG 4-step scoring rubric, Google X-Y-Z formula, Top 30 FAANG Behavioral Questions mapped to Amazon 16 Leadership Principles, and Reverse Interview questions with green/red flags.',
-    targetUse: 'Use to audit your personal project stories for passive language, missing metrics, and practice behavioral probing.',
-    fileCount: '30 FAANG Questions + Reverse Bank',
-    downloadParam: 'behavioral',
+    id: "pack-behavioral",
+    title: "STAR Stories, FAANG Questions & Reverse Interview Pack",
+    emoji: "⭐",
+    badge: "Top 30 Questions + STAR Rubric",
+    description:
+      "Your personal project STAR stories, FAANG 4-step scoring rubric, Google X-Y-Z formula, Top 30 FAANG Behavioral Questions mapped to Amazon 16 Leadership Principles, and Reverse Interview questions with green/red flags.",
+    targetUse:
+      "Use to audit your personal project stories for passive language, missing metrics, and practice behavioral probing.",
+    fileCount: "30 FAANG Questions + Reverse Bank",
+    downloadParam: "behavioral",
     highlights: [
-      'Top 30 Behavioral Questions mapped to Amazon 16 Leadership Principles',
-      'FAANG Behavioral Rubric (Situation 15%, Task 15%, Action 50%, Result 20%)',
-      'Reverse Interview Questions (Tech debt, on-call health, promotion transparency)',
-      'Google X-Y-Z formula guides for quantifying engineering impact'
-    ]
+      "Top 30 Behavioral Questions mapped to Amazon 16 Leadership Principles",
+      "FAANG Behavioral Rubric (Situation 15%, Task 15%, Action 50%, Result 20%)",
+      "Reverse Interview Questions (Tech debt, on-call health, promotion transparency)",
+      "Google X-Y-Z formula guides for quantifying engineering impact",
+    ],
   },
   {
-    id: 'pack-master',
-    title: 'Interview Brain Unified Master Grounding Binder',
-    emoji: '👑',
-    badge: 'All-in-One Complete Source',
-    description: 'The ultimate unified knowledge base merging all System Design blueprints, Grind 75 insights, 140+ QA Bank solutions, Evergreen Topics, STAR stories, and Company prep sheets into one structured file.',
-    targetUse: 'The complete multi-source grounding document for NotebookLM to turn it into your 24/7 personal tech mentor.',
-    fileCount: 'Complete Platform Knowledge Base',
-    downloadParam: 'master',
+    id: "pack-master",
+    title: "Interview Brain Unified Master Grounding Binder",
+    emoji: "👑",
+    badge: "All-in-One Complete Source",
+    description:
+      "The ultimate unified knowledge base merging all System Design blueprints, Grind 75 insights, 140+ QA Bank solutions, Evergreen Topics, STAR stories, and Company prep sheets into one structured file.",
+    targetUse:
+      "The complete multi-source grounding document for NotebookLM to turn it into your 24/7 personal tech mentor.",
+    fileCount: "Complete Platform Knowledge Base",
+    downloadParam: "master",
     highlights: [
-      'All 11 System Design & Architecture blueprints',
-      'Grind 75 problems + Complete Corner Cases Matrix',
-      '140+ Q&A Bank Solutions (JavaScript, React, Node, SQL, Security)',
-      'STAR stories and Top 30 FAANG Behavioral Questions'
-    ]
-  }
+      "All 11 System Design & Architecture blueprints",
+      "Grind 75 problems + Complete Corner Cases Matrix",
+      "140+ Q&A Bank Solutions (JavaScript, React, Node, SQL, Security)",
+      "STAR stories and Top 30 FAANG Behavioral Questions",
+    ],
+  },
+  {
+    id: "pack-leetcode-solutions",
+    title: "500+ LeetCode JavaScript Solutions Grounding Pack",
+    emoji: "⚡",
+    badge: "519 Problems with Full Code",
+    description:
+      "The entire offline database of 519 LeetCode problems solved in clean JavaScript by Baffin Lee (MIT License), complete with problem statements, solutions, and time/space complexity.",
+    targetUse:
+      "Upload to NotebookLM for deep-dive code reviews, Socratic algorithm grilling, or generating commute audio podcasts discussing algorithmic trade-offs.",
+    fileCount: "519 Solved Problems",
+    downloadParam: "leetcode-solutions",
+    highlights: [
+      "519 verified JavaScript solutions across all LeetCode difficulty tiers",
+      "Accurate time and space complexity annotations per problem",
+      "Categorized by 66+ data structure and algorithm topic tags",
+      'Ideal for asking NotebookLM: "Test me on Array & Two-Pointer problems from my source"',
+    ],
+  },
+  {
+    id: "pack-javascript-tricky",
+    title: "155 Tricky JavaScript Questions & Deep Explanations Pack",
+    emoji: "🎯",
+    badge: "155 Lydia Hallie MCQs",
+    description:
+      "The complete offline database of 155 multiple-choice questions by Lydia Hallie (MIT License) dissecting tricky JavaScript output traps, event loop phases, closures, hoisting, prototype chains, and type coercion.",
+    targetUse:
+      "Upload to NotebookLM to generate deep audio podcast discussions on JavaScript gotchas or create a personalized AI Socratic interviewer to quiz you on JS edge cases.",
+    fileCount: "155 In-Depth Questions",
+    downloadParam: "javascript-tricky-questions",
+    highlights: [
+      "155 code snippets testing exact JavaScript runtime behavior",
+      "Deep conceptual explanations for every tricky question",
+      'Covers Event Loop, Hoisting, Closures, "this" binding, Prototypes, and Coercion',
+      'Perfect for Socratic voice drills: "Ask me a random tricky JS question from my source and wait for my answer"',
+    ],
+  },
+  {
+    id: "pack-classic-algorithms",
+    title: "Classic CS Algorithms & Data Structures Grounding Pack",
+    emoji: "🏛️",
+    badge: "26 Classic Implementations",
+    description:
+      "Foundational Computer Science implementations from scratch by Oleksii Trekhleb (MIT License) — Linked Lists, Trees, Heaps, LRU Cache, Trie, Quicksort, Merge Sort, Dijkstra, and Dynamic Programming with Big-O trade-offs.",
+    targetUse:
+      "Upload to NotebookLM for deep algorithm analysis, conceptual audio discussions, and Socratic grilling on time/space complexities and algorithmic trade-offs.",
+    fileCount: "26 Core CS Implementations",
+    downloadParam: "classic-algorithms",
+    highlights: [
+      "Core Data Structures: LRU Cache, Trie, MinHeap, Binary Search Tree, Graph, Disjoint Set",
+      "Sorting & Searching: Quicksort, Merge Sort, Heap Sort, Binary Search with proofs",
+      "Graph Algorithms: Dijkstra shortest path, BFS, DFS, and Topological Sort",
+      "Dynamic Programming: 0/1 Knapsack, Longest Common Subsequence, Levenshtein Distance",
+    ],
+  },
 ];
-
 export const NOTEBOOKLM_PROMPTS: NotebookLMPrompt[] = [
   {
-    id: 'prompt-audio-overview',
-    title: 'Commute Audio Podcast Optimizer',
-    category: 'audio',
-    badge: 'Audio Overview',
-    emoji: '🎙️',
-    description: 'Guides NotebookLM to generate the highest-retention 10-15 minute audio conversation between 2 hosts focusing on core architecture trade-offs.',
+    id: "prompt-audio-overview",
+    title: "Commute Audio Podcast Optimizer",
+    category: "audio",
+    badge: "Audio Overview",
+    emoji: "🎙️",
+    description:
+      "Guides NotebookLM to generate the highest-retention 10-15 minute audio conversation between 2 hosts focusing on core architecture trade-offs.",
     prompt: `Generate an engaging, natural 12-to-15 minute deep dive audio podcast discussing the System Design and Distributed Systems notes in my sources.
 
 Focus the discussion on:
@@ -106,16 +174,17 @@ Focus the discussion on:
 Make the hosts challenge each other with real-world scenarios and engineering banter.`,
     tips: [
       'Click "Customize" in the Audio Overview panel in NotebookLM and paste this prompt before clicking Generate.',
-      'Listen on mobile during your daily commute or morning workout.'
-    ]
+      "Listen on mobile during your daily commute or morning workout.",
+    ],
   },
   {
-    id: 'prompt-bar-raiser-system-design',
-    title: 'FAANG Staff / Bar Raiser System Design Grilling',
-    category: 'system-design',
-    badge: 'System Design',
-    emoji: '🏛️',
-    description: 'Simulates a ruthless 45-minute FAANG Staff / Principal interviewer questioning your design decisions with zero hallucinations.',
+    id: "prompt-bar-raiser-system-design",
+    title: "FAANG Staff / Bar Raiser System Design Grilling",
+    category: "system-design",
+    badge: "System Design",
+    emoji: "🏛️",
+    description:
+      "Simulates a ruthless 45-minute FAANG Staff / Principal interviewer questioning your design decisions with zero hallucinations.",
     prompt: `Act as an L6/L7 Staff Principal Engineer and Bar Raiser at Amazon / Meta. Based ONLY on the System Design blueprints and Distributed Systems handbook in my uploaded sources, conduct a strict mock interview.
 
 Rules:
@@ -127,17 +196,18 @@ Rules:
 
 Start now by introducing yourself and asking the first architectural question.`,
     tips: [
-      'Respond as you would in a live whiteboard session with clear trade-offs.',
-      'Quote capacity numbers and latency rules of thumb from the source notes.'
-    ]
+      "Respond as you would in a live whiteboard session with clear trade-offs.",
+      "Quote capacity numbers and latency rules of thumb from the source notes.",
+    ],
   },
   {
-    id: 'prompt-star-auditor',
-    title: 'STAR Story Vulnerability & Passive Language Auditor',
-    category: 'behavioral',
-    badge: 'Behavioral',
-    emoji: '📝',
-    description: 'Scans your project stories for passive "we" language, missing metric percentages, and generates hard probing questions.',
+    id: "prompt-star-auditor",
+    title: "STAR Story Vulnerability & Passive Language Auditor",
+    category: "behavioral",
+    badge: "Behavioral",
+    emoji: "📝",
+    description:
+      'Scans your project stories for passive "we" language, missing metric percentages, and generates hard probing questions.',
     prompt: `Act as a seasoned Senior Engineering Manager on a FAANG Hiring Committee. Analyze all my STAR behavioral stories and project notes in the sources.
 
 Please perform a comprehensive 4-point audit:
@@ -146,17 +216,18 @@ Please perform a comprehensive 4-point audit:
 3. Amazon Leadership Principle Mapping: Verify which Amazon LP each story best demonstrates.
 4. The 3 Hardest Follow-ups: Give me the 3 most aggressive follow-up questions an interviewer will ask to test if I actually wrote the code or designed the system myself.`,
     tips: [
-      'Paste your updated personal STAR draft in the chat to get instant scoring.',
-      'Use the generated follow-ups to rehearse your answers out loud.'
-    ]
+      "Paste your updated personal STAR draft in the chat to get instant scoring.",
+      "Use the generated follow-ups to rehearse your answers out loud.",
+    ],
   },
   {
-    id: 'prompt-corner-case-hunter',
-    title: 'Algorithmic Edge Case & Defensive Bug Hunter',
-    category: 'dsa',
-    badge: 'DSA & Algorithms',
-    emoji: '⚡',
-    description: 'Tests your defensive coding muscle memory by asking you to find edge cases before revealing solutions.',
+    id: "prompt-corner-case-hunter",
+    title: "Algorithmic Edge Case & Defensive Bug Hunter",
+    category: "dsa",
+    badge: "DSA & Algorithms",
+    emoji: "⚡",
+    description:
+      "Tests your defensive coding muscle memory by asking you to find edge cases before revealing solutions.",
     prompt: `Based strictly on the Grind 75 Ah-Ha insights and the Algorithmic Corner Cases Matrix in my source files, act as a Socratic Coding Interviewer.
 
 Present me with 5 rapid algorithmic scenarios one by one across:
@@ -171,17 +242,18 @@ For each scenario:
 2. Ask me to list the top 3 corner cases / edge blunders that would cause a runtime crash or Wrong Answer.
 3. Wait for my reply before giving feedback and revealing the next scenario.`,
     tips: [
-      'Great for 10-minute warmups before starting daily Grind 75 practice.',
-      'Focus on integer overflow, null pointers, and boundary conditions.'
-    ]
+      "Great for 10-minute warmups before starting daily Grind 75 practice.",
+      "Focus on integer overflow, null pointers, and boundary conditions.",
+    ],
   },
   {
-    id: 'prompt-5min-warmup',
-    title: '5-Minute Pre-Interview Rapid-Fire Flash Drill',
-    category: 'warmup',
-    badge: 'Pre-Interview',
-    emoji: '⏱️',
-    description: 'Rapid-fire 10-question flash quiz on latency numbers, event loop execution order, and GoF patterns.',
+    id: "prompt-5min-warmup",
+    title: "5-Minute Pre-Interview Rapid-Fire Flash Drill",
+    category: "warmup",
+    badge: "Pre-Interview",
+    emoji: "⏱️",
+    description:
+      "Rapid-fire 10-question flash quiz on latency numbers, event loop execution order, and GoF patterns.",
     prompt: `I have an interview in 15 minutes! Act as a high-speed drill coach based on my uploaded Cheat Sheets and Distributed Systems handbook.
 
 Ask me 5 rapid-fire questions covering:
@@ -193,17 +265,18 @@ Ask me 5 rapid-fire questions covering:
 
 Ask all 5 questions together, let me answer, then give a quick score and concise corrections.`,
     tips: [
-      'Run this drill 15 minutes before every technical screening call.',
-      'Boosts confidence and locks in fast-recall muscle memory.'
-    ]
+      "Run this drill 15 minutes before every technical screening call.",
+      "Boosts confidence and locks in fast-recall muscle memory.",
+    ],
   },
   {
-    id: 'prompt-reverse-interview-matcher',
-    title: 'Reverse Interview Strategy & Question Matcher',
-    category: 'reverse',
-    badge: 'Reverse Interview',
-    emoji: '💬',
-    description: 'Recommends the highest-signal questions to ask your interviewers tailored to their role.',
+    id: "prompt-reverse-interview-matcher",
+    title: "Reverse Interview Strategy & Question Matcher",
+    category: "reverse",
+    badge: "Reverse Interview",
+    emoji: "💬",
+    description:
+      "Recommends the highest-signal questions to ask your interviewers tailored to their role.",
     prompt: `Based on the Reverse Interview Questions guide in my sources, help me prepare my questions for my upcoming interview loop.
 
 I am interviewing with:
@@ -213,8 +286,26 @@ I am interviewing with:
 
 For each interviewer, recommend the 2 best, highest-signal questions from my source guide to ask in the final 5-10 minutes, along with the specific Green Flags and Red Flags I should listen for in their answers.`,
     tips: [
-      'Prepares you to interview the company and assess work-life balance and tech debt.',
-      'Shows interviewers that you think like a senior engineering leader.'
-    ]
-  }
+      "Prepares you to interview the company and assess work-life balance and tech debt.",
+      "Shows interviewers that you think like a senior engineering leader.",
+    ],
+  },
+  {
+    id: "prompt-javascript-tricky-socratic",
+    title: "Socratic JavaScript Quirks & Output Drill",
+    category: "warmup",
+    badge: "JS Tricky Drill",
+    emoji: "⚡",
+    description:
+      "Drills you on subtle JavaScript language traps, event loop ordering, hoisting, and object coercion from Lydia Hallie questions.",
+    prompt: `Act as a senior frontend interviewer testing my JavaScript core fundamentals using the 155 Tricky JavaScript Questions pack in my sources.
+  1. Select one challenging question testing hoisting, closures, or the event loop.
+2. Present the code snippet and ask me what it outputs and WHY.
+3. Wait for my response before revealing the answer.
+4. When I answer, critique my explanation against the deep conceptual breakdown in your source.`,
+    tips: [
+      "Ideal for active voice practice using the NotebookLM audio/chat interface.",
+      "Exposes hidden misconceptions about JavaScript runtime evaluation.",
+    ],
+  },
 ];

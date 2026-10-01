@@ -6,6 +6,10 @@
     "dev": "npm --prefix web run dev",
     "build": "npm --prefix web run build",
     "start": "npm --prefix web run start",
-    "lint": "npm --prefix web run lint"
+    "lint": "npm --prefix web run lint",
+    "ingest:solutions": "node scripts/ingest-baffinlee.js",
+    "ingest:lydia": "node scripts/ingest-lydia.js",
+    "ingest:trekhleb": "node scripts/ingest-trekhleb.js",
+    "ingest:polyfills": "node scripts/ingest-polyfills.js"
   }
 }

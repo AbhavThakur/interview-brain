@@ -6,6 +6,7 @@ import MarkdownRenderer from '@/components/MarkdownRenderer';
 import { MarkdownDocument } from '@/lib/markdown';
 import ActivePlanWidget from '@/components/ActivePlanWidget';
 import PlanWizardModal from '@/components/PlanWizardModal';
+import RadioFrameworkGuide from '@/components/RadioFrameworkGuide';
 
 const categoryDisplayNames: Record<string, string> = {
   All: 'All Categories',
@@ -110,6 +111,9 @@ export default function SystemDesignClient({ initialDocs }: { initialDocs: Markd
           </div>
         </div>
       </div>
+
+      {/* FAANG Standard RADIO Framework Architecture Playbook */}
+      <RadioFrameworkGuide />
 
       {/* Beginner Navigation & LLD vs HLD Roadmap Guide */}
       <div className="rounded-3xl bg-gradient-to-br from-white/[0.04] via-primary/5 to-purple-950/20 border border-white/10 p-6 sm:p-8 flex flex-col gap-6 shadow-xl relative overflow-hidden">

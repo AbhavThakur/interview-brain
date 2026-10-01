@@ -90,6 +90,69 @@
     "whyItMatters": "Essential high-yield revision list when you have less than 4 weeks to prepare."
   },
   {
+    "id": "baffinlee-leetcode-javascript",
+    "title": "LeetCode JavaScript Solutions (500+ Solved Problems) by Baffin Lee",
+    "category": "dsa",
+    "platform": "Interview Brain (Offline Practice & Solutions)",
+    "url": "/coding",
+    "difficulty": "Easy to Hard",
+    "estimatedTime": "Instant Solution Reference",
+    "tags": [
+      "leetcode",
+      "javascript",
+      "solutions",
+      "dsa",
+      "complexity-analysis",
+      "open-source"
+    ],
+    "description": "519 clean, idiomatic JavaScript solutions to LeetCode problems with time & space complexity, related topics, and similar questions cross-references. Available online and bundled offline inside Interview Brain.",
+    "whyItMatters": "The gold-standard open-source reference for candidates interviewing in modern JavaScript and TypeScript."
+  },
+  {
+    "id": "lydiahallie-javascript-questions",
+    "title": "JavaScript Questions (155+ Tricky Output & Quirks) by Lydia Hallie",
+    "category": "dsa",
+    "platform": "Interview Brain (Interactive Quiz)",
+    "url": "/quiz",
+    "difficulty": "Intermediate to Advanced",
+    "estimatedTime": "2-5m per quiz question",
+    "tags": [
+      "javascript",
+      "event-loop",
+      "closures",
+      "hoisting",
+      "prototypes",
+      "this-binding",
+      "quiz",
+      "mcq",
+      "open-source"
+    ],
+    "description": "155 in-depth multiple-choice questions testing core JavaScript fundamentals: event loop phases, lexical scoping, temporal dead zone, prototype chains, and tricky coercion traps. Integrated offline into Interview Brain with interactive testing.",
+    "whyItMatters": "Universally regarded as the best resource for nailing tricky output questions asked in frontend screening rounds at top tech companies."
+  },
+  {
+    "id": "trekhleb-javascript-algorithms",
+    "title": "JavaScript Algorithms & Data Structures (26 Foundation Implementations) by Oleksii Trekhleb",
+    "category": "dsa",
+    "platform": "Interview Brain (Classic Algorithms & Code Arena)",
+    "url": "/coding",
+    "difficulty": "Easy to Hard",
+    "estimatedTime": "15-30m per implementation",
+    "tags": [
+      "algorithms",
+      "data-structures",
+      "classic-cs",
+      "trekhleb",
+      "lru-cache",
+      "trie",
+      "graphs",
+      "sorting",
+      "open-source"
+    ],
+    "description": "26 foundational computer science data structures and classic algorithms (LRU Cache, Trie, MinHeap, Merge Sort, Quicksort, Dijkstra, Kahn's Topological Sort, Knapsack, KMP, Levenshtein) with Big-O complexity tables, starter templates, and in-browser assertion tests.",
+    "whyItMatters": "The quintessential open-source JavaScript algorithms repository (185k+ GitHub stars), ingested locally for hands-on interactive code practice."
+  },
+  {
     "id": "hackerrank-problem-solving",
     "title": "HackerRank: Core Problem Solving & Language Certifications",
     "category": "dsa",

@@ -1,6 +1,4 @@
 import {
-  getAllQuestions,
-  getAllTopics,
   getAllStories,
   getAllEnhancedCodes,
   getAllResources,
@@ -10,20 +8,10 @@ import CommandCenterWidget from "@/components/CommandCenterWidget";
 import PillarsExplorer from "@/components/PillarsExplorer";
 
 export default function Home() {
-  const questionCount = getAllQuestions().length;
   const codes = getAllEnhancedCodes();
   const resourceCount = getAllResources().length;
   const systemDesignDocs = getAllSystemDesign();
-  const topics = getAllTopics();
   const storyCount = getAllStories().length;
-
-  // Dynamic daily selections
-  const todayProblem =
-    codes[
-      // eslint-disable-next-line react-hooks/purity -- Daily selection intentionally changes by calendar day.
-      Math.floor(Date.now() / 86400000) % (codes.length || 1)
-    ] || codes[0];
-  const todayTopic = systemDesignDocs[0] || topics[0];
 
   return (
     <div className="flex flex-col gap-8 py-4 animate-in fade-in slide-in-from-bottom-6 duration-700 max-w-5xl mx-auto">
@@ -40,11 +28,7 @@ export default function Home() {
 
       {/* Unified Command Center Widget (Replaces 5 stacked banners!) */}
       <section>
-        <CommandCenterWidget
-          todayProblem={todayProblem}
-          todayTopic={todayTopic}
-          dueCardsCount={questionCount}
-        />
+        <CommandCenterWidget />
       </section>
 
       {/* Structured 3-Pillar Knowledge Explorer */}

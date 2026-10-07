@@ -507,8 +507,8 @@ export default function ModernCodeEditor({
     return EDITOR_THEMES.find((t) => t.id === theme) || EDITOR_THEMES[0];
   }, [theme]);
 
-  // Keep cursor, gutter, and text rows on the same fractional line height.
-  const lineHeightPx = fontSize * 1.6;
+  // Keep cursor, gutter, and text rows on the exact same integer line height to eliminate subpixel drift.
+  const lineHeightPx = Math.round(fontSize * 1.6);
 
   return (
     <div

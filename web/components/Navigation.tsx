@@ -31,6 +31,13 @@ const NAV_PILLARS: NavPillar[] = [
     emoji: "🔥",
     items: [
       {
+        href: "/focus",
+        label: "Today's Focus",
+        description: "Zero decision fatigue: dynamic 3-block daily execution engine & session timer",
+        emoji: "🎯",
+        badge: "Daily",
+      },
+      {
         href: "/roadmap",
         label: "Guided Roadmaps",
         description: "Structured comprehensive syllabus & milestone checklists",

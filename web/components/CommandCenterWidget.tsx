@@ -4,26 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import { useProgress } from "@/lib/useProgress";
 import { CAREER_TRACKS } from "@/lib/roadmapData";
-import { CodingProblem, MarkdownDocument } from "@/lib/markdown";
+import { getDailyExecutionPlan } from "@/lib/dailyExecution";
 import PlanWizardModal from "./PlanWizardModal";
-import LearningPathModal from "./LearningPathModal";
 
-interface CommandCenterWidgetProps {
-  todayProblem?: CodingProblem;
-  todayTopic?: MarkdownDocument;
-  dueCardsCount: number;
-}
-
-export default function CommandCenterWidget({
-  todayProblem,
-  todayTopic,
-  dueCardsCount,
-}: CommandCenterWidgetProps) {
+export default function CommandCenterWidget() {
   const { progress, toggleDailyTask, mounted } = useProgress();
   const [wizardOpen, setWizardOpen] = useState(false);
-  const [activeTimeBudget, setActiveTimeBudget] = useState<
-    "15m" | "30m" | "60m"
-  >("30m");
 
   if (!mounted) {
     return (
@@ -42,8 +28,6 @@ export default function CommandCenterWidget({
     allTasks.length > 0
       ? Math.round((completedTasks.length / allTasks.length) * 100)
       : 0;
-  const nextRoadmapTask = allTasks.find((t) => !progress.roadmapTasks[t.id]);
-
   // Daily task completions
   const isProblemDone = progress.completedTasksToday.includes("daily-problem");
   const isConceptDone = progress.completedTasksToday.includes("daily-concept");
@@ -52,7 +36,12 @@ export default function CommandCenterWidget({
   const dailyDoneCount = [isProblemDone, isConceptDone, isQuizDone].filter(
     Boolean,
   ).length;
-  const dailyPercent = Math.round((dailyDoneCount / 3) * 100);
+
+  // Dynamic Daily Execution Engine Plan based on user's real progress
+  const dailyPlan = getDailyExecutionPlan(
+    progress.codingStatus,
+    progress.completedTasksToday
+  );
 
   return (
     <>
@@ -92,19 +81,20 @@ export default function CommandCenterWidget({
               <span>{progress.streakCount}d Streak</span>
             </div>
 
+            <Link
+              href="/focus"
+              className="text-xs font-bold text-white bg-primary/25 hover:bg-primary/40 border border-primary/40 px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5"
+            >
+              <span>🎯 Focus Engine</span>
+              <span>&rarr;</span>
+            </Link>
+
             <button
               onClick={() => setWizardOpen(true)}
               className="text-xs font-semibold text-foreground/80 hover:text-white px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all flex items-center gap-1"
             >
-              <span>⚙️ Customize Plan</span>
+              <span>⚙️ Plan</span>
             </button>
-
-            <Link
-              href="/roadmap"
-              className="text-xs font-semibold text-primary hover:text-white px-3.5 py-1.5 rounded-xl bg-primary/10 hover:bg-primary border border-primary/20 transition-all"
-            >
-              Roadmap &rarr;
-            </Link>
           </div>
         </div>
 
@@ -114,38 +104,25 @@ export default function CommandCenterWidget({
             <div className="flex items-center gap-2">
               <span className="text-sm">🎯</span>
               <h3 className="text-sm sm:text-base font-bold text-foreground">
-                Today&apos;s Recommended Focus
+                Today&apos;s Focus: {dailyPlan.dayOfWeek} Queue
               </h3>
               <span className="text-[11px] font-mono text-foreground/50">
                 ({dailyDoneCount}/3 Done)
               </span>
             </div>
 
-            {/* Time Dial Pills */}
-            <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/5">
-              {(["15m", "30m", "60m"] as const).map((time) => (
-                <button
-                  key={time}
-                  onClick={() => setActiveTimeBudget(time)}
-                  className={`text-[11px] font-bold px-2.5 py-1 rounded-lg transition-all ${
-                    activeTimeBudget === time
-                      ? "bg-primary text-white shadow-sm"
-                      : "text-foreground/50 hover:text-foreground"
-                  }`}
-                >
-                  {time === "15m"
-                    ? "⚡ 15m"
-                    : time === "30m"
-                      ? "🎯 30m"
-                      : "🚀 60m"}
-                </button>
-              ))}
-            </div>
+            {/* Link to Dedicated Focus Page */}
+            <Link
+              href="/focus"
+              className="text-xs font-medium text-primary hover:text-primary/80 transition-colors flex items-center gap-1"
+            >
+              <span>Timer &amp; Full View &rarr;</span>
+            </Link>
           </div>
 
           {/* 3 Tasks Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
-            {/* Task 1: Coding Problem */}
+            {/* Task 1: Next Unsolved Coding Problem */}
             <div
               className={`p-4 rounded-2xl border transition-all flex flex-col justify-between gap-3 ${
                 isProblemDone
@@ -157,7 +134,7 @@ export default function CommandCenterWidget({
                 <div className="flex items-center gap-2">
                   <span className="text-base">💻</span>
                   <span className="text-[11px] font-bold uppercase tracking-wider text-primary">
-                    Coding Problem
+                    Coding (45m)
                   </span>
                 </div>
                 <button
@@ -175,24 +152,24 @@ export default function CommandCenterWidget({
 
               <div>
                 <h4 className="text-sm font-bold text-foreground line-clamp-1">
-                  {todayProblem?.title || "Two Sum & Hash Maps"}
+                  {dailyPlan.coding.problem.title}
                 </h4>
                 <p className="text-xs text-foreground/60 mt-0.5 line-clamp-2">
-                  {todayProblem?.pattern || "Array & Hashing"} ·{" "}
-                  {todayProblem?.difficulty || "Easy"} · ~15 mins
+                  {dailyPlan.coding.problem.pattern} ·{" "}
+                  {dailyPlan.coding.problem.difficulty} · #{dailyPlan.coding.problem.order}
                 </p>
               </div>
 
               <div className="pt-1 flex items-center justify-between border-t border-white/5 text-xs">
                 <Link
-                  href={`/coding#${todayProblem?.id || "two-sum"}`}
+                  href={dailyPlan.coding.practiceUrl}
                   className="font-semibold text-primary hover:underline"
                 >
-                  Solve Problem &rarr;
+                  Solve in Editor &rarr;
                 </Link>
-                {todayProblem?.leetcodeUrl && (
+                {dailyPlan.coding.leetcodeUrl && (
                   <a
-                    href={todayProblem.leetcodeUrl}
+                    href={dailyPlan.coding.leetcodeUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-foreground/40 hover:text-foreground text-[11px]"
@@ -203,7 +180,7 @@ export default function CommandCenterWidget({
               </div>
             </div>
 
-            {/* Task 2: Architecture / System Design */}
+            {/* Task 2: Architecture / System Design Blueprint */}
             <div
               className={`p-4 rounded-2xl border transition-all flex flex-col justify-between gap-3 ${
                 isConceptDone
@@ -215,7 +192,7 @@ export default function CommandCenterWidget({
                 <div className="flex items-center gap-2">
                   <span className="text-base">📐</span>
                   <span className="text-[11px] font-bold uppercase tracking-wider text-purple-400">
-                    System Design
+                    System Design (30m)
                   </span>
                 </div>
                 <button
@@ -233,17 +210,16 @@ export default function CommandCenterWidget({
 
               <div>
                 <h4 className="text-sm font-bold text-foreground line-clamp-1">
-                  {todayTopic?.title ||
-                    "In-App Observability & ANR Monitoring SDK"}
+                  {dailyPlan.systemDesign.title}
                 </h4>
                 <p className="text-xs text-foreground/60 mt-0.5 line-clamp-2">
-                  CADisplayLink, Choreographer & batched telemetry · ~20 mins
+                  {dailyPlan.systemDesign.category} · {dailyPlan.systemDesign.focusArea}
                 </p>
               </div>
 
               <div className="pt-1 flex items-center justify-between border-t border-white/5 text-xs">
                 <Link
-                  href="/system-design"
+                  href={dailyPlan.systemDesign.url}
                   className="font-semibold text-purple-400 hover:underline"
                 >
                   Read Blueprint &rarr;
@@ -254,7 +230,7 @@ export default function CommandCenterWidget({
               </div>
             </div>
 
-            {/* Task 3: Active Recall / Behavioral */}
+            {/* Task 3: Behavioral STAR Drill */}
             <div
               className={`p-4 rounded-2xl border transition-all flex flex-col justify-between gap-3 ${
                 isQuizDone
@@ -264,9 +240,9 @@ export default function CommandCenterWidget({
             >
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2">
-                  <span className="text-base">⚡</span>
+                  <span className="text-base">🗣️</span>
                   <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400">
-                    Active Recall
+                    STAR Drill (15m)
                   </span>
                 </div>
                 <button
@@ -284,26 +260,25 @@ export default function CommandCenterWidget({
 
               <div>
                 <h4 className="text-sm font-bold text-foreground line-clamp-1">
-                  Flashcard Drill &amp; STAR Story
+                  {dailyPlan.behavioral.targetPrinciple}
                 </h4>
                 <p className="text-xs text-foreground/60 mt-0.5 line-clamp-2">
-                  Spaced repetition drill ({dueCardsCount || 10} cards due) ·
-                  ~5-10 mins
+                  &ldquo;{dailyPlan.behavioral.question.question}&rdquo;
                 </p>
               </div>
 
               <div className="pt-1 flex items-center justify-between border-t border-white/5 text-xs">
                 <Link
-                  href="/quiz"
+                  href={dailyPlan.behavioral.url}
                   className="font-semibold text-amber-400 hover:underline"
                 >
-                  Start Flashcards &rarr;
+                  Practice Verbal &rarr;
                 </Link>
                 <Link
                   href="/stories"
                   className="text-foreground/40 hover:text-foreground text-[11px]"
                 >
-                  STAR Stories ↗
+                  STAR Bank ↗
                 </Link>
               </div>
             </div>

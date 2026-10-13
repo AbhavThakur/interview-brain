@@ -162,5 +162,39 @@ public class ANRWatchdogModule extends Thread {
 
 ---
 
-## 5. 60-Second Interview Elevator Pitch
-> *"At Best Buy, performance debates between engineering, QA, and product were subjective because measurement previously required tethered dev tools like Flipper. I architected a 3-layer in-app observability SDK: Swift (`CADisplayLink`) and Java (`Choreographer`, `Looper` ANR watchdog) modules capture native hardware frame timing and freezes, emit batched telemetry every 500ms to eliminate bridge congestion, and provide 1-line hooks like `useScreenTTFD` for feature teams. It was adopted across the Consumer App, enabled 1-tap export to Dynatrace and Sentry, and won Director-Level Recognition in Q4."*
+## 5. Dual-Pass Android Profiling Methodology (Pass A App Metrics vs Pass B Native Perfetto)
+
+To turn in-app observability into a rigorous engineering feedback loop, enterprise teams use a **Two-Pass Investigation Protocol** to systematically isolate bottlenecks before touching production code:
+
+### A. Pass A (App-Level Telemetry with Overlay Active)
+- **Environment:** Physical target device (e.g., Samsung Galaxy S25+), Metro dev server disabled (port 8081 closed), Performance Debug Overlay ON.
+- **Workflow:** Run 4 standardized scenarios (S1: First Load, S2: Continuous Scroll, S3: Facet Filtering, S4: Multi-page Pagination).
+- **Execution:** Repeat each scenario 3 times with varied search terms to defeat HTTP caching. Export JSON session logs and compute medians using `node compare-captures.cjs`.
+- **Target Thresholds:**
+  - High-end process RSS budget: **350 MB** (Warning at 450 MB).
+  - Target FPS: **60 FPS** (Warning < 55 FPS, Critical < 45 FPS). Frame drop counted when frame duration > 1.5× vsync budget.
+  - Filter response: **< 500 ms** (Warning 750 ms, Critical > 1,000 ms).
+  - Navigation to Mount: **< 400 ms** (Warning 600 ms, Critical > 800 ms).
+
+### B. Pass B (Native Kernel System Tracing with Overlay Disabled)
+- **Environment:** Dedicated test hardware (e.g., Pixel 7a), Performance Overlay OFF (eliminates observer perturbation).
+- **Automation CLI:**
+  ```bash
+  # 1. Environment check (adb, power saving, port 8081)
+  ./capture-trace.sh doctor
+  # 2. Record 60-second native trace during scenario execution
+  ./capture-trace.sh S2 1
+  # 3. Analyze thread occupancy and frame drops
+  python analyze-trace.py captures/S2/S2-run1.trace
+  # 4. Compare across repeated runs with median thresholds
+  ./compare-runs.py captures/S2
+  ```
+- **Analysis Rules:**
+  - **Thread Dominance:** A thread with > 50% busy share is flagged as the dominant bottleneck.
+  - **Jank Attribution:** Focus on "App Deadline Missed" frames (> 50 ms). If > 60% of late frames are JS-bound, the root cause is client rendering/bridge work rather than native GPU limits.
+  - **Memory Separation:** Compare `vm.rss` (process memory) against Java Virtual Machine heap. If process RSS is 1.7GB while Java heap is only 48–115MB, the issue is **native graphics allocations** (un-cached images, bitmap pools, RenderNode hierarchies), NOT Java garbage collection leaks!
+
+---
+
+## 6. 60-Second Interview Elevator Pitch
+> *"At Best Buy, performance debates between engineering, QA, and product were subjective because measurement previously required tethered dev tools like Flipper. I architected an in-app observability SDK: Swift (`CADisplayLink`) and Java (`Choreographer`, `Looper` ANR watchdog) modules capture native hardware frame timing and freezes, emit batched telemetry every 500ms to eliminate bridge congestion, and provide an in-app network monitor capped at 200 requests. Paired with our Dual-Pass Perfetto profiling runbook, it proved that 95% of scroll jank was JS-bound and separated a 1.7GB process footprint from Java heap memory. It was adopted across the Consumer App, enabled 1-tap export to Sentry, and won Director-Level Recognition in Q4."*

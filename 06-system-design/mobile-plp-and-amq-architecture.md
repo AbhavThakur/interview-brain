@@ -75,8 +75,36 @@ When a user searches an ambiguous query (e.g. *"Apple"* or *"Monitor"*), standar
 
 ---
 
-## 4. Key Metrics Achieved (Best Buy Production Case Study)
-- **Interactive First-Click Latency:** Reduced by **1.7 seconds**.
-- **User Tap-Through Rate:** Lifted by **+12%**.
+## 4. Universal Product Card (UPC) Architecture & Commerce Synchronization
+
+### A. Shared Cross-Platform Component Composition
+To eliminate fragmented product cards between Web (`plp`) and Mobile App (`consumerAppNext`), the UI is decomposed into composable Universal Product Card (UPC) layers:
+```
+[ vertical-product-grid-item.tsx / ProductListItemContent.tsx ]
+   ├── [ upc-product-image.tsx ]       → LCP lead image priority vs. lazy-loaded timing
+   ├── [ upc-sku-title.tsx ]           → Semantic title, review counts & star link routing
+   ├── [ upc-sku-variations.tsx ]      → Context-gated swatches (Hidden on AMQ/vehicle facets)
+   └── [ PriceLoader.tsx ]             → Reactive cart-membership synchronization & fulfillment badges
+```
+
+### B. LCP Priority vs. Analytics Visibility Separation
+- **Largest Contentful Paint (LCP):** Above-the-fold lead cards receive explicit high-priority fetch hints (`fetchpriority="high"`), capturing separate `first-image` and `first-lazy-image` timing metrics.
+- **Impression Visibility:** Rather than firing on render, product view impressions require a stable `visibilityKey` + list index. This prevents false impressions when cards are re-ordered or mounted off-screen during pagination.
+
+### C. Total Member Pricing & Reactive Cart Synchronization
+- **The Challenge:** When a user adds a membership SKU (`PMEM2` Plus or `PMEM3` Total) to their cart, search results must immediately reflect member pricing without requiring a full page refresh.
+- **The Architecture:** `PriceLoader.tsx` observes cart state mutations, passes the SKU through a typed membership guard, updates Apollo Client's reactive customer store, and increments an internal `reloadKey`. This triggers a sub-tree remount of `PriceExperienceLoader` while keeping the virtualized `FlatList` scroll position 100% stable.
+
+### D. Responsive Quick-Filter Transformation Rules
+- Desktop (Large View): Capped at 3 pills per facet group; applied filters display in the left sidebar while suggestions remain in the header.
+- Mobile (Small View): Capped at 2 pills per facet group; active filters move directly into the pill strip to conserve vertical real estate.
+- Maximum 10 pills globally with automatic normalization between backend facet field keys and client display tags.
+
+---
+
+## 5. Key Metrics Achieved (Best Buy Production Case Study)
+- **Interactive First-Click Latency:** Reduced by **1.7 seconds** (lazy-loaded carousels + debounced analytics).
+- **User Tap-Through Rate:** Lifted by **+12%** on ambiguous query search queries.
 - **"Shop All" Category Conversion:** Lifted by **+23%**.
-- **Crash-Free Rate:** Maintained at **99.85%+** across 48+ releases.
+- **Delivery Velocity:** **84 authored PRs merged** across `consumerAppNext` & `plp` (103 commits total) over the 2025–2026 cycle.
+- **Crash-Free Stability:** **99.85%+** maintained across holiday peak traffic.

@@ -1869,5 +1869,114 @@
     ],
     "description": "Architectural blueprint for building apps that work seamlessly without internet connectivity, utilizing SQLite lazy-loading, push/pull delta sync endpoints, and conflict resolution.",
     "whyItMatters": "Standard system design question for chat (WhatsApp), fintech (PhonePe offline QR), and field apps."
+  },
+  {
+    "id": "perfetto-system-profiling",
+    "title": "Perfetto System Tracing & Android OS Profiling",
+    "category": "mobile",
+    "platform": "Android Open Source Project / Google",
+    "url": "https://perfetto.dev/docs/",
+    "difficulty": "Senior to Staff",
+    "estimatedTime": "1-2 hours",
+    "tags": [
+      "perfetto",
+      "android",
+      "profiling",
+      "systrace",
+      "memory",
+      "native"
+    ],
+    "description": "The gold-standard Linux kernel and Android OS system tracing tool. Visualize CPU scheduler slices, Choreographer vsync frame drops, thread states, and native graphics memory buffers.",
+    "whyItMatters": "Essential for debugging deep native bottlenecks and Android ANRs that cannot be diagnosed from JavaScript or React DevTools alone."
+  },
+  {
+    "id": "android-studio-native-profiling",
+    "title": "Android Studio Profiler: Native Memory, CPU & Heap Dumps",
+    "category": "mobile",
+    "platform": "Android Developers",
+    "url": "https://developer.android.com/studio/profile/memory-profiler",
+    "difficulty": "Intermediate to Senior",
+    "estimatedTime": "45 minutes",
+    "tags": [
+      "android",
+      "memory",
+      "leakcanary",
+      "profiling",
+      "native-heap"
+    ],
+    "description": "Comprehensive guide to recording allocation call stacks, inspecting Dalvik vs. native C++ allocations, diagnosing bitmap bloat, and taking heap dumps to find memory leaks.",
+    "whyItMatters": "Allows you to isolate native RSS from JVM heap and explain memory pressure mechanisms in senior mobile system design rounds."
+  },
+  {
+    "id": "rn-cxx-turbomodules",
+    "title": "React Native: C++ TurboModules & JSI Architecture",
+    "category": "mobile",
+    "platform": "React Native Official Docs",
+    "url": "https://reactnative.dev/docs/the-new-architecture/cxx-turbomodules",
+    "difficulty": "Advanced",
+    "estimatedTime": "30-45 minutes",
+    "tags": [
+      "react-native",
+      "turbomodules",
+      "jsi",
+      "c++",
+      "new-architecture"
+    ],
+    "description": "How to build unified cross-platform native modules in pure C++ sharing logic across iOS and Android without platform-specific bridging overhead.",
+    "whyItMatters": "Demonstrates mastery over the New Architecture, JSI HostObjects, and zero-overhead native execution."
+  },
+  {
+    "id": "nitro-modules-jsi-guide",
+    "title": "Nitro Modules: High-Performance Type-Safe JSI Native Modules",
+    "category": "mobile",
+    "platform": "Margelo (Marc Rousavy)",
+    "url": "https://nitro.margelo.com/",
+    "difficulty": "Intermediate to Advanced",
+    "estimatedTime": "30 minutes",
+    "tags": [
+      "nitro",
+      "jsi",
+      "swift",
+      "kotlin",
+      "performance"
+    ],
+    "description": "A modern, blazingly fast framework for writing native modules in Swift, Kotlin, or C++ with automatic TypeScript type generation and zero-copy JSI invocation.",
+    "whyItMatters": "Represents the cutting edge of modern native bridge development in React Native."
+  },
+  {
+    "id": "swift-concurrency-actors-gcd",
+    "title": "Swift Concurrency: MainActor, Tasks & Thread Isolation",
+    "category": "mobile",
+    "platform": "Swift.org",
+    "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/",
+    "difficulty": "Intermediate to Senior",
+    "estimatedTime": "45 minutes",
+    "tags": [
+      "ios",
+      "swift",
+      "concurrency",
+      "mainactor",
+      "threading"
+    ],
+    "description": "Understanding modern Swift approachable concurrency, actors, cooperative thread pools, and offloading background work without stalling CADisplayLink or the main thread.",
+    "whyItMatters": "Crucial for writing modern iOS native modules that interact safely with the main queue and avoid UI jank."
+  },
+  {
+    "id": "executorch-on-device-ai",
+    "title": "ExecuTorch: On-Device AI & PyTorch Mobile Runtime",
+    "category": "ai-ml",
+    "platform": "PyTorch / Meta",
+    "url": "https://pytorch.org/executorch/",
+    "difficulty": "Advanced",
+    "estimatedTime": "1 hour",
+    "tags": [
+      "ai-ml",
+      "mobile",
+      "executorch",
+      "on-device-ai",
+      "edge-inference"
+    ],
+    "description": "Meta official end-to-end runtime for deploying PyTorch and LLMs on mobile devices (iOS, Android, and embedded NPUs) with lightweight binary size and hardware acceleration.",
+    "whyItMatters": "Positioning yourself at the intersection of Mobile Architecture and Client-Side AI gives you an unbeatable moat for 2026/2027 Staff roles."
   }
 ]

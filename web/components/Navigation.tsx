@@ -18,7 +18,7 @@ interface SubNavItem {
 }
 
 interface NavPillar {
-  id: "practice" | "architecture" | "interviews";
+  id: "practice" | "learning" | "architecture" | "interviews";
   label: string;
   emoji: string;
   items: SubNavItem[];
@@ -70,6 +70,44 @@ const NAV_PILLARS: NavPillar[] = [
     ],
   },
   {
+    id: "learning",
+    label: "Learning",
+    emoji: "📚",
+    items: [
+      {
+        href: "/topics",
+        label: "Deep-Dive Topics",
+        description:
+          "Core concept mastery: React Native internals, Performance, JS & On-Device AI",
+        emoji: "📖",
+        badge: "Updated",
+      },
+      {
+        href: "/resources",
+        label: "Resource Hub",
+        description:
+          "109+ top engineering blogs, books, whitepapers & playgrounds",
+        emoji: "🌐",
+        badge: "109 Links",
+      },
+      {
+        href: "/cheatsheets",
+        label: "Cheat Sheets & Latency",
+        description:
+          "Hardware numbers, distributed system trade-offs & corner cases",
+        emoji: "📑",
+      },
+      {
+        href: "/notebooklm",
+        label: "NotebookLM AI Hub",
+        description:
+          "Audio podcast summaries & interactive AI mock drills on the go",
+        emoji: "🤖",
+        badge: "AI Audio",
+      },
+    ],
+  },
+  {
     id: "architecture",
     label: "Architecture",
     emoji: "📐",
@@ -81,13 +119,6 @@ const NAV_PILLARS: NavPillar[] = [
           "HLD, LLD & production mobile architectures (PhonePe, Uber, Netflix)",
         emoji: "📐",
         badge: "Senior SDE",
-      },
-      {
-        href: "/cheatsheets",
-        label: "Cheat Sheets & Latency",
-        description:
-          "Hardware numbers, distributed system trade-offs & corner cases",
-        emoji: "📑",
       },
       {
         href: "/tools",
@@ -104,17 +135,18 @@ const NAV_PILLARS: NavPillar[] = [
     emoji: "💼",
     items: [
       {
+        href: "/stories",
+        label: "STAR Stories & Behavioral",
+        description: "Top 30 FAANG questions, Best Buy 2025-2026 wins & Google XYZ formula",
+        emoji: "✨",
+        badge: "Production Wins",
+      },
+      {
         href: "/prep",
         label: "Company Prep Guides",
         description:
           "Google, Amazon, Meta, Apple & PhonePe targeted round guides",
         emoji: "🏢",
-      },
-      {
-        href: "/stories",
-        label: "STAR Stories & Behavioral",
-        description: "Top 30 FAANG questions, Amazon LPs & Google XYZ formula",
-        emoji: "✨",
       },
       {
         href: "/qa",
@@ -123,27 +155,13 @@ const NAV_PILLARS: NavPillar[] = [
           "140+ verified solutions for React, JS, Mobile & SQL interviews",
         emoji: "❓",
       },
-      {
-        href: "/resources",
-        label: "Resource Hub",
-        description:
-          "33+ top engineering blogs, books, whitepapers & playgrounds",
-        emoji: "🌐",
-      },
-      {
-        href: "/notebooklm",
-        label: "NotebookLM AI Hub",
-        description:
-          "Audio podcast summaries & interactive AI mock drills on the go",
-        emoji: "🤖",
-        badge: "AI Audio",
-      },
     ],
   },
 ];
 
 const MOBILE_BOTTOM_NAV = [
   { href: "/", label: "Today", icon: "🎯" },
+  { href: "/topics", label: "Learning", icon: "📚" },
   { href: "/grind75", label: "Practice", icon: "🔥" },
   { href: "/system-design", label: "Arch", icon: "📐" },
   { href: "/stories", label: "Interviews", icon: "💼" },

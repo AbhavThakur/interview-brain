@@ -1978,5 +1978,41 @@
     ],
     "description": "Meta official end-to-end runtime for deploying PyTorch and LLMs on mobile devices (iOS, Android, and embedded NPUs) with lightweight binary size and hardware acceleration.",
     "whyItMatters": "Positioning yourself at the intersection of Mobile Architecture and Client-Side AI gives you an unbeatable moat for 2026/2027 Staff roles."
+  },
+  {
+    "id": "react-compiler-official",
+    "title": "React Compiler: Automatic Memoization & Architecture",
+    "category": "frontend",
+    "platform": "React Core Team / Meta",
+    "url": "https://react.dev/learn/react-compiler",
+    "difficulty": "Intermediate to Advanced",
+    "estimatedTime": "30 minutes",
+    "tags": [
+      "react-19",
+      "react-compiler",
+      "memoization",
+      "performance",
+      "frontend"
+    ],
+    "description": "The official deep dive into the build-time React Compiler. Understand how Control Flow Graphs automate useMemo/useCallback, and learn the rules of React required to prevent compiler bailouts.",
+    "whyItMatters": "Essential for discussing modern React 19 performance optimizations in frontend and mobile interviews."
+  },
+  {
+    "id": "local-first-architecture-guide",
+    "title": "Local-First Software Architecture & CRDTs by Ink & Switch",
+    "category": "mobile",
+    "platform": "Ink & Switch / Martin Kleppmann",
+    "url": "https://www.inkandswitch.com/local-first/",
+    "difficulty": "Senior to Staff",
+    "estimatedTime": "1 hour",
+    "tags": [
+      "local-first",
+      "offline-sync",
+      "crdt",
+      "sqlite",
+      "architecture"
+    ],
+    "description": "The foundational architectural paper defining local-first software: instantaneous local writes, zero-loading-spinner UX, and conflict-free background synchronization across devices.",
+    "whyItMatters": "The gold standard architectural reference for offline-first and real-time collaborative mobile system design."
   }
 ]

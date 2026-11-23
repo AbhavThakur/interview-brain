@@ -2320,5 +2320,97 @@
     ],
     "description": "The #1 open-source system design guide with 270,000+ stars on GitHub. Contains exhaustive diagrams, interview solutions, Anki flashcard decks, and trade-off comparisons.",
     "whyItMatters": "The gold standard open-source curriculum for large-scale distributed system design."
+  },
+  {
+    "id": "build-your-own-x",
+    "title": "Build Your Own X: Master Programming by Recreating Real Technologies",
+    "category": "interactive-learning",
+    "platform": "GitHub (CodeCrafters)",
+    "url": "https://github.com/codecrafters-io/build-your-own-x",
+    "difficulty": "Intermediate to Advanced",
+    "estimatedTime": "Weekend Projects",
+    "tags": [
+      "build-your-own",
+      "systems",
+      "git",
+      "redis",
+      "docker",
+      "react"
+    ],
+    "description": "Learn how software really works under the hood by building your own Git, Redis, Docker, SQLite, React, or BitTorrent client from scratch step-by-step.",
+    "whyItMatters": "The ultimate project-based learning repo to build unshakeable engineering depth and resume portfolio projects."
+  },
+  {
+    "id": "free-for-dev-guide",
+    "title": "Free for Developers: Curated Free Tiers & Developer Infrastructure",
+    "category": "zero-signup-tools",
+    "platform": "free-for.dev",
+    "url": "https://free-for.dev/",
+    "difficulty": "All Levels",
+    "estimatedTime": "Reference Guide",
+    "tags": [
+      "free-tier",
+      "hosting",
+      "cloud",
+      "apis",
+      "tools",
+      "database"
+    ],
+    "description": "Massive directory of SaaS, PaaS, and IaaS offerings with generous free tiers for developers (hosting, databases, auth, email, CI/CD, and monitoring).",
+    "whyItMatters": "Invaluable reference for deploying side projects and mock backends with zero cloud costs."
+  },
+  {
+    "id": "llms-from-scratch-raschka",
+    "title": "Build a Large Language Model (from Scratch) by Sebastian Raschka",
+    "category": "ai-ml",
+    "platform": "GitHub (Sebastian Raschka)",
+    "url": "https://github.com/rasbt/LLMs-from-scratch",
+    "difficulty": "Intermediate to Advanced",
+    "estimatedTime": "2-3 weeks",
+    "tags": [
+      "ai-ml",
+      "llm",
+      "pytorch",
+      "transformers",
+      "gpt"
+    ],
+    "description": "A comprehensive, step-by-step guide to implementing a complete ChatGPT-like transformer model from scratch in PyTorch, covering tokenization, attention mechanisms, and pretraining.",
+    "whyItMatters": "Demystifies transformer internals and gives you deep technical credibility in applied AI interviews."
+  },
+  {
+    "id": "papers-we-love-repo",
+    "title": "Papers We Love: Foundational Computer Science Research Papers",
+    "category": "system-design",
+    "platform": "GitHub (Papers We Love)",
+    "url": "https://github.com/papers-we-love/papers-we-love",
+    "difficulty": "Senior / Staff",
+    "estimatedTime": "1h per paper",
+    "tags": [
+      "research",
+      "distributed-systems",
+      "raft",
+      "mapreduce",
+      "dynamo"
+    ],
+    "description": "Curated repository of academic and industry papers that shaped modern computing: Google MapReduce, Amazon Dynamo, Raft consensus, Spanner, and Kafka.",
+    "whyItMatters": "Reading the original Dynamo and MapReduce papers gives you the exact mental model used in Staff System Design interviews."
+  },
+  {
+    "id": "free-programming-books-curated",
+    "title": "Free Programming Books: Community Curated Tech Books & Cheat Sheets",
+    "category": "interactive-learning",
+    "platform": "GitHub (EbookFoundation)",
+    "url": "https://ebookfoundation.github.io/free-programming-books/",
+    "difficulty": "All Levels",
+    "estimatedTime": "Reference Guide",
+    "tags": [
+      "books",
+      "ebooks",
+      "cheat-sheets",
+      "learning",
+      "open-source"
+    ],
+    "description": "The world largest collection of freely available programming books, podcasts, and cheat sheets covering every language and framework.",
+    "whyItMatters": "Instant free access to high-quality textbooks without paywalls."
   }
 ]

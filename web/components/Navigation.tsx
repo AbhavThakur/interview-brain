@@ -86,9 +86,9 @@ const NAV_PILLARS: NavPillar[] = [
         href: "/resources",
         label: "Resource Hub",
         description:
-          "109+ top engineering blogs, books, whitepapers & playgrounds",
+          "125+ top engineering blogs, books, whitepapers & playgrounds",
         emoji: "🌐",
-        badge: "109 Links",
+        badge: "125+ Links",
       },
       {
         href: "/cheatsheets",

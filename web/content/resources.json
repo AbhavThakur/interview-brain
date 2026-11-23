@@ -2014,5 +2014,311 @@
     ],
     "description": "The foundational architectural paper defining local-first software: instantaneous local writes, zero-loading-spinner UX, and conflict-free background synchronization across devices.",
     "whyItMatters": "The gold standard architectural reference for offline-first and real-time collaborative mobile system design."
+  },
+  {
+    "id": "cloudflare-tech-blog",
+    "title": "Cloudflare Blog: Internet Infrastructure, Networking & Edge",
+    "category": "blogs",
+    "platform": "Cloudflare",
+    "url": "https://blog.cloudflare.com/",
+    "difficulty": "All Levels",
+    "estimatedTime": "15-30m per article",
+    "tags": [
+      "cloudflare",
+      "networking",
+      "http3",
+      "edge",
+      "ddos",
+      "security"
+    ],
+    "description": "Legendary deep dives into DNS, BGP routing, HTTP/3, eBPF, Linux kernel optimization, and edge computing at global scale.",
+    "whyItMatters": "Top source for real-world networking, edge latency, and low-level debugging post-mortems."
+  },
+  {
+    "id": "slack-engineering-blog",
+    "title": "Slack Engineering: Real-Time Messaging & Collaboration",
+    "category": "blogs",
+    "platform": "Slack",
+    "url": "https://slack.engineering/",
+    "difficulty": "Intermediate to Senior",
+    "estimatedTime": "20m per article",
+    "tags": [
+      "slack",
+      "real-time",
+      "websockets",
+      "messaging",
+      "flannel"
+    ],
+    "description": "Architectural insights on scaling real-time WebSocket connections, building the Flannel edge caching engine, and multi-tenant message fanout.",
+    "whyItMatters": "Essential reading for any real-time chat or collaborative whiteboard system design."
+  },
+  {
+    "id": "doordash-engineering-blog",
+    "title": "DoorDash Engineering: Logistics, Graph Routing & ML",
+    "category": "blogs",
+    "platform": "DoorDash",
+    "url": "https://doordash.engineering/",
+    "difficulty": "Intermediate to Senior",
+    "estimatedTime": "20m per article",
+    "tags": [
+      "doordash",
+      "logistics",
+      "dispatch",
+      "algorithms",
+      "graph"
+    ],
+    "description": "Complex real-world problems in real-time dispatch, route optimization, dynamic pricing, and distributed transaction pipelines.",
+    "whyItMatters": "Perfect for ride-sharing, food delivery, and geospatial system design rounds."
+  },
+  {
+    "id": "figma-engineering-blog",
+    "title": "Figma Engineering: WebAssembly, CRDTs & Real-Time Canvas",
+    "category": "blogs",
+    "platform": "Figma",
+    "url": "https://www.figma.com/blog/section/engineering/",
+    "difficulty": "Senior / Staff",
+    "estimatedTime": "25m per article",
+    "tags": [
+      "figma",
+      "webassembly",
+      "crdt",
+      "graphics",
+      "multiplayer"
+    ],
+    "description": "Groundbreaking articles on multiplayer collaborative sync, WebAssembly rendering, GPU canvas performance, and CRDT state trees.",
+    "whyItMatters": "Masterclass in frontend performance and collaborative multi-user client architectures."
+  },
+  {
+    "id": "datadog-engineering-blog",
+    "title": "Datadog Engineering: Petabyte-Scale Observability & eBPF",
+    "category": "blogs",
+    "platform": "Datadog",
+    "url": "https://www.datadoghq.com/blog/engineering/",
+    "difficulty": "Senior / Staff",
+    "estimatedTime": "25m per article",
+    "tags": [
+      "datadog",
+      "observability",
+      "ebpf",
+      "distributed-tracing",
+      "kafka"
+    ],
+    "description": "Engineering at massive scale: managing millions of events per second, distributed APM tracing, Kafka streaming, and eBPF kernel instrumentation.",
+    "whyItMatters": "Direct reference for designing telemetry, logging, and monitoring platforms."
+  },
+  {
+    "id": "reddit-engineering-blog",
+    "title": "Reddit Engineering: Community Feeds, Caching & Scaling",
+    "category": "blogs",
+    "platform": "Reddit",
+    "url": "https://www.reddit.com/r/redditeng/",
+    "difficulty": "Intermediate to Senior",
+    "estimatedTime": "15-20m per article",
+    "tags": [
+      "reddit",
+      "feeds",
+      "ranking",
+      "caching",
+      "graphql"
+    ],
+    "description": "How Reddit scales its front page, voting aggregation algorithms, media pipelines, and GraphQL federation across billions of monthly views.",
+    "whyItMatters": "Direct real-world case study for feed systems, vote tallying, and comment trees."
+  },
+  {
+    "id": "supabase-engineering-blog",
+    "title": "Supabase Blog: PostgreSQL Internals & Realtime CDC",
+    "category": "blogs",
+    "platform": "Supabase",
+    "url": "https://supabase.com/blog",
+    "difficulty": "Intermediate to Senior",
+    "estimatedTime": "20m per article",
+    "tags": [
+      "supabase",
+      "postgres",
+      "realtime",
+      "cdc",
+      "database"
+    ],
+    "description": "Deep technical articles on PostgreSQL WAL replication, logical decoding, row-level security (RLS), and real-time database change streams.",
+    "whyItMatters": "Great for understanding modern database primitives, change-data-capture (CDC), and open-source infrastructure."
+  },
+  {
+    "id": "vercel-engineering-blog",
+    "title": "Vercel Blog: Edge Infrastructure, RSC & Next.js",
+    "category": "blogs",
+    "platform": "Vercel",
+    "url": "https://vercel.com/blog",
+    "difficulty": "Intermediate to Advanced",
+    "estimatedTime": "15-25m per article",
+    "tags": [
+      "vercel",
+      "nextjs",
+      "edge",
+      "rsc",
+      "performance"
+    ],
+    "description": "The frontier of web performance: Server-Side Rendering (SSR), React Server Components (RSC), Edge network routing, and Turbopack internals.",
+    "whyItMatters": "Essential for staying ahead in modern fullstack and React performance interviews."
+  },
+  {
+    "id": "twitch-engineering-blog",
+    "title": "Twitch Engineering: Low-Latency Video & Live Chat",
+    "category": "blogs",
+    "platform": "Twitch",
+    "url": "https://blog.twitch.tv/en/tags/engineering/",
+    "difficulty": "Senior / Staff",
+    "estimatedTime": "25m per article",
+    "tags": [
+      "twitch",
+      "video-streaming",
+      "hls",
+      "transcoding",
+      "chat-fanout"
+    ],
+    "description": "Mastering live video broadcasting, real-time HLS/DASH transcoders, and million-user chat room fanout architectures.",
+    "whyItMatters": "The gold standard for video streaming and live interactive broadcasting system design."
+  },
+  {
+    "id": "openai-research-blog",
+    "title": "OpenAI Research & Engineering: Frontier Model Scaling",
+    "category": "ai-ml",
+    "platform": "OpenAI",
+    "url": "https://openai.com/news/research/",
+    "difficulty": "Advanced",
+    "estimatedTime": "20m per article",
+    "tags": [
+      "openai",
+      "llm",
+      "ai-infrastructure",
+      "inference",
+      "scaling"
+    ],
+    "description": "Groundbreaking publications on large model training architectures, inference optimization, prompt caching, and reinforcement learning.",
+    "whyItMatters": "Stay up to date on cutting-edge generative AI, inference serving, and latency optimizations."
+  },
+  {
+    "id": "anthropic-research-blog",
+    "title": "Anthropic Research & Engineering: Constitutional AI & Systems",
+    "category": "ai-ml",
+    "platform": "Anthropic",
+    "url": "https://www.anthropic.com/research",
+    "difficulty": "Advanced",
+    "estimatedTime": "20m per article",
+    "tags": [
+      "anthropic",
+      "claude",
+      "safety",
+      "context-caching",
+      "tool-use"
+    ],
+    "description": "Technical papers and announcements on Claude architecture, prompt caching, structured tool use, and scalable alignment.",
+    "whyItMatters": "Understanding prompt caching, agentic tool workflows, and AI reliability benchmarks."
+  },
+  {
+    "id": "martin-fowler-blog",
+    "title": "Martin Fowler: Microservices, Architecture & Refactoring",
+    "category": "blogs",
+    "platform": "Martin Fowler / ThoughtWorks",
+    "url": "https://martinfowler.com/",
+    "difficulty": "All Levels",
+    "estimatedTime": "15-30m per guide",
+    "tags": [
+      "martin-fowler",
+      "architecture",
+      "microservices",
+      "refactoring",
+      "patterns"
+    ],
+    "description": "The quintessential architectural guide by Martin Fowler covering Event Sourcing, CQRS, Strangler Fig pattern, and clean software architecture.",
+    "whyItMatters": "Foundational concepts constantly tested in senior design patterns and refactoring discussions."
+  },
+  {
+    "id": "julia-evans-bite-size-networking",
+    "title": "Julia Evans: Bite Size Networking & Linux Systems",
+    "category": "blogs",
+    "platform": "Julia Evans (jvns.ca)",
+    "url": "https://jvns.ca/",
+    "difficulty": "All Levels",
+    "estimatedTime": "10-15m per article",
+    "tags": [
+      "julia-evans",
+      "linux",
+      "networking",
+      "dns",
+      "debugging"
+    ],
+    "description": "Delightful, crystalline visual explanations of how DNS works, packet tracing with tcpdump, memory allocations, and terminal internals.",
+    "whyItMatters": "The clearest, most intuitive explanations of networking protocols and Linux systems in the world."
+  },
+  {
+    "id": "high-scalability-archives",
+    "title": "High Scalability: Real-World Architecture Deep Dives",
+    "category": "blogs",
+    "platform": "High Scalability",
+    "url": "http://highscalability.com/",
+    "difficulty": "Senior / Staff",
+    "estimatedTime": "30m per case study",
+    "tags": [
+      "high-scalability",
+      "case-studies",
+      "real-world",
+      "distributed"
+    ],
+    "description": "The legendary architectural breakdown library dissecting how WhatsApp, YouTube, Instagram, and Google scaled from day one to billions of users.",
+    "whyItMatters": "Provides real architectural battle stories and concrete numbers to cite in interview rounds."
+  },
+  {
+    "id": "instacart-tech-blog",
+    "title": "Instacart Tech Blog: Real-Time Fulfillment & Catalog Search",
+    "category": "blogs",
+    "platform": "Instacart",
+    "url": "https://tech.instacart.com/",
+    "difficulty": "Intermediate to Senior",
+    "estimatedTime": "20m per article",
+    "tags": [
+      "instacart",
+      "search",
+      "fulfillment",
+      "database",
+      "python"
+    ],
+    "description": "Managing rapid grocery search ranking, multi-store item availability catalogs, and real-time logistics optimization.",
+    "whyItMatters": "Great for e-commerce search, inventory management, and fast fulfillment architectures."
+  },
+  {
+    "id": "asana-engineering-blog",
+    "title": "Asana Engineering: Real-Time Workspaces & Graph Reactivity",
+    "category": "blogs",
+    "platform": "Asana",
+    "url": "https://asana.com/engineering",
+    "difficulty": "Intermediate to Senior",
+    "estimatedTime": "20m per article",
+    "tags": [
+      "asana",
+      "realtime",
+      "reactivity",
+      "graph",
+      "architecture"
+    ],
+    "description": "Building real-time state synchronization, reactive data graphs, and maintaining high responsiveness across distributed enterprise teams.",
+    "whyItMatters": "Excellent reference for real-time reactive graph architectures and client sync."
+  },
+  {
+    "id": "system-design-primer-repo",
+    "title": "The System Design Primer (Complete Repository & Interactive Anki)",
+    "category": "system-design",
+    "platform": "GitHub (Donne Martin)",
+    "url": "https://github.com/donnemartin/system-design-primer",
+    "difficulty": "All Levels",
+    "estimatedTime": "2-4 weeks full prep",
+    "tags": [
+      "system-design",
+      "donne-martin",
+      "primer",
+      "anki",
+      "hld"
+    ],
+    "description": "The #1 open-source system design guide with 270,000+ stars on GitHub. Contains exhaustive diagrams, interview solutions, Anki flashcard decks, and trade-off comparisons.",
+    "whyItMatters": "The gold standard open-source curriculum for large-scale distributed system design."
   }
 ]

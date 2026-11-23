@@ -14,7 +14,7 @@ const categoryLabels: Record<string, string> = {
   "company-guides": "🏢 Company Prep (FAANG+)",
   "system-design": "📐 System Design & HLD",
   dsa: "🧠 DSA & Algorithms",
-  blogs: "🌐 Engineering Blogs (30+)",
+  blogs: "🌐 Engineering Blogs (35+)",
   mobile: "📱 Mobile & React Native",
   behavioral: "⭐ Behavioral & Careers",
 };

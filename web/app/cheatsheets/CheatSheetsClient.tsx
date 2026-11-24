@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 type SheetTab = 'dsa-patterns' | 'corner-cases' | 'lld-design-patterns' | 'js-event-loop' | 'react-perf' | 'system-design-numbers';
 
@@ -64,6 +65,14 @@ export default function CheatSheetsClient() {
 
   return (
     <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <Breadcrumbs 
+        items={[
+          { label: "Cheat Sheets", href: "/cheatsheets" },
+          { label: currentSheet.title }
+        ]}
+        badge={currentSheet.category}
+        estimatedTime="5-min warmup"
+      />
       
       {/* Header */}
       <div className="border-b border-white/10 pb-6">

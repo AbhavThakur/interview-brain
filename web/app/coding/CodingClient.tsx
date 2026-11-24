@@ -10,6 +10,7 @@ import CodePracticeArena, {
   PracticeProblem,
 } from "@/components/CodePracticeArena";
 import MockInterviewModal from "@/components/MockInterviewModal";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const statusConfig: Record<
   ProblemStatus,
@@ -387,7 +388,23 @@ export default function CodingClient({
   };
 
   return (
-    <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <Breadcrumbs
+        items={[
+          { label: "Coding Arena", href: "/coding" },
+          {
+            label:
+              activeMainTab === "patterns"
+                ? "Curated Patterns"
+                : activeMainTab === "solutions"
+                ? "500+ LeetCode Solutions"
+                : "Classic Algorithms",
+          },
+        ]}
+        badge={`${stats.solved}/${stats.total} Solved`}
+        estimatedTime="Practice Mode"
+      />
+
       {/* Header with Stats Bar */}
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 gap-6">
         <div>

@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { MarkdownDocument } from '@/lib/markdown';
 import ActivePlanWidget from '@/components/ActivePlanWidget';
 import PlanWizardModal from '@/components/PlanWizardModal';
@@ -563,6 +564,16 @@ export default function SystemDesignClient({ initialDocs }: { initialDocs: Markd
           ) : (
             filteredDocs.map(doc => (
               <article key={doc.id} id={doc.id} className="glass-card p-8 md:p-10 flex flex-col gap-6 scroll-mt-24 border-white/5 hover:border-primary/30 transition-all">
+                {/* Wayfinding Breadcrumbs */}
+                <Breadcrumbs
+                  items={[
+                    { label: "System Design", href: "/system-design" },
+                    { label: categoryDisplayNames[doc.category || ''] || doc.category || 'Architecture' },
+                    { label: doc.title || doc.id }
+                  ]}
+                  badge={doc.difficulty}
+                  estimatedTime="15m read"
+                />
                 
                 {/* Meta header */}
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">

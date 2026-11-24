@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { MarkdownDocument } from '@/lib/markdown';
 
 export default function TopicsClient({ initialTopics }: { initialTopics: MarkdownDocument[] }) {
@@ -103,6 +104,15 @@ export default function TopicsClient({ initialTopics }: { initialTopics: Markdow
                 <div className="grid gap-6">
                   {groupTopics.map(topic => (
                     <div key={topic.id} id={topic.id} className="glass-card p-6 flex flex-col gap-4 scroll-mt-24">
+                      <Breadcrumbs
+                        items={[
+                          { label: "Topics", href: "/topics" },
+                          { label: group, href: `/topics?group=${encodeURIComponent(group)}` },
+                          { label: topic.title }
+                        ]}
+                        badge={group}
+                        estimatedTime="10m read"
+                      />
                       <h3 className="text-2xl font-bold">{topic.title}</h3>
                       <div className="prose-dark max-w-none mt-2">
                         <MarkdownRenderer content={topic.content} />

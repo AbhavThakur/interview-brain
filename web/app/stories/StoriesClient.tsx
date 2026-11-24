@@ -5,6 +5,7 @@ import { MarkdownDocument } from '@/lib/markdown';
 import { TOP_30_BEHAVIORAL_QUESTIONS, REVERSE_INTERVIEW_QUESTIONS } from '@/lib/behavioralData';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 import StarStoryBuilderModal from '@/components/StarStoryBuilderModal';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 export default function StoriesClient({ initialStories }: { initialStories: MarkdownDocument[] }) {
   const [activeTab, setActiveTab] = useState<'my-stories' | 'top-questions' | 'rubric' | 'reverse-interview'>('my-stories');
@@ -35,6 +36,14 @@ export default function StoriesClient({ initialStories }: { initialStories: Mark
 
   return (
     <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <Breadcrumbs 
+        items={[
+          { label: "STAR Stories", href: "/stories" },
+          { label: activeTab === 'my-stories' ? 'My Production Stories' : activeTab === 'top-questions' ? 'FAANG Question Bank' : activeTab === 'rubric' ? 'Evaluation Rubric' : 'Reverse Interview' }
+        ]}
+        badge="Best Buy 2025-2026"
+        estimatedTime="STAR Framework"
+      />
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 gap-4">

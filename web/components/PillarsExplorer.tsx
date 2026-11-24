@@ -98,8 +98,8 @@ export default function PillarsExplorer({
       },
       {
         emoji: '🌐',
-        title: 'Resource Hub & 33+ Blogs',
-        description: `${resourceCount} curated links across DSA, Frontend, Mobile, System Design, and 33+ iconic engineering blogs.`,
+        title: 'Resource Hub & 35+ Blogs',
+        description: `${resourceCount} curated links across DSA, Frontend, Mobile, System Design, and 35+ iconic engineering blogs.`,
         href: '/resources',
         cta: 'Browse Hub'
       },

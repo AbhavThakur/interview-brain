@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 
 type Question = {
@@ -62,6 +63,14 @@ export default function QABankClient({ initialQuestions }: { initialQuestions: Q
 
   return (
     <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <Breadcrumbs 
+        items={[
+          { label: "Q&A Drill", href: "/qa" },
+          { label: selectedTopic === 'All' ? 'All Topics' : selectedTopic }
+        ]}
+        badge={`${filteredQuestions.length} Questions`}
+        estimatedTime="FAANG Solutions"
+      />
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 gap-4">

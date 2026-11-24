@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { useProgress } from "@/lib/useProgress";
 import { getDailyExecutionPlan } from "@/lib/dailyExecution";
 
@@ -94,6 +95,14 @@ export default function DailyExecutionEngine() {
 
   return (
     <div className="flex flex-col gap-6 w-full animate-in fade-in duration-500">
+      <Breadcrumbs 
+        items={[
+          { label: "Today's Focus", href: "/focus" },
+          { label: `${plan.dayOfWeek} Routine` }
+        ]}
+        badge={`${completedCount}/3 Blocks Done`}
+        estimatedTime={timeBudget}
+      />
       
       {/* ─── HERO BANNER: Today's Command Directive ─── */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/20 via-purple-950/20 to-black border border-primary/30 p-6 sm:p-8 shadow-2xl backdrop-blur-xl">

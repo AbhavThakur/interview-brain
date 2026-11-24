@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { GRIND_75_PROBLEMS, GrindProblem } from "@/lib/grind75Data";
 import { useProgress } from "@/lib/useProgress";
 import { LeetCodeSolution } from "@/lib/leetcodeSolutions";
@@ -118,6 +119,14 @@ export default function Grind75Client() {
 
   return (
     <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <Breadcrumbs 
+        items={[
+          { label: "Coding Arena", href: "/coding" },
+          { label: "Grind 75 Dynamic Plan" }
+        ]}
+        badge={`${completionPercentage}% Solved`}
+        estimatedTime={`${weeks} Weeks Plan`}
+      />
       {/* Hero Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 gap-4">
         <div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { SOURCE_PACKS, NOTEBOOKLM_PROMPTS, SourcePack, NotebookLMPrompt } from '@/lib/notebooklmData';
 
 export default function NotebookLMClient() {
@@ -40,6 +41,14 @@ export default function NotebookLMClient() {
 
   return (
     <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <Breadcrumbs 
+        items={[
+          { label: "AI & Audio", href: "/notebooklm" },
+          { label: activeTab === 'packs' ? 'Source Packs' : activeTab === 'prompts' ? 'AI Prompts' : 'Podcast Guide' }
+        ]}
+        badge="NotebookLM Grounded"
+        estimatedTime="15m Audio"
+      />
       
       {/* Header Banner */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-900/40 via-primary/20 to-black border border-purple-500/20 p-8 md:p-12 shadow-2xl">

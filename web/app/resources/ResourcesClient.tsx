@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { ResourceItem } from "@/lib/markdown";
 import { useProgress } from "@/lib/useProgress";
 
@@ -187,6 +188,14 @@ export default function ResourcesClient({
 
   return (
     <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <Breadcrumbs 
+        items={[
+          { label: "Resource Hub", href: "/resources" },
+          { label: categoryLabels[selectedCategory] || "All Resources" }
+        ]}
+        badge={`${filteredResources.length} Sources`}
+        estimatedTime="Zero-Signup Tools"
+      />
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 gap-4">
         <div>

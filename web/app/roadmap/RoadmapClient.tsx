@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { CAREER_TRACKS, LEVELING_MATRIX, RoadmapTask } from '@/lib/roadmapData';
 import { COMPREHENSIVE_SYLLABUS, SyllabusStage, SyllabusTopic } from '@/lib/comprehensiveSyllabusData';
 import { useProgress } from '@/lib/useProgress';
@@ -53,6 +54,14 @@ export default function RoadmapClient() {
 
   return (
     <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <Breadcrumbs 
+        items={[
+          { label: "Career Roadmaps", href: "/roadmap" },
+          { label: currentTrack.title }
+        ]}
+        badge={`${progressPercent}% Complete`}
+        estimatedTime={currentTrack.durationWeeks}
+      />
       
       {/* Header Banner */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/30 via-purple-900/20 to-black border border-primary/20 p-6 sm:p-10 shadow-2xl">

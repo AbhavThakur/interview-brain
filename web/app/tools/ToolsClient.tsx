@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 // Latency Hierarchy Dataset
 const LATENCY_ITEMS = [
@@ -395,6 +396,14 @@ export default function ToolsClient() {
 
   return (
     <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
+      <Breadcrumbs 
+        items={[
+          { label: "Library & Tools", href: "/tools" },
+          { label: activeTab === "estimator" ? "Capacity Estimator" : activeTab === "latency" ? "Latency Visualizer" : "Private Utilities" }
+        ]}
+        badge="100% Free · Client-Side"
+        estimatedTime="Zero Signup"
+      />
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 gap-4">
         <div>

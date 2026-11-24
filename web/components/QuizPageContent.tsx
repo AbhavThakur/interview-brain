@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { useSRS } from "@/lib/useSRS";
 import LydiaMCQQuiz from "@/components/LydiaMCQQuiz";
@@ -155,6 +156,14 @@ export default function QuizPageContent() {
 
   return (
     <div className="max-w-4xl mx-auto flex flex-col gap-6 py-6 px-4">
+      <Breadcrumbs 
+        items={[
+          { label: "Quiz Arena", href: "/quiz" },
+          { label: activeQuizMode === "mcq" ? "Lydia Hallie MCQ Drill" : "SRS Flashcards" }
+        ]}
+        badge="Active Recall"
+        estimatedTime="Spaced Repetition"
+      />
       {/* Top Header Mode Switcher */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
         <div>

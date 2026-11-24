@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { MarkdownDocument } from '@/lib/markdown';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 
@@ -17,6 +18,14 @@ export default function PrepClient({ initialDocs }: { initialDocs: MarkdownDocum
 
   return (
     <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <Breadcrumbs 
+        items={[
+          { label: "Company Prep", href: "/prep" },
+          { label: activeDoc?.title || "Target Companies" }
+        ]}
+        badge={`${initialDocs.length} Profiles`}
+        estimatedTime="Tailored Briefs"
+      />
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 gap-4">

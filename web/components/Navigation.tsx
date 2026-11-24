@@ -208,7 +208,7 @@ export default function Navigation() {
             </div>
 
             {/* Center: Direct High-Frequency Links + "More" Mega Dropdown (Desktop) */}
-            <div className="hidden lg:flex items-center gap-1 xl:gap-2 shrink min-w-0">
+            <div className="hidden lg:flex items-center gap-1 xl:gap-1.5 shrink-0">
               {PRIMARY_NAV_LINKS.map((link) => {
                 const isActive =
                   link.href === "/"
@@ -219,13 +219,12 @@ export default function Navigation() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`text-xs xl:text-sm font-medium px-2 xl:px-3 py-1.5 rounded-xl transition-all whitespace-nowrap flex items-center gap-1.5 shrink-0 ${
+                    className={`text-xs xl:text-sm font-medium px-2.5 xl:px-3 py-1.5 rounded-xl transition-all whitespace-nowrap flex items-center shrink-0 ${
                       isActive
                         ? "bg-primary/20 text-primary font-bold border border-primary/30 shadow-sm"
                         : "text-foreground/70 hover:text-foreground hover:bg-white/5 border border-transparent"
                     }`}
                   >
-                    <span>{link.emoji}</span>
                     <span>{link.label}</span>
                   </Link>
                 );
@@ -236,13 +235,12 @@ export default function Navigation() {
                 <button
                   onClick={() => setMoreMenuOpen((prev) => !prev)}
                   aria-expanded={moreMenuOpen}
-                  className={`text-xs xl:text-sm font-medium px-2 xl:px-3 py-1.5 rounded-xl transition-all whitespace-nowrap flex items-center gap-1.5 shrink-0 ${
+                  className={`text-xs xl:text-sm font-medium px-2.5 xl:px-3 py-1.5 rounded-xl transition-all whitespace-nowrap flex items-center gap-1.5 shrink-0 ${
                     isMoreMenuActive || moreMenuOpen
                       ? "bg-primary/20 text-primary font-bold border border-primary/30 shadow-sm"
                       : "text-foreground/70 hover:text-foreground hover:bg-white/5 border border-transparent"
                   }`}
                 >
-                  <span>🌐</span>
                   <span>Library</span>
                   <span
                     className={`text-[10px] transition-transform duration-200 ${
@@ -313,27 +311,13 @@ export default function Navigation() {
               </div>
             </div>
 
-            {/* Right: Search, Plan (+), Auth / Profile */}
-            <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
+            {/* Right: Search, Create (+), Auth / Profile */}
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
               <CommandPalette />
 
               <div className="flex items-center justify-center">
                 <CreateContentModal />
               </div>
-
-              {/* Personalized Study Plan Button (Visible on xl+) */}
-              <button
-                onClick={() => setPlanWizardOpen(true)}
-                className="hidden xl:flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-semibold transition-all shadow-sm group shrink-0"
-                title="Personalize your study plan with a 30-sec diagnostic"
-              >
-                <span className="group-hover:scale-110 transition-transform">
-                  🎯
-                </span>
-                <span className="text-[11px]">
-                  Custom Plan
-                </span>
-              </button>
 
               {/* User Avatar / Auth Button */}
               <button

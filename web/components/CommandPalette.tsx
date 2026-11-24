@@ -142,7 +142,7 @@ export default function CommandPalette() {
         <span className="hidden 2xl:inline text-foreground/50">
           Search notes, code &amp; resources...
         </span>
-        <span className="hidden sm:inline 2xl:hidden text-foreground/50">
+        <span className="hidden xl:inline 2xl:hidden text-foreground/50">
           Search...
         </span>
         <kbd className="hidden sm:inline-block bg-white/10 px-1.5 py-0.5 rounded text-[10px] font-mono border border-white/10 text-foreground/60">

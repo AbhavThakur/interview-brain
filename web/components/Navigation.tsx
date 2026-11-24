@@ -20,10 +20,10 @@ interface NavLink {
 // 5 High-Frequency Direct Links (Zero dropdown friction)
 const PRIMARY_NAV_LINKS: NavLink[] = [
   { href: "/", label: "Today", emoji: "🎯" },
-  { href: "/coding", label: "Coding", emoji: "💻", badge: "500+ LC" },
-  { href: "/system-design", label: "System Design", emoji: "📐", badge: "HLD/LLD" },
-  { href: "/topics", label: "Topics", emoji: "📖", badge: "Updated" },
-  { href: "/stories", label: "STAR Stories", emoji: "⭐", badge: "Best Buy" },
+  { href: "/coding", label: "Coding", emoji: "💻" },
+  { href: "/system-design", label: "System Design", emoji: "📐" },
+  { href: "/topics", label: "Topics", emoji: "📖" },
+  { href: "/stories", label: "Stories", emoji: "⭐" },
 ];
 
 // Grouped sections inside the "More & Library" Mega-Menu
@@ -208,7 +208,7 @@ export default function Navigation() {
             </div>
 
             {/* Center: Direct High-Frequency Links + "More" Mega Dropdown (Desktop) */}
-            <div className="hidden md:flex items-center gap-1 lg:gap-1.5">
+            <div className="hidden lg:flex items-center gap-1 xl:gap-2 shrink min-w-0">
               {PRIMARY_NAV_LINKS.map((link) => {
                 const isActive =
                   link.href === "/"
@@ -219,7 +219,7 @@ export default function Navigation() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`text-xs lg:text-sm font-medium px-2.5 lg:px-3 py-1.5 rounded-xl transition-all whitespace-nowrap flex items-center gap-1.5 ${
+                    className={`text-xs xl:text-sm font-medium px-2 xl:px-3 py-1.5 rounded-xl transition-all whitespace-nowrap flex items-center gap-1.5 shrink-0 ${
                       isActive
                         ? "bg-primary/20 text-primary font-bold border border-primary/30 shadow-sm"
                         : "text-foreground/70 hover:text-foreground hover:bg-white/5 border border-transparent"
@@ -227,11 +227,6 @@ export default function Navigation() {
                   >
                     <span>{link.emoji}</span>
                     <span>{link.label}</span>
-                    {link.badge && !isActive && (
-                      <span className="hidden xl:inline text-[9px] font-bold px-1.5 py-0.2 rounded bg-white/5 text-foreground/50 border border-white/5">
-                        {link.badge}
-                      </span>
-                    )}
                   </Link>
                 );
               })}
@@ -241,14 +236,14 @@ export default function Navigation() {
                 <button
                   onClick={() => setMoreMenuOpen((prev) => !prev)}
                   aria-expanded={moreMenuOpen}
-                  className={`text-xs lg:text-sm font-medium px-2.5 lg:px-3 py-1.5 rounded-xl transition-all whitespace-nowrap flex items-center gap-1.5 ${
+                  className={`text-xs xl:text-sm font-medium px-2 xl:px-3 py-1.5 rounded-xl transition-all whitespace-nowrap flex items-center gap-1.5 shrink-0 ${
                     isMoreMenuActive || moreMenuOpen
                       ? "bg-primary/20 text-primary font-bold border border-primary/30 shadow-sm"
                       : "text-foreground/70 hover:text-foreground hover:bg-white/5 border border-transparent"
                   }`}
                 >
                   <span>🌐</span>
-                  <span>Library &amp; Tools</span>
+                  <span>Library</span>
                   <span
                     className={`text-[10px] transition-transform duration-200 ${
                       moreMenuOpen ? "rotate-180" : ""
@@ -319,23 +314,23 @@ export default function Navigation() {
             </div>
 
             {/* Right: Search, Plan (+), Auth / Profile */}
-            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
               <CommandPalette />
 
               <div className="flex items-center justify-center">
                 <CreateContentModal />
               </div>
 
-              {/* Personalized Study Plan Button */}
+              {/* Personalized Study Plan Button (Visible on xl+) */}
               <button
                 onClick={() => setPlanWizardOpen(true)}
-                className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-semibold transition-all shadow-sm group"
+                className="hidden xl:flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-semibold transition-all shadow-sm group shrink-0"
                 title="Personalize your study plan with a 30-sec diagnostic"
               >
                 <span className="group-hover:scale-110 transition-transform">
                   🎯
                 </span>
-                <span className="hidden xl:inline text-[11px]">
+                <span className="text-[11px]">
                   Custom Plan
                 </span>
               </button>
@@ -343,12 +338,12 @@ export default function Navigation() {
               {/* User Avatar / Auth Button */}
               <button
                 onClick={() => setAuthModalOpen(true)}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-xs font-medium text-foreground group"
+                className="flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-xs font-medium text-foreground group shrink-0"
               >
                 <div className="w-5 h-5 rounded-lg bg-primary/20 text-primary font-bold flex items-center justify-center text-[10px]">
                   {userInitial}
                 </div>
-                <span className="hidden sm:inline max-w-[80px] truncate text-[11px]">
+                <span className="hidden sm:inline max-w-[70px] truncate text-[11px]">
                   {displayName}
                 </span>
               </button>
@@ -356,7 +351,7 @@ export default function Navigation() {
               {/* Hamburger Button for Mobile Drawer */}
               <button
                 onClick={() => setMobileMenuOpen((prev) => !prev)}
-                className="md:hidden p-2 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/80 hover:text-foreground border border-white/5 transition-all"
+                className="lg:hidden p-2 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/80 hover:text-foreground border border-white/5 transition-all shrink-0"
                 aria-label="Toggle navigation menu"
               >
                 {mobileMenuOpen ? (
@@ -408,7 +403,7 @@ export default function Navigation() {
 
       {/* Mobile Drawer Sheet */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-40 bg-black/85 backdrop-blur-md pt-16 animate-in fade-in duration-200">
+        <div className="lg:hidden fixed inset-0 z-40 bg-black/85 backdrop-blur-md pt-16 animate-in fade-in duration-200">
           <div className="max-h-[calc(100vh-4rem)] overflow-y-auto p-4 flex flex-col gap-4 pb-24">
             {/* Take Diagnostic CTA in Mobile Drawer */}
             <button

@@ -121,7 +121,7 @@ export default function CommandPalette() {
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 bg-white/5 hover:bg-white/10 text-foreground/50 hover:text-foreground border border-white/10 px-3 py-1.5 rounded-xl text-xs transition-colors"
+        className="flex items-center gap-1.5 sm:gap-2 bg-white/5 hover:bg-white/10 text-foreground/50 hover:text-foreground border border-white/10 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs transition-colors shrink-0"
         title="Search (Cmd + K)"
       >
         <svg
@@ -134,15 +134,18 @@ export default function CommandPalette() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
+          className="shrink-0"
         >
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-4.3-4.3" />
         </svg>
-        <span className="hidden sm:inline">
-          Search notes, code & resources...
+        <span className="hidden 2xl:inline text-foreground/50">
+          Search notes, code &amp; resources...
         </span>
-        <span className="sm:hidden">Search...</span>
-        <kbd className="hidden md:inline-block bg-white/10 px-1.5 py-0.5 rounded text-[10px] font-mono border border-white/10">
+        <span className="hidden sm:inline 2xl:hidden text-foreground/50">
+          Search...
+        </span>
+        <kbd className="hidden sm:inline-block bg-white/10 px-1.5 py-0.5 rounded text-[10px] font-mono border border-white/10 text-foreground/60">
           ⌘K
         </kbd>
       </button>
